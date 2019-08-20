@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "864089469200",
+    "firebase_url": "https://atturaifapp.firebaseio.com",
+    "project_id": "atturaifapp",
+    "storage_bucket": "atturaifapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:864089469200:android:c4615fdaddc5944d",
+        "android_client_info": {
+          "package_name": "project.graduation.atturaif_application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "864089469200-9o8b0df69tt9b6vtvdlql5okrjlt4bok.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3dauxTt1ISBZFtRD4wj1DDiMOiPo4XP8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "864089469200-9o8b0df69tt9b6vtvdlql5okrjlt4bok.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
