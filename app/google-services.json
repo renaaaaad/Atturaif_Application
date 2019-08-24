@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "864089469200-3vnfck5f699ivl0uo9i4tfhlqog7n23e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "project.graduation.atturaif_application",
+            "certificate_hash": "7e53d55ebdf58f3985db4099eb097c0f37c13374"
+          }
+        },
+        {
           "client_id": "864089469200-9o8b0df69tt9b6vtvdlql5okrjlt4bok.apps.googleusercontent.com",
           "client_type": 3
         }

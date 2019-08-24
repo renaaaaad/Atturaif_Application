@@ -144,5 +144,7 @@
     <color name="dark_blue">#00008B</color>
     <color name="navy">#000080</color>
     <color name="black">#000000</color>
+    <color name="photo_tint">#88101010</color>
+
 </resources>
 
