@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- An white rectangle ripple. -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:color="@android:color/white"
+    tools:targetApi="lollipop">
+    <item
+        android:id="@android:id/mask"
+        android:drawable="@drawable/bookingbg"
+        tools:targetApi="lollipop"/>
+    <item android:drawable="@drawable/bookingbg"/>
+
+</ripple>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="project.graduation.atturaif_application">
 
     <application
@@ -9,10 +10,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".Payment_Activity"></activity>
         <activity android:name=".CheckPhoneCode_Activity" />
         <activity android:name=".CheckNumber_Activity" />
         <activity android:name=".Booking_Activity">
+
+        <activity android:name=".EventsPage_Activity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".HomePage_Activity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,6 +27,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
+
+
+
     </application>
 
 </manifest>

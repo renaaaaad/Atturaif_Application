@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".HomePage_Activity">
+
+
+    <LinearLayout
+        android:id="@+id/bookingtab_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="103dp"
+        android:layout_height="105dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/bookingbtnripple"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar_constraint_layout"
+
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bookingicon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/Booking"
+            android:textColor="#BF9054"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/eventtab_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="103dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginRight="68dp"
+        android:background="@drawable/eventbtnripple"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar_constraint_layout"
+
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/eventicon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/Events"
+            android:textColor="#BF9054"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/shoptab_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="103dp"
+        android:layout_height="105dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/shopbtnripple"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookingtab_button"
+
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/shopicon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/Shops"
+            android:textColor="#BF9054"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/startARtab_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="103dp"
+        android:layout_height="105dp"
+        android:layout_marginTop="188dp"
+        android:layout_marginRight="68dp"
+        android:background="@drawable/arrbtnipple"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar_constraint_layout"
+
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/aricon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/Start_AR"
+            android:textColor="#BF9054"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/maptab_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="103dp"
+        android:layout_height="105dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="168dp"
+        android:background="@drawable/shopbtnripple"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookingtab_button"
+
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/mapicon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/Map"
+            android:textColor="#BF9054"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/vrtab_button"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="103dp"
+        android:layout_height="105dp"
+        android:layout_marginLeft="240dp"
+        android:layout_marginTop="168dp"
+        android:background="@drawable/shopbtnripple"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bookingtab_button"
+
+        >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bricon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:gravity="center"
+            android:text="@string/virtual_tour"
+            android:textColor="#BF9054"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tool_bar_constraint_layout"
+        android:layout_width="0dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="0dp"
+        android:background="#F8F9F9"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="23dp">
+
+        <TextView
+            android:id="@+id/home_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:letterSpacing="-0.02"
+            android:text="@string/Home"
+            android:textColor="#BF9054"
+            android:textSize="29sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="145dp"
+            tools:layout_editor_absoluteY="15dp"
+            />
+        <ImageButton
+            android:id="@+id/help_btn"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="11dp"
+            android:layout_marginTop="15dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/helpicon"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="317dp"
+            tools:layout_editor_absoluteY="15dp"
+            />
+
+        <TextView
+            android:id="@+id/lang_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginRight="64dp"
+            android:text="@string/Language"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/home_text_view"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
