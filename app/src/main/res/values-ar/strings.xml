@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+        <string name="app_name">Atturaif_Application</string>
+        <string name="Booking">حجز</string>
+        <string name="Home">الصفحة الرئيسية</string>
+        <string name="Events">الفعاليات</string>
+        <string name="Map">الخريطه</string>
+        <string name="Shops">الاسواق</string>
+        <string name="Start_AR">بدأ AR</string>
+        <string name="virtual_tour">جولة افتراضية</string>
+        <string name="Language">عربي</string>
+
+
+        <string name="yes">نعم</string>
+        <string name="no">لا</string>
+
+
+
+</resources>
