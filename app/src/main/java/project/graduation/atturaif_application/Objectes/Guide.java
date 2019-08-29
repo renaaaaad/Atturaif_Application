@@ -1,0 +1,68 @@
+package project.graduation.atturaif_application.Objectes;
+
+import java.util.List;
+
+public class Guide {
+    int id;
+    Long nationality_id;
+    String name, nationality;
+    List<String> languges;
+    List<Work_Days> working_days;
+
+    public Guide(int id, Long nationality_id, String name, String nationality, List<String> languges, List<Work_Days> working_days) {
+        this.id = id;
+        this.nationality_id = nationality_id;
+        this.name = name;
+        this.nationality = nationality;
+        this.languges = languges;
+        this.working_days = working_days;
+    } // constructor
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Long getNationality_id() {
+        return nationality_id;
+    }
+
+    public void setNationality_id(Long nationality_id) {
+        this.nationality_id = nationality_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
+    public List<String> getLanguges() {
+        return languges;
+    }
+
+    public void setLanguges(List<String> languges) {
+        this.languges = languges;
+    }
+
+    public List<Work_Days> getWorking_days() {
+        return working_days;
+    }
+
+    public void setWorking_days(List<Work_Days> working_days) {
+        this.working_days = working_days;
+    }
+} // class
