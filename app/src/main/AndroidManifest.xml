@@ -4,23 +4,23 @@
     package="project.graduation.atturaif_application">
 
     <application
-        android:name="MainApplicationLang"
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".HomePage_Activity" />
-        <activity android:name=".EventsPage_Activity">
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+
+
+        <activity android:name=".EventsPage_Activity"></activity>
 
         <activity android:name=".Payment_Activity"></activity>
         <activity android:name=".CheckPhoneCode_Activity" />
         <activity android:name=".CheckNumber_Activity" />
-        <activity android:name=".Booking_Activity">
+        <activity android:name=".Booking_Activity"></activity>
 
-        <activity android:name=".EventsPage_Activity"></activity>
         <activity android:name=".MainActivity" />
         <activity android:name=".HomePage_Activity">
 
@@ -30,8 +30,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
-
 
 
     </application>
