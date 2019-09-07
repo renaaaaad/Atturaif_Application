@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "864089469200-594nctc62n8kg2hj3ug96aqeu55c6b84.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "project.graduation.atturaif_application",
+            "certificate_hash": "21e50eabcd16fbd4451682df907f31a21258b261"
+          }
+        },
+        {
           "client_id": "864089469200-3vnfck5f699ivl0uo9i4tfhlqog7n23e.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -23,7 +31,6 @@
           }
         },
         {
-
           "client_id": "864089469200-uuop319hf6lrj2faijom6cboshbs4umv.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -32,7 +39,6 @@
           }
         },
         {
-
           "client_id": "864089469200-9o8b0df69tt9b6vtvdlql5okrjlt4bok.apps.googleusercontent.com",
           "client_type": 3
         }

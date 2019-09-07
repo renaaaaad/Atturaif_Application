@@ -12,19 +12,38 @@
         android:theme="@style/AppTheme"
         >
         <activity android:name=".eventDetails"></activity>
-        <activity android:name=".MainActivity" />
         <activity android:name=".EventsPage_Activity" />
-        <activity android:name=".HomePage_Activity">
+        <activity android:name=".HomePage_Activity"/>
+
+        <activity android:name=".VR_page">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage_Activity" />
+        </activity>
+        <activity android:name=".SittingPage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage_Activity" />
+        </activity>
+        <activity android:name=".BasicActivity" />
+        <activity android:name=".Language_page" />
+        <activity android:name=".Payment_Activity" />
+        <activity android:name=".CheckPhoneCode_Activity" />
+        <activity android:name=".CheckNumber_Activity" />
+        <activity android:name=".Booking_Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage_Activity" />
+        </activity>
+        <activity android:name=".Splash_page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Payment_Activity" />
-        <activity android:name=".CheckPhoneCode_Activity" />
-        <activity android:name=".CheckNumber_Activity" />
-        <activity android:name=".Booking_Activity"></activity>
+        <activity android:name=".EventsPage_Activity$EventsPage_Activity" />
+
 
     </application>
 

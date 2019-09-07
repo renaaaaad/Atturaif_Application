@@ -2,21 +2,48 @@
 <resources>
 
 
-        <string name="app_name">Atturaif_Application</string>
-        <string name="Booking">حجز</string>
-        <string name="Home">الصفحة الرئيسية</string>
-        <string name="Events">الفعاليات</string>
-        <string name="Map">الخريطه</string>
-        <string name="Shops">الاسواق</string>
-        <string name="Start_AR">بدأ AR</string>
-        <string name="virtual_tour">جولة افتراضية</string>
-        <string name="Language">عربي</string>
-        <string name="event">حدث</string>
 
 
-        <string name="yes">نعم</string>
-        <string name="no">لا</string>
 
+    <string name="app_name">Atturaif_Application</string>
+    <string name="Booking">حجز</string>
+    <string name="Home">الصفحة الرئيسية</string>
+    <string name="Events">الفعاليات</string>
+    <string name="Map">الخريطه</string>
+    <string name="Shops">الاسواق</string>
+    <string name="Start_AR">بدأ AR</string>
+    <string name="virtual_tour">خذّ لفة </string>
+    <string name="Language">عربي</string>
+    <string name="yes">نعم</string>
+    <string name="no">لا</string>
+    <string name="arabic">العربية</string>
+    <string name="are_you_sure_you_want_to_leave">هل أنت متأكد من المغادرة ؟</string>
+    <string name="continue_tour">إستمرار</string>
+    <string name="date">تاريخ</string>
+    <string name="english">إنجليزي</string>
+    <string name="enter">أدخل</string>
+    <string name="help">مساعدة</string>
+    <string name="language">اللغة</string>
+    <string name="museum_close">المتحف مغلق</string>
+    <string name="no_tickets_available_now">لايوجد تذاكر في الوقت الحالي</string>
+    <string name="no_tours_avilible">لا يوجد جولات في الوقت الحالي</string>
+    <string name="opens_at">"يفتح "</string>
+    <string name="pay">إدفع</string>
+    <string name="payment">الدفع</string>
+    <string name="please_enter_the_code">الرجاء إدخال رمز التحقق</string>
+    <string name="please_enter_your_phone_number">الرجاء إدخال رقم الهاتف</string>
+    <string name="please_pay_to_complete_the_booking">* الرجاء الدفع لإكمال الحجز</string>
+    <string name="price">السعر</string>
+    <string name="s_r">ر.س</string>
+    <string name="send_code">أرسل رمز النحقق</string>
+    <string name="tickets">التذاكر</string>
+    <string name="tour_type">نوع الجولة</string>
+    <string name="tour_type_option">نوع الجولة</string>
+    <string name="type">النوع</string>
+    <string name="you_cant_book_today">"لا يمكن الحجز اليوم "</string>
+    <string name="sitting">الإعدادات</string>
+    <string name="notification">الإشعارات</string>
+    <string name="QueickGlance">"خذّ لفة "</string>
 
 
 

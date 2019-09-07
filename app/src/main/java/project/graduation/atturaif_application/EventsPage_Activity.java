@@ -32,6 +32,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import project.graduation.atturaif_application.Adapters.EventsAdapter;
+import project.graduation.atturaif_application.Objectes.Events;
 
 import static project.graduation.atturaif_application.R.id;
 import static project.graduation.atturaif_application.R.layout;
@@ -45,8 +46,6 @@ public class EventsPage_Activity extends AppCompatActivity implements OnDateSele
     public static final String EXTRA_NAME = "name";
     public static final String EXTRA_Des = "description";
     public static final String EXTRA_TIME = "time";
-
-
 
 
 

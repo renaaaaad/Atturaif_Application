@@ -8,5 +8,7 @@ public class Constant {
         String User_PRICE = "user_price";
         String BOOKING_DATE = "booking_date";
         String TOUT_TYPE = "tour_type";
+        String APP_LANGUAGE = "app_Language";
+        String NOTIFICATION = "notification";
     }//end interface
 } // class

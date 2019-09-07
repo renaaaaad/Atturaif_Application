@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class CheckNumber_Activity extends AppCompatActivity {
+public class CheckNumber_Activity extends BasicActivity {
     Button sendCode;
     EditText phoneNumber;
     String phone;
