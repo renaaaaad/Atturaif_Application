@@ -1,8 +1,10 @@
 package project.graduation.atturaif_application;
 
+import java.util.Calendar;
+
 public class Events {
 
-    private String EventTime, Eventname, image, description;
+    private String EventTime,EventnameAR, EventnameEN, image, descriptionAR,descriptionEN;
     int year,day,month;
 
     public int getYear() {
@@ -17,11 +19,27 @@ public class Events {
         return EventTime;
     }
 
-    public String getEventname() {
-        return Eventname;
+    public String getEventnameAR() {
+        return EventnameAR;
     }
 
-    public Events() {
+    public String getDescriptionAR() {
+        return descriptionAR;
+    }
+
+    public void setEventnameAR(String eventnameAR) {
+        EventnameAR = eventnameAR;
+    }
+
+    public void setDescriptionAR(String descriptionAR) {
+        this.descriptionAR = descriptionAR;
+    }
+
+    public String getEventnameEN() {
+        return EventnameEN;
+    }
+
+    public Events(Calendar calendar, int circle) {
     }
 
     public String getImage() {
@@ -32,8 +50,8 @@ public class Events {
         EventTime = eventTime;
     }
 
-    public void setEventname(String eventname) {
-        Eventname = eventname;
+    public void setEventnameEN(String eventnameEN) {
+        EventnameEN = eventnameEN;
     }
 
     public void setImage(String image) {
@@ -48,8 +66,8 @@ public class Events {
         this.day = day;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescriptionEN(String descriptionEN) {
+        this.descriptionEN = descriptionEN;
     }
 
     public int getMonth() {
@@ -60,17 +78,23 @@ public class Events {
         return day;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescriptionEN() {
+        return descriptionEN;
     }
 
-    public Events(String eventTime, String eventname, String image, int month, int day, String description,int year) {
+    public Events(String eventTime,String eventnameAR, String eventnameEN, String image, int month, int day,String descriptionAR,  String descriptionEN,int year) {
         EventTime = eventTime;
-        Eventname = eventname;
+        EventnameEN = eventnameEN;
+        EventnameAR=eventnameAR;
         this.image = image;
         this.month = month;
         this.day = day;
-        this.description = description;
+        this.descriptionEN = descriptionEN;
+        this.descriptionAR = descriptionAR;
         this.year=year;
+    }
+
+    public Events(){
+
     }
 }

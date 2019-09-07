@@ -1,7 +1,10 @@
 package project.graduation.atturaif_application;
 
-import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,8 +19,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
+import com.prolificinteractive.materialcalendarview.DayViewDecorator;
+import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
+import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import org.threeten.bp.DayOfWeek;
 
@@ -30,10 +36,19 @@ import project.graduation.atturaif_application.Adapters.EventsAdapter;
 import static project.graduation.atturaif_application.R.id;
 import static project.graduation.atturaif_application.R.layout;
 
-public class EventsPage_Activity extends AppCompatActivity implements OnDateSelectedListener {
+public class EventsPage_Activity extends AppCompatActivity implements OnDateSelectedListener, EventsAdapter.onItemClickListner {
 
-    public static final String RESULT = "result";
-    public static final String EVENT = "event";
+//    public static final String RESULT = "result";
+//    public static final String EVENT = "event";
+
+    public static final String EXTRA_URL = "imageurl";
+    public static final String EXTRA_NAME = "name";
+    public static final String EXTRA_Des = "description";
+    public static final String EXTRA_TIME = "time";
+
+
+
+
 
     private MaterialCalendarView mCalendarView;
 
@@ -42,13 +57,27 @@ public class EventsPage_Activity extends AppCompatActivity implements OnDateSele
     ArrayList<Events> eventList;
     EventsAdapter adapter;
 
+    ImageButton backbtn;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_events_page_);
 
-        mCalendarView = (MaterialCalendarView) findViewById(id.calendarView);
+        backbtn=(ImageButton)findViewById(id.back_btn);
+
+        backbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),HomePage_Activity.class));
+
+            }
+        });
+
+
+            mCalendarView = (MaterialCalendarView) findViewById(id.calendarView);
 
         //set current date
         mCalendarView.setSelectedDate(CalendarDay.today());
@@ -69,20 +98,47 @@ public class EventsPage_Activity extends AppCompatActivity implements OnDateSele
         mCalendarView.setOnDateChangedListener(this);
 
 
-        recyclerView=(RecyclerView)findViewById(R.id.Eventrecycleview);
+        recyclerView=(RecyclerView)findViewById(id.Eventrecycleview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         eventList=new ArrayList<Events>();
 
 
+        reference= FirebaseDatabase.getInstance().getReference().child("Events");
+        reference.addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+                                                for(DataSnapshot ds:dataSnapshot.getChildren()){
+
+                                                    final Events e=ds.getValue(Events.class);
+
+                                                    mCalendarView.addDecorator(new DayViewDecorator() {
+                                                        @Override
+                                                        public boolean shouldDecorate(CalendarDay day) {
+                                                            return (day.getYear() == e.getYear())&&(day.getDay() == e.getDay()) && (day.getMonth() == e.getMonth());
+                                                        }
+
+                                                        @Override
+                                                        public void decorate(DayViewFacade view) {
+//                                                            view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), android.R.color.white)));
+//                                                            view.setSelectionDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.event_decorator));
+                                                            view.addSpan(new DotSpan(5, Color.rgb(191,144,84)));
+                                                        }
+                                                    });
+                                                }
+
+                                            }
+
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                            }
+                                        });
 
     }
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView materialCalendarView, @NonNull CalendarDay calendarDay, boolean b) {
-        Context context = getApplicationContext();
-        CharSequence text = "Hello toast!";
-        int duration = Toast.LENGTH_SHORT;
 
         CalendarDay date = mCalendarView.getSelectedDate();
         final int day= date.getDay();
@@ -90,7 +146,7 @@ public class EventsPage_Activity extends AppCompatActivity implements OnDateSele
         final int year=date.getYear();
 
 
-//        Toast.makeText(EventsPage_Activity.this,""+day,Toast.LENGTH_SHORT).show();
+
 
 
         reference= FirebaseDatabase.getInstance().getReference().child("Events");
@@ -118,6 +174,7 @@ public class EventsPage_Activity extends AppCompatActivity implements OnDateSele
 
                 adapter=new EventsAdapter(EventsPage_Activity.this,eventList);
                 recyclerView.setAdapter(adapter);
+                adapter.setOnItemClickListener(EventsPage_Activity.this);
 
 
             }
@@ -130,12 +187,21 @@ public class EventsPage_Activity extends AppCompatActivity implements OnDateSele
         });
 
 
+    }
 
+    @Override
+    public void onItemClick(int position) {
 
-//        List dates = materialCalendarView.getSelectedDates();
+        Intent intent=new Intent(this, eventDetails.class);
+        Events clickeditem = eventList.get(position);
 
-//        Toast toast = Toast.makeText(context, ""+dates, duration);
-//        toast.show();
+        intent.putExtra(EXTRA_URL,clickeditem.getImage());
+        intent.putExtra(EXTRA_NAME,clickeditem.getEventnameEN());
+        intent.putExtra(EXTRA_Des,clickeditem.getDescriptionEN());
+        intent.putExtra(EXTRA_TIME,clickeditem.getEventTime());
+
+        startActivity(intent);
+
 
 
     }

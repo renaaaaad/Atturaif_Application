@@ -21,6 +21,21 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.MyViewHold
 
     Context context;
     ArrayList<Events> events;
+    //
+    private onItemClickListner mlistner;
+
+
+    //
+
+    public interface onItemClickListner {
+        void onItemClick(int position);
+    }
+//
+    public void setOnItemClickListener(onItemClickListner listner){
+        mlistner=listner;
+
+    }
+
 
     public EventsAdapter(Context c, ArrayList<Events> e){
 
@@ -38,11 +53,8 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
-//        String day=events.get(position).getDay();
-//        String month=events.get(position).getMonth();
-//
-//        if(month)
-        holder.nameE.setText(events.get(position).getEventname());
+
+        holder.nameE.setText(events.get(position).getEventnameEN());
         holder.timeE.setText(events.get(position).getEventTime());
         Picasso.with(context).load(events.get(position).getImage()).into(holder.imageE);
 
@@ -65,6 +77,21 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.MyViewHold
             nameE=(TextView)itemview.findViewById(R.id.mEventName);
             timeE=(TextView)itemview.findViewById(R.id.mEventTime);
             imageE=(ImageView)itemview.findViewById(R.id.EventImage);
+
+            //
+            itemview.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(mlistner != null)
+                    {
+                        int postion = getAdapterPosition();
+
+                        if (postion != RecyclerView.NO_POSITION){
+                            mlistner.onItemClick(postion);
+                        }
+                    }
+                }
+            });
 
 
         }
