@@ -16,12 +16,12 @@ public class HomePage_Activity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page_);
         // set all the buttons
-        bookingtab_button = findViewById(R.id.bookingtab_button);
-        eventtab_button = findViewById(R.id.eventtab_button);
-        shoptab_button = findViewById(R.id.shoptab_button);
-        startARtab_button = findViewById(R.id.startARtab_button);
+        bookingtab_button = findViewById(R.id.ticket);
+        eventtab_button = findViewById(R.id.event);
+        shoptab_button = findViewById(R.id.shop);
+        startARtab_button = findViewById(R.id.AR);
         vrtab_button = findViewById(R.id.vrtab_button);
-        maptab_button = findViewById(R.id.maptab_button);
+        maptab_button = findViewById(R.id.map);
 
 
         //set the listener
@@ -39,10 +39,10 @@ public class HomePage_Activity extends AppCompatActivity implements View.OnClick
     public void onClick(View view) {
         int id = view.getId();
         switch (id) {
-            case R.id.bookingtab_button:
+            case R.id.ticket:
                 startActivity(new Intent(HomePage_Activity.this, Booking_Activity.class));
                 break;
-            case R.id.eventtab_button:
+            case R.id.event:
                 startActivity(new Intent(HomePage_Activity.this, EventsPage_Activity.class));
                 break;
         }// switch
