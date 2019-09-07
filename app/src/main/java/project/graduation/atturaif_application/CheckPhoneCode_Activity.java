@@ -23,7 +23,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-public class CheckPhoneCode_Activity extends AppCompatActivity {
+public class CheckPhoneCode_Activity extends BasicActivity {
     EditText code_edit;
     Button enter;
     String mVerificationId;

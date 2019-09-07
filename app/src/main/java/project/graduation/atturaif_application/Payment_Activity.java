@@ -14,9 +14,7 @@ import android.widget.TextView;
 
 import com.braintreepayments.cardform.view.CardForm;
 
-import static project.graduation.atturaif_application.Booking_Activity.alertDialog;
-
-public class Payment_Activity extends AppCompatActivity {
+public class Payment_Activity extends BasicActivity {
     TextView price_total, type, date;
     Toolbar toolbar;
 
@@ -58,7 +56,7 @@ public class Payment_Activity extends AppCompatActivity {
                 alertDialog.setCustomTitle(view2);
                 alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(Payment_Activity.this, MainActivity.class));
+                        startActivity(new Intent(Payment_Activity.this, Splash_page.class));
                     } // yes button
                 }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

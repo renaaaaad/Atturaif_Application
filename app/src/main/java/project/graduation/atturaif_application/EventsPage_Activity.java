@@ -26,11 +26,12 @@ import java.util.Calendar;
 import java.util.List;
 
 import project.graduation.atturaif_application.Adapters.EventsAdapter;
+import project.graduation.atturaif_application.Objectes.Events;
 
 import static project.graduation.atturaif_application.R.id;
 import static project.graduation.atturaif_application.R.layout;
 
-public class EventsPage_Activity extends AppCompatActivity implements OnDateSelectedListener {
+public class EventsPage_Activity extends BasicActivity implements OnDateSelectedListener {
 
     public static final String RESULT = "result";
     public static final String EVENT = "event";

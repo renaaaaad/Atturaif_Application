@@ -14,7 +14,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import project.graduation.atturaif_application.Events;
+import project.graduation.atturaif_application.Objectes.Events;
 import project.graduation.atturaif_application.R;
 
 public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.MyViewHolder>{

@@ -1,4 +1,4 @@
-package project.graduation.atturaif_application;
+package project.graduation.atturaif_application.Objectes;
 
 public class Events {
 

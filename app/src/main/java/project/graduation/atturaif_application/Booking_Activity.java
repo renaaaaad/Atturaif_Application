@@ -54,7 +54,7 @@ import project.graduation.atturaif_application.Objectes.Open_Days;
 import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
 
-public class Booking_Activity extends AppCompatActivity implements OnDateSelectedListener {
+public class Booking_Activity extends BasicActivity implements OnDateSelectedListener {
     Toolbar toolbar;
     LinearLayout tourType;
     MaterialCalendarView mcv;
@@ -136,8 +136,8 @@ public class Booking_Activity extends AppCompatActivity implements OnDateSelecte
             public void onClick(View view) {
                 final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
                 final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
-                MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE,text);
-                MySharedPreference.putString(getApplicationContext(),Constant.Keys.TOUT_TYPE,tourTypeText.getText().toString());
+                MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE, text);
+                MySharedPreference.putString(getApplicationContext(), Constant.Keys.TOUT_TYPE, tourTypeText.getText().toString());
                 startActivity(new Intent(Booking_Activity.this, CheckNumber_Activity.class));
             }//onClick
         }); //onClick
@@ -257,32 +257,6 @@ public class Booking_Activity extends AppCompatActivity implements OnDateSelecte
     } // get data
 
 
-    // this method to show dialog when the user clicks back button
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-
-                LayoutInflater inflater = getLayoutInflater();
-                View view2 = inflater.inflate(R.layout.message_goback, null);
-                alertDialog.setCustomTitle(view2);
-                alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(Booking_Activity.this, Booking_Activity.class));
-                    } // yes button
-                }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    } // no button
-                }); // onclick
-
-                alertDialog.show();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        } // switch
-    } // onOptionsItemSelected
 
 
     @Override

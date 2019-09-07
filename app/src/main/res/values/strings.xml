@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Atturaif_Application</string>
+    <string name="app_name" translatable="false">Atturaif_Application</string>
     <string name="Booking">Booking</string>
     <string name="Home">Home</string>
     <string name="Events">Events</string>
@@ -8,18 +8,15 @@
     <string name="Start_AR">Start AR experience </string>
     <string name="virtual_tour">take quick glance</string>
     <string name="Language">EN</string>
-
-
     <string name="yes">Yes</string>
     <string name="no">No</string>
-    <string name="are_you_sure_you_want_to_leave">Are you sure you want to leave ?</string>
     <string name="museum_close">The Museum are close</string>
     <string name="opens_at">Opens At</string>
     <string name="tickets">Tickets</string>
-    <string name="adult">Adult</string>
-    <string name="children">Children</string>
-    <string name="_20_s_r">20 S.R</string>
-    <string name="_10_s_r">10 S.R</string>
+    <string name="adult" translatable="false">Adult</string>
+    <string name="children" translatable="false">Children</string>
+    <string name="_20_s_r" translatable="false">20 S.R</string>
+    <string name="_10_s_r" translatable="false">10 S.R</string>
     <string name="no_tickets_available_now">No Tickets Available Now</string>
     <string name="tour_type">Tour Type</string>
     <string name="tour_type_option">Tour Type </string>
@@ -37,4 +34,12 @@
     <string name="type">Type</string>
     <string name="date">Date</string>
     <string name="pay">Pay</string>
+    <string name="language">Language</string>
+    <string name="help">Help</string>
+    <string name="english">English</string>
+    <string name="arabic">Arabic</string>
+    <string name="are_you_sure_you_want_to_leave">are you sure you want to leave</string>
+    <string name="sitting">Sitting</string>
+    <string name="notification">Notification</string>
+    <string name="QueickGlance">Quick glance</string>
 </resources>
