@@ -57,11 +57,12 @@ public class Language_page extends BasicActivity implements View.OnClickListener
 
     private void setLanguage(String language) {
         MySharedPreference.putString(this, Constant.Keys.APP_LANGUAGE, language);
-
-        finish();
-        Intent intent =new Intent(getApplicationContext(),HomePage_Activity.class);
-        intent.putExtra("language","language");
+        Intent intent = new Intent(getApplicationContext(), Language_page.class);
+        //intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        //  intent.putExtra("language","language");
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        finish();
     }//end setLanguage
 
     @Override

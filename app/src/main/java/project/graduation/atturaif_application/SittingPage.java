@@ -1,10 +1,12 @@
 package project.graduation.atturaif_application;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
@@ -46,5 +48,9 @@ public class SittingPage extends BasicActivity {
 
     } //onCreate
 
-
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        startActivity(getIntent());
+    }
 } //class
