@@ -3,12 +3,11 @@ package project.graduation.atturaif_application;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,15 +38,12 @@ import static project.graduation.atturaif_application.R.layout;
 
 public class EventsPage_Activity extends AppCompatActivity implements OnDateSelectedListener, EventsAdapter.onItemClickListner {
 
-//    public static final String RESULT = "result";
-//    public static final String EVENT = "event";
+
 
     public static final String EXTRA_URL = "imageurl";
     public static final String EXTRA_NAME = "name";
     public static final String EXTRA_Des = "description";
     public static final String EXTRA_TIME = "time";
-
-
 
     private MaterialCalendarView mCalendarView;
 
@@ -56,7 +52,7 @@ public class EventsPage_Activity extends AppCompatActivity implements OnDateSele
     ArrayList<Events> eventList;
     EventsAdapter adapter;
 
-    ImageButton backbtn;
+    Toolbar toolbar;
 
 
 
@@ -65,18 +61,13 @@ public class EventsPage_Activity extends AppCompatActivity implements OnDateSele
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_events_page_);
 
-        backbtn=(ImageButton)findViewById(id.back_btn);
-
-        backbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(getApplicationContext(),HomePage_Activity.class));
-
-            }
-        });
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-            mCalendarView = (MaterialCalendarView) findViewById(id.calendarView);
+        mCalendarView = (MaterialCalendarView) findViewById(id.calendarView);
 
         //set current date
         mCalendarView.setSelectedDate(CalendarDay.today());
@@ -121,7 +112,7 @@ public class EventsPage_Activity extends AppCompatActivity implements OnDateSele
                                                         public void decorate(DayViewFacade view) {
 //                                                            view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), android.R.color.white)));
 //                                                            view.setSelectionDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.event_decorator));
-                                                            view.addSpan(new DotSpan(5, Color.rgb(191,144,84)));
+                                                            view.addSpan(new DotSpan(10, Color.rgb(191,144,84)));
                                                         }
                                                     });
                                                 }

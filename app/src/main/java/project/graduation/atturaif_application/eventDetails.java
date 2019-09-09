@@ -2,9 +2,12 @@ package project.graduation.atturaif_application;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -44,13 +47,7 @@ public class eventDetails extends AppCompatActivity {
         TextView Edes=(TextView)findViewById(R.id.eventdesc);
 
 
-
-
-
-//        Picasso.with(this).load(image).fit().centerInside().into(imageView);
         Picasso.with(this).load(image).into(imageView);
-
-
         Ename.setText(name);
         Etime.setText(time);
         Edes.setText(des);
@@ -58,5 +55,39 @@ public class eventDetails extends AppCompatActivity {
 
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.eventshare_menu,menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        Intent intent=getIntent();
+        String eventname= intent.getStringExtra(EXTRA_NAME);
+        String eventtime=intent.getStringExtra(EXTRA_TIME);
+        String eventdes=intent.getStringExtra(EXTRA_Des);
+
+        switch (item.getItemId()){
+
+            case R.id.share_btn:
+                Intent shareingintent=new Intent(Intent.ACTION_SEND);
+                shareingintent.setType("text/plain");
+                String sharebody= ""+eventdes+"";
+                String sharesubject=eventname + " event at "+ eventtime;
+
+                shareingintent.putExtra(Intent.EXTRA_TEXT,sharebody);
+                shareingintent.putExtra(Intent.EXTRA_SUBJECT,sharesubject);
+
+                startActivity(Intent.createChooser(shareingintent,"Share "));
+
+                break;
+
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

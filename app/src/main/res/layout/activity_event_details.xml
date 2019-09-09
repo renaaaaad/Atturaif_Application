@@ -32,7 +32,9 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
-            android:tint="@color/photo_tint" />
+            android:tint="@color/photo_tint"
+            android:layout_marginStart="10dp"
+            android:layout_margin="10dp"/>
 
 
         <LinearLayout
@@ -92,6 +94,8 @@
 
 
     </RelativeLayout>
+
+
 
 
 
