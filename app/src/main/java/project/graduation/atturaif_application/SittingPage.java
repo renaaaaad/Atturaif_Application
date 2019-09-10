@@ -9,14 +9,20 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
 
 public class SittingPage extends BasicActivity {
     LinearLayout language;
     Switch notification;
     Toolbar toolbar;
+    ImageView nextArrow;
 
+    //setAutoMirrored(true);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,11 @@ public class SittingPage extends BasicActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+        nextArrow = findViewById(R.id.nextArrow);
+        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+            Glide.with(getApplicationContext())
+                    .load(R.drawable.next_arrow_ar)
+                    .into(nextArrow);        }
         language = findViewById(R.id.language);
         language.setOnClickListener(new View.OnClickListener() {
             @Override

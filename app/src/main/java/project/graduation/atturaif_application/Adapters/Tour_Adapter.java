@@ -14,6 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 import project.graduation.atturaif_application.Booking_Activity;
+import project.graduation.atturaif_application.Constant;
+import project.graduation.atturaif_application.MySharedPreference;
 import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.R;
 
@@ -37,15 +39,27 @@ public class Tour_Adapter extends RecyclerView.Adapter<Tour_Adapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         final Tour tour = tours.get(position);
-        holder.title.setText(tour.getType());
-        holder.guide.setText(tour.getGuide());
-        holder.time.setText(tour.getTime());
-        holder.tour.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Booking_Activity.setTourType(tour.getType());
-            } // on click
-        }); // tour click
+        if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+            holder.title.setText(tour.getTypeAR());
+            holder.guide.setText(tour.getGuide());
+            holder.time.setText(tour.getTime());
+            holder.tour.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Booking_Activity.setTourType(tour.getTypeAR());
+                } // on click
+            }); // tour click
+        } else {
+            holder.title.setText(tour.getTypeEN());
+            holder.guide.setText(tour.getGuide());
+            holder.time.setText(tour.getTime());
+            holder.tour.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Booking_Activity.setTourType(tour.getTypeEN());
+                } // on click
+            }); // tour click
+        }
     } //onBindViewHolder
 
     @Override

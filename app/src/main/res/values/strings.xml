@@ -8,7 +8,7 @@
     <string name="Start_AR">Start AR experience </string>
     <string name="virtual_tour">take quick glance</string>
     <string name="Language">EN</string>
-    <string name="event">event</string>
+    <string name="event" translatable="false">event</string>
 
 
     <string name="yes">Yes</string>
@@ -45,4 +45,13 @@
     <string name="sitting">Sitting</string>
     <string name="notification">Notification</string>
     <string name="QueickGlance">Quick glance</string>
+    <string name="atturaif_is_a_district_located_in_al_dir_iya_at_northwest_of_riyadh_city_in_kingdom_of_saudi_arabia_it_was_the_first_capital_of_the_saudi_dynasty_after_mohammed_bin_abdul_wahhabi_religious_renewal_call_in_1157">Atturaif is a district located in Al-Dir’iya, at Northwest of Riyadh city in Kingdom of Saudi Arabia. It was the first capital of the Saudi Dynasty after Mohammed bin Abdul Wahhabi religious renewal call in 1157.</string>
+    <string name="about_us">About us </string>
+    <string name="contact_us">Contact us :</string>
+    <string name="Atturaif_Help_Message">Atturaif Help Message</string>
+    <string name="body_message">/** Please write your issue here ***/</string>
+    <string name="email_us">Email us</string>
+    <string name="call_us">Call us</string>
+    <string name="error_message">There is some problems, please try again later</string>
+    <string name="working_hours">Working hours</string>
 </resources>

@@ -1,7 +1,10 @@
 package project.graduation.atturaif_application;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
 import android.view.View;
@@ -9,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.PopupMenu;
 
 import java.util.Objects;
@@ -58,9 +62,12 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                 startActivity(new Intent(HomePage_Activity.this, EventsPage_Activity.class));
                 break;
             case R.id.more_button:
+
                 PopupMenu popup = new PopupMenu(HomePage_Activity.this, more_button);
                 popup.getMenuInflater().inflate(R.menu.home_page_menu, popup.getMenu());
                 popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+
+
                     public boolean onMenuItemClick(MenuItem item) {
                         String select = item.getTitle().toString();
                         switch (select) {
@@ -69,6 +76,24 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                                 break;
                             case "الإعدادات":
                                 startActivity(new Intent(HomePage_Activity.this, SittingPage.class));
+                                break;
+                            case "Email us":
+                                sendEmail();
+                                break;
+                            case "راسلنا":
+                                sendEmail();
+                                break;
+                            case "Call us":
+                                call();
+                                break;
+                            case "إتصل":
+                                call();
+                                break;
+                            case "About us":
+                                startActivity(new Intent(HomePage_Activity.this, Aboutus_Page.class));
+                                break;
+                            case "عن الطريف ":
+                                startActivity(new Intent(HomePage_Activity.this, Aboutus_Page.class));
                                 break;
                         }// switch
 
@@ -88,4 +113,30 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                 break;
         }// switch
     } //onClick
+
+    @SuppressLint("RestrictedApi")
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.home_page_menu, menu);
+
+        if(menu instanceof MenuBuilder){
+            MenuBuilder m = (MenuBuilder) menu;
+            m.setOptionalIconsVisible(true);
+        }
+
+        return true;
+    }
+
+    private void call() {
+        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "03030303335", null)));
+    } // call
+
+    private void sendEmail() {
+
+        Intent mailIntent = new Intent(Intent.ACTION_VIEW);
+        Uri data = Uri.parse("mailto:?subject=" + getString(R.string.Atturaif_Help_Message) + "&body=" + getString(R.string.body_message) + "&to=" + "atturaifgp2@gmail.com");
+        mailIntent.setData(data);
+        startActivity(Intent.createChooser(mailIntent, "Send mail..."));
+
+    } // send email
 } //class

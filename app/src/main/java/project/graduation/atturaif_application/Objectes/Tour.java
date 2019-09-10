@@ -1,23 +1,49 @@
 package project.graduation.atturaif_application.Objectes;
 
 public class Tour {
-    String day , time , guide , type;
+    String dayEN , dayAR , time , guide , typeAR , typeEN;
     int duration ;
 
-    public Tour(String day, String time, String guide, String type, int duration) {
-        this.day = day;
+    public Tour(String dayEN, String dayAR, String time, String guide, String typeAR, String typeEN, int duration) {
+        this.dayEN = dayEN;
+        this.dayAR = dayAR;
         this.time = time;
         this.guide = guide;
-        this.type = type;
+        this.typeAR = typeAR;
+        this.typeEN = typeEN;
         this.duration = duration;
     }
 
-    public String getDay() {
-        return day;
+    public String getDayEN() {
+        return dayEN;
     }
 
-    public void setDay(String day) {
-        this.day = day;
+    public void setDayEN(String dayEN) {
+        this.dayEN = dayEN;
+    }
+
+    public String getDayAR() {
+        return dayAR;
+    }
+
+    public void setDayAR(String dayAR) {
+        this.dayAR = dayAR;
+    }
+
+    public String getTypeAR() {
+        return typeAR;
+    }
+
+    public void setTypeAR(String typeAR) {
+        this.typeAR = typeAR;
+    }
+
+    public String getTypeEN() {
+        return typeEN;
+    }
+
+    public void setTypeEN(String typeEN) {
+        this.typeEN = typeEN;
     }
 
     public String getTime() {
@@ -34,14 +60,6 @@ public class Tour {
 
     public void setGuide(String guide) {
         this.guide = guide;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public int getDuration() {

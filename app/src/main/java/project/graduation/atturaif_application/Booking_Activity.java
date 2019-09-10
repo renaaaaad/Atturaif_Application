@@ -172,13 +172,30 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    String day = child.child("day").getValue(String.class);
-                    String time = child.child("time").getValue(String.class);
-                    //  String guide = child.child("guide").getValue(String.class);
-                    int duration = child.child("duration").getValue(Integer.class);
-                    String type = child.child("type").getValue(String.class);
-                    Tour tour = new Tour(day, time, "fjjf", type, duration);
-                    tours.add(tour);
+                    try {
+                        String dayEN = child.child("dayEN").getValue(String.class);
+                        String dayAR = child.child("dayAR").getValue(String.class);
+                        String time = child.child("time").getValue(String.class);
+                        Long guide = child.child("guide").getValue(Long.class);
+                        int duration = child.child("duration").getValue(Integer.class);
+                        String typeEN = child.child("typeEN").getValue(String.class);
+                        String typeAR = child.child("typeAR").getValue(String.class);
+
+                        Tour tour = new Tour(dayEN, dayAR, time, Long.toString(guide), typeAR, typeEN, duration);
+                        tours.add(tour);
+                    } catch (Exception e) {
+                        String dayEN = child.child("dayEN").getValue(String.class);
+                        String dayAR = child.child("dayAR").getValue(String.class);
+                        String time = child.child("time").getValue(String.class);
+                        String guide = child.child("guide").getValue(String.class);
+                        int duration = child.child("duration").getValue(Integer.class);
+                        String typeEN = child.child("typeEN").getValue(String.class);
+                        String typeAR = child.child("typeAR").getValue(String.class);
+
+                        Tour tour = new Tour(dayEN, dayAR, time, guide, typeAR, typeEN, duration);
+                        tours.add(tour);
+                    } // catch
+
                 }// for
                 flag2 = true;
             } //onDataChange
@@ -265,14 +282,26 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         }
         final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("EEE, d MMM yyyy");
         final String text = b ? FORMATTER.format(calendarDay.getDate()) : "No Selection";
-        String first_three_letters = text.substring(0, 3);
-        Open_Days open_days1 = findDate(first_three_letters);
-        if (open_days1 == null) {
-            open_Time.setText(R.string.museum_close);
-            return;
-        } // if
 
-        open_Time.setText(getString(R.string.opens_at) + "   " + open_days1.getOpenAt() + " - " + open_days1.getCloseAt());
+        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+            String first_three_letters = text.substring(0, 4);
+            Open_Days open_days1 = findDate(first_three_letters);
+            if (open_days1 == null) {
+                open_Time.setText(R.string.museum_close);
+                return;
+            } // if
+            open_Time.setText(getString(R.string.opens_at) + "   " + open_days1.getOpenAt() + " - " + open_days1.getCloseAt());
+        } else {
+            String first_three_letters = text.substring(0, 3);
+            Open_Days open_days1 = findDate(first_three_letters);
+            if (open_days1 == null) {
+                open_Time.setText(R.string.museum_close);
+                return;
+            } // if
+            open_Time.setText(getString(R.string.opens_at) + "   " + open_days1.getOpenAt() + " - " + open_days1.getCloseAt());
+
+        } //else
+
 
     } //onDateSelected
 
@@ -281,24 +310,59 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         switch (first_three_letters) {
             case "Sun":
                 open_days2 = search("Sunday");
+
                 break;
             case "Mon":
+
                 open_days2 = search("Monday");
                 break;
             case "Tue":
+
                 open_days2 = search("Tuesday");
                 break;
             case "Sat":
+
                 open_days2 = search("Saturday");
                 break;
             case "Fri":
+
                 open_days2 = search("Friday");
                 break;
             case "Wed":
+
                 open_days2 = search("Wednesday");
                 break;
             case "Thu":
+
                 open_days2 = search("Thursday");
+                break;
+            case "الأح":
+                open_days2 = search("Sunday");
+                break;
+            case "الاث":
+                open_days2 = search("Monday");
+
+
+                break;
+            case "الثل":
+                open_days2 = search("Tuesday");
+                break;
+            case "الأر":
+                open_days2 = search("Wednesday");
+
+                break;
+            case "الخم":
+                open_days2 = search("Thursday");
+
+                break;
+            case "الجم":
+                open_days2 = search("Friday");
+
+                break;
+            case "السب":
+                open_days2 = search("Saturday");
+
+
                 break;
         }// switch
         return open_days2;

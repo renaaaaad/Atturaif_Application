@@ -2,9 +2,6 @@
 <resources>
 
 
-
-
-
     <string name="app_name">Atturaif_Application</string>
     <string name="Booking">حجز</string>
     <string name="Home">الصفحة الرئيسية</string>
@@ -44,8 +41,14 @@
     <string name="sitting">الإعدادات</string>
     <string name="notification">الإشعارات</string>
     <string name="QueickGlance">"خذّ لفة "</string>
-
-
-
-
+    <string name="about_us">"عن الطريف "</string>
+    <string name="adult" translatable="false">راشد</string>
+    <string name="contact_us">"إتصل بنا "</string>
+    <string name="atturaif_is_a_district_located_in_al_dir_iya_at_northwest_of_riyadh_city_in_kingdom_of_saudi_arabia_it_was_the_first_capital_of_the_saudi_dynasty_after_mohammed_bin_abdul_wahhabi_religious_renewal_call_in_1157">الطريف هو حي يقع في الدرعية ، في شمال غرب مدينة الرياض بالمملكة العربية السعودية. كانت أول عاصمة للسلالة السعودية بعد دعوة محمد بن عبد الوهاب للتجديد الديني في عام 1157.</string>
+    <string name="Atturaif_Help_Message">رسالة مساعدة</string>
+    <string name="body_message">/** الرجاء كتابة الرسالة هنا ***/</string>
+    <string name="email_us">راسلنا</string>
+    <string name="call_us">إتصل</string>
+    <string name="error_message">هناك بعض المشاكل ، يرجى المحاولة مرة أخرى لاحقًا</string>
+    <string name="working_hours">ساعات العمل</string>
 </resources>
