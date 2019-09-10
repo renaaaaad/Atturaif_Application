@@ -6,10 +6,17 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import project.graduation.atturaif_application.Adapters.Shops_Adapter;
 import project.graduation.atturaif_application.Adapters.Ticket_Adapter;
@@ -21,12 +28,16 @@ public class ShopsPage extends BasicActivity {
     RecyclerView recyclerView;
     Shops_Adapter adapter;
     Toolbar toolbar;
+    ProgressBar progressbar;
+    Timer timer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops_page);
         toolbar = findViewById(R.id.toolbar1);
+        progressbar = findViewById(R.id.progressbar);
+
         //default back button
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
