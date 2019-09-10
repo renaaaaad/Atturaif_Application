@@ -10,11 +10,24 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        >
-        <activity android:name=".eventDetails"></activity>
-        <activity android:name=".EventsPage_Activity" />
-        <activity android:name=".HomePage_Activity"/>
-
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ShopsPage">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage_Activity" />
+        </activity>
+        <activity android:name=".Splash_Shops" />
+        <activity android:name=".eventDetails">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EventsPage_Activity" />
+        </activity>
+        <activity android:name=".EventsPage_Activity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".HomePage_Activity" />
+        </activity>
+        <activity android:name=".HomePage_Activity" />
         <activity android:name=".VR_page">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -42,8 +55,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".EventsPage_Activity$EventsPage_Activity" />
-
 
     </application>
 

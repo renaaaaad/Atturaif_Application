@@ -3,6 +3,10 @@ package project.graduation.atturaif_application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.google.gson.Gson;
+
+import java.util.List;
+
 public class MySharedPreference {
     //Instance of class to be SingleTone
     public static SharedPreferences prf;
@@ -35,6 +39,7 @@ public class MySharedPreference {
     public static void putString(Context context, String key, String value) {
         SharedPreferences.Editor editor = getInstance(context).edit();
         editor.putString(key, value).commit();
+
     }//end putString
 
     public static void putFloat(Context context, String key, float value) {
@@ -53,6 +58,17 @@ public class MySharedPreference {
         editor.putBoolean(key, value).commit();
     }//end putBoolean
 
+    public static <T> void setList(Context context, String key, List<T> list) {
+        Gson gson = new Gson();
+        String json = gson.toJson(list);
+        set(context, key, json);
+    }
+
+    public static void set(Context context, String key, String value) {
+        SharedPreferences.Editor editor = getInstance(context).edit();
+        editor.putString(key, value);
+        editor.commit();
+    }
 
     //------------pull data-----------
     public static String getString(Context context, String key, String valueDefaulte) {
@@ -70,4 +86,6 @@ public class MySharedPreference {
     public static float getFolat(Context context, String key, float valueDefaulte) {
         return getInstance(context).getFloat(key, valueDefaulte);
     }//end getBoolean
+
+
 } // class

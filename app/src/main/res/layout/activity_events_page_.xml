@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".EventsPage_Activity">
 
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -17,27 +18,44 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar1"
-            style="@android:style/Widget.Material.Toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorPrimary"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:title="@string/Events"
-            app:titleTextColor="@color/white" />
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar1"
+                style="@android:style/Widget.Material.Toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimary"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:title="@string/Events"
+                app:titleTextColor="@color/white" />
 
-            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:mcv_showOtherDates="all"
                 app:mcv_selectionColor="#BF9054"
-                tools:ignore="MissingConstraints"
-                app:mcv_tileHeight="50dp" />
+                app:mcv_showOtherDates="all"
+                app:mcv_tileHeight="50dp"
+                tools:ignore="MissingConstraints" />
+
+            <LinearLayout
+                android:id="@+id/progressbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:orientation="horizontal">
+
+                <ProgressBar
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_horizontal"
+                    android:indeterminate="true"
+                    android:progress="25" />
+
+
+            </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Eventrecycleview"
@@ -45,8 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:nestedScrollingEnabled="false"
-                />
-
+                android:visibility="gone" />
 
 
         </LinearLayout>

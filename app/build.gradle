@@ -53,7 +53,7 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:design:26.+'
     implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
-
+    implementation 'com.mikhaellopez:circularprogressbar:3.0.2'
 
 
 }

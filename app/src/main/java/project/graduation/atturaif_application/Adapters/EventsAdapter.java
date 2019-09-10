@@ -116,4 +116,5 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.MyViewHold
                 .replaceAll("9","٩")
                 .replaceAll("0","٠");
     }
+
 } // class

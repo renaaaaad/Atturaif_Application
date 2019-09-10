@@ -3,6 +3,8 @@ package project.graduation.atturaif_application;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,28 +41,26 @@ import static project.graduation.atturaif_application.R.layout;
 public class EventsPage_Activity extends BasicActivity implements OnDateSelectedListener, EventsAdapter.onItemClickListner {
 
 
-
     public static final String EXTRA_URL = "imageurl";
     public static final String EXTRA_NAME = "name";
     public static final String EXTRA_Des = "description";
     public static final String EXTRA_TIME = "time";
-
+    public boolean flge = false;
     private MaterialCalendarView mCalendarView;
 
     DatabaseReference reference;
     RecyclerView recyclerView;
     ArrayList<Events> eventList;
     EventsAdapter adapter;
-
+    LinearLayout progressbar;
     Toolbar toolbar;
-
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_events_page_);
-
+        progressbar = findViewById(R.id.progressbar);
         toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -73,7 +73,7 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
         mCalendarView.setSelectedDate(CalendarDay.today());
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        int month = Calendar.getInstance().get(Calendar.MONTH)+1;
+        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
 
         mCalendarView.state().edit().
                 setFirstDayOfWeek(DayOfWeek.of(Calendar.SUNDAY)).
@@ -88,71 +88,70 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
         mCalendarView.setOnDateChangedListener(this);
 
 
-        recyclerView=(RecyclerView)findViewById(id.Eventrecycleview);
+        recyclerView = findViewById(id.Eventrecycleview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        eventList=new ArrayList<Events>();
+        eventList = new ArrayList<Events>();
 
 
-        reference= FirebaseDatabase.getInstance().getReference().child("Events");
+        reference = FirebaseDatabase.getInstance().getReference().child("Events");
         reference.addValueEventListener(new ValueEventListener() {
-                                            @Override
-                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                                                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                                                    final Events e=ds.getValue(Events.class);
+                    final Events e = ds.getValue(Events.class);
 
-                                                    mCalendarView.addDecorator(new DayViewDecorator() {
-                                                        @Override
-                                                        public boolean shouldDecorate(CalendarDay day) {
-                                                            return (day.getYear() == e.getYear())&&(day.getDay() == e.getDay()) && (day.getMonth() == e.getMonth());
-                                                        }
+                    mCalendarView.addDecorator(new DayViewDecorator() {
+                        @Override
+                        public boolean shouldDecorate(CalendarDay day) {
+                            return (day.getYear() == e.getYear()) && (day.getDay() == e.getDay()) && (day.getMonth() == e.getMonth());
+                        }
 
-                                                        @Override
-                                                        public void decorate(DayViewFacade view) {
+                        @Override
+                        public void decorate(DayViewFacade view) {
 //                                                            view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), android.R.color.white)));
 //                                                            view.setSelectionDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.event_decorator));
-                                                            view.addSpan(new DotSpan(10, Color.rgb(191,144,84)));
-                                                        }
-                                                    });
-                                                }
+                            view.addSpan(new DotSpan(10, Color.rgb(191, 144, 84)));
+                        }
+                    });
+                }
 
-                                            }
 
-                                            @Override
-                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
 
-                                            }
-                                        });
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
     @Override
     public void onDateSelected(@NonNull MaterialCalendarView materialCalendarView, @NonNull CalendarDay calendarDay, boolean b) {
+        progressbar.setVisibility(View.VISIBLE);
 
         CalendarDay date = mCalendarView.getSelectedDate();
-        final int day= date.getDay();
-         final int month=date.getMonth();
-        final int year=date.getYear();
+        final int day = date.getDay();
+        final int month = date.getMonth();
+        final int year = date.getYear();
 
 
-
-
-
-        reference= FirebaseDatabase.getInstance().getReference().child("Events");
+        reference = FirebaseDatabase.getInstance().getReference().child("Events");
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 eventList.clear();
-                for(DataSnapshot ds:dataSnapshot.getChildren()){
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    Events e=ds.getValue(Events.class);
+                    Events e = ds.getValue(Events.class);
                     List dates = mCalendarView.getSelectedDates();
 
-                    if(e.getYear()==(year)){
-                        if(e.getMonth()==(month)){
-                            if(e.getDay()==day){
+                    if (e.getYear() == (year)) {
+                        if (e.getMonth() == (month)) {
+                            if (e.getDay() == day) {
                                 eventList.add(e);
 
                             }
@@ -160,9 +159,11 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
                         }
 
                     }
-                }
 
-                adapter=new EventsAdapter(EventsPage_Activity.this,eventList);
+                }
+                progressbar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.VISIBLE);
+                adapter = new EventsAdapter(EventsPage_Activity.this, eventList);
                 recyclerView.setAdapter(adapter);
                 adapter.setOnItemClickListener(EventsPage_Activity.this);
 
@@ -172,7 +173,7 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                Toast.makeText(EventsPage_Activity.this,"Opsss....Something is wrong",Toast.LENGTH_SHORT).show();
+                Toast.makeText(EventsPage_Activity.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -182,16 +183,15 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
     @Override
     public void onItemClick(int position) {
 
-        Intent intent=new Intent(this, eventDetails.class);
+        Intent intent = new Intent(this, eventDetails.class);
         Events clickeditem = eventList.get(position);
 
-        intent.putExtra(EXTRA_URL,clickeditem.getImage());
-        intent.putExtra(EXTRA_NAME,clickeditem.getEventnameEN());
-        intent.putExtra(EXTRA_Des,clickeditem.getDescriptionEN());
-        intent.putExtra(EXTRA_TIME,clickeditem.getEventTime());
+        intent.putExtra(EXTRA_URL, clickeditem.getImage());
+        intent.putExtra(EXTRA_NAME, clickeditem.getEventnameEN());
+        intent.putExtra(EXTRA_Des, clickeditem.getDescriptionEN());
+        intent.putExtra(EXTRA_TIME, clickeditem.getEventTime());
 
         startActivity(intent);
-
 
 
     }

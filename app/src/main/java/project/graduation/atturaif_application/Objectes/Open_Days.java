@@ -2,9 +2,9 @@ package project.graduation.atturaif_application.Objectes;
 
 public class Open_Days {
     String day;
-    Long openAt, closeAt;
+    String openAt, closeAt;
 
-    public Open_Days(String day, Long openAt, Long closeAt) {
+    public Open_Days(String day, String openAt, String closeAt) {
         this.day = day;
         this.openAt = openAt;
         this.closeAt = closeAt;
@@ -22,19 +22,19 @@ public class Open_Days {
         this.day = day;
     }
 
-    public Long getOpenAt() {
+    public String getOpenAt() {
         return openAt;
     }
 
-    public void setOpenAt(Long openAt) {
+    public void setOpenAt(String openAt) {
         this.openAt = openAt;
     }
 
-    public Long getCloseAt() {
+    public String getCloseAt() {
         return closeAt;
     }
 
-    public void setCloseAt(Long closeAt) {
+    public void setCloseAt(String closeAt) {
         this.closeAt = closeAt;
     }
 } // class

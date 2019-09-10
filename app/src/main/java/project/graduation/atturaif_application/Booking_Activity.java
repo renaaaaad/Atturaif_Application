@@ -241,8 +241,8 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                     if (day == null)
                         return;
 
-                    Long open_At = child.child("open").getValue(Long.class);
-                    Long close_At = child.child("close").getValue(Long.class);
+                    String open_At = child.child("open").getValue(String.class);
+                    String close_At = child.child("close").getValue(String.class);
                     Open_Days open_days_obj = new Open_Days(day, open_At, close_At);
                     open_days.add(open_days_obj);
                 } // for
@@ -255,8 +255,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             } //onCancelled
         });
     } // get data
-
-
 
 
     @Override

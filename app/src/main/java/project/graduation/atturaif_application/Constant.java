@@ -10,5 +10,6 @@ public class Constant {
         String TOUT_TYPE = "tour_type";
         String APP_LANGUAGE = "app_Language";
         String NOTIFICATION = "notification";
+        String SHOPS_LIST = "shops_list";
     }//end interface
 } // class

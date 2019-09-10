@@ -33,7 +33,6 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         more_button = findViewById(R.id.more_button);
 
 
-
         //
         //set the listener
         bookingtab_button.setOnClickListener(this);
@@ -81,6 +80,10 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                 break;
             case R.id.vrtab_button:
                 startActivity(new Intent(HomePage_Activity.this, VR_page.class));
+
+                break;
+            case R.id.shop:
+                startActivity(new Intent(HomePage_Activity.this, Splash_Shops.class));
 
                 break;
         }// switch
