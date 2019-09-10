@@ -1,13 +1,13 @@
 package project.graduation.atturaif_application;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +22,6 @@ import com.prolificinteractive.materialcalendarview.DayViewDecorator;
 import com.prolificinteractive.materialcalendarview.DayViewFacade;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
-import com.prolificinteractive.materialcalendarview.spans.DotSpan;
 
 import org.threeten.bp.DayOfWeek;
 
@@ -110,9 +109,9 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
 
                                                         @Override
                                                         public void decorate(DayViewFacade view) {
-//                                                            view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), android.R.color.white)));
-//                                                            view.setSelectionDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.event_decorator));
-                                                            view.addSpan(new DotSpan(10, Color.rgb(191,144,84)));
+                                                            view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), android.R.color.white)));
+                                                            view.setSelectionDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.event_decorator));
+//                                                            view.addSpan(new DotSpan(10, Color.rgb(191,144,84)));
                                                         }
                                                     });
                                                 }
