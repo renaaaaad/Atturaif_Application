@@ -9,7 +9,7 @@
     <string name="virtual_tour">take quick glance</string>
     <string name="Language">EN</string>
     <string name="event">event</string>
-
+    <string name="to">to</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -45,4 +45,5 @@
     <string name="sitting">Sitting</string>
     <string name="notification">Notification</string>
     <string name="QueickGlance">Quick glance</string>
+
 </resources>

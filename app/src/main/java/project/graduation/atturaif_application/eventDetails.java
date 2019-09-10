@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
@@ -18,7 +17,7 @@ import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_
 import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_TIME;
 import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_URL;
 
-public class eventDetails extends AppCompatActivity {
+public class eventDetails extends BasicActivity  {
 
     Toolbar toolbar;
 

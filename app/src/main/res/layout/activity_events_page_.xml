@@ -40,20 +40,25 @@
                 tools:ignore="MissingConstraints" />
 
             <LinearLayout
-                android:id="@+id/progressbar"
+                android:id="@+id/linearlayoutnoevent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="10dp"
                 android:gravity="center_vertical|center_horizontal"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <ProgressBar
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_horizontal"
-                    android:indeterminate="true"
-                    android:progress="25" />
-
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/calendar"/>
+                <TextView
+                    android:id="@+id/test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="No event"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp"
+                    style="bold"/>
 
             </LinearLayout>
 

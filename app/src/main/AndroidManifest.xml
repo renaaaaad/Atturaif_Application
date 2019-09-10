@@ -11,6 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".shopDetails"></activity>
         <activity android:name=".ShopsPage">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -55,7 +56,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>

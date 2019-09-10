@@ -3,22 +3,21 @@ package project.graduation.atturaif_application.Objectes;
 import java.util.List;
 
 public class Shops {
-    String nameEn, nameAr, openTime, closeTime, image, descriptionAR, descriptionEN;
+    String nameEn, nameAr, image, descriptionAR, descriptionEN;
     List<Open_Days> days;
 
     public Shops() {
 
     }
 
-    public Shops(String nameEn, String nameAr, String openTime, String closeTime, String image, String descriptionAR, String descriptionEN, List<Open_Days> days) {
+    public Shops(String nameEn, String nameAr, String image, String descriptionAR, String descriptionEN, List<Open_Days> days) {
         this.nameEn = nameEn;
         this.nameAr = nameAr;
-        this.openTime = openTime;
-        this.closeTime = closeTime;
         this.image = image;
         this.descriptionAR = descriptionAR;
         this.descriptionEN = descriptionEN;
         this.days = days;
+
     } // shops
 
     public String getNameEn() {
@@ -37,21 +36,6 @@ public class Shops {
         this.nameAr = nameAr;
     }
 
-    public String getOpenTime() {
-        return openTime;
-    }
-
-    public void setOpenTime(String openTime) {
-        this.openTime = openTime;
-    }
-
-    public String getCloseTime() {
-        return closeTime;
-    }
-
-    public void setCloseTime(String closeTime) {
-        this.closeTime = closeTime;
-    }
 
     public String getImage() {
         return image;
