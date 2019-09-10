@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ShopsPage">
-
+    
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
         style="@android:style/Widget.Material.Toolbar"

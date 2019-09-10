@@ -1,10 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/sitting"
+        android:icon="@drawable/help"
         android:title="@string/sitting" />
     <item
         android:id="@+id/help"
-        android:title="@string/help" />
-
+        android:title="@string/help">
+        <menu>
+            <item
+                android:id="@+id/call"
+                android:title="@string/call_us" />
+            <item
+                android:id="@+id/email"
+                android:title="@string/email_us" />
+        </menu>
+    </item>
+    <item
+        android:id="@+id/about_us"
+        android:title="@string/about_us" />
 </menu>

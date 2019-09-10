@@ -67,6 +67,7 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/nextArrow"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"

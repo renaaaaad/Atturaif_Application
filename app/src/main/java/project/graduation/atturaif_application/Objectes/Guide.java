@@ -5,18 +5,20 @@ import java.util.List;
 public class Guide {
     int id;
     Long nationality_id;
-    String name, nationality;
+    String nameAR, nameEN, nationalityAR, nationalityEN;
     List<String> languges;
     List<Work_Days> working_days;
 
-    public Guide(int id, Long nationality_id, String name, String nationality, List<String> languges, List<Work_Days> working_days) {
+    public Guide(int id, Long nationality_id, String nameAR, String nameEN, String nationalityAR, String nationalityEN, List<String> languges, List<Work_Days> working_days) {
         this.id = id;
         this.nationality_id = nationality_id;
-        this.name = name;
-        this.nationality = nationality;
+        this.nameAR = nameAR;
+        this.nameEN = nameEN;
+        this.nationalityAR = nationalityAR;
+        this.nationalityEN = nationalityEN;
         this.languges = languges;
         this.working_days = working_days;
-    } // constructor
+    }
 
     public int getId() {
         return id;
@@ -34,22 +36,6 @@ public class Guide {
         this.nationality_id = nationality_id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getNationality() {
-        return nationality;
-    }
-
-    public void setNationality(String nationality) {
-        this.nationality = nationality;
-    }
-
     public List<String> getLanguges() {
         return languges;
     }
@@ -64,5 +50,37 @@ public class Guide {
 
     public void setWorking_days(List<Work_Days> working_days) {
         this.working_days = working_days;
+    }
+
+    public String getNameAR() {
+        return nameAR;
+    }
+
+    public void setNameAR(String nameAR) {
+        this.nameAR = nameAR;
+    }
+
+    public String getNameEN() {
+        return nameEN;
+    }
+
+    public void setNameEN(String nameEN) {
+        this.nameEN = nameEN;
+    }
+
+    public String getNationalityAR() {
+        return nationalityAR;
+    }
+
+    public void setNationalityAR(String nationalityAR) {
+        this.nationalityAR = nationalityAR;
+    }
+
+    public String getNationalityEN() {
+        return nationalityEN;
+    }
+
+    public void setNationalityEN(String nationalityEN) {
+        this.nationalityEN = nationalityEN;
     }
 } // class
