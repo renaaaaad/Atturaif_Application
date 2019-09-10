@@ -3,6 +3,7 @@ package project.graduation.atturaif_application;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -110,9 +112,8 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
 
                         @Override
                         public void decorate(DayViewFacade view) {
-//                                                            view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), android.R.color.white)));
-//                                                            view.setSelectionDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.event_decorator));
-                            view.addSpan(new DotSpan(10, Color.rgb(191, 144, 84)));
+                            view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), android.R.color.white)));
+                            view.setSelectionDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.event_decorator));
                         }
                     });
                 }
