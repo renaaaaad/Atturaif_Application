@@ -19,6 +19,11 @@
         app:title="@string/about_us"
         app:titleTextColor="@color/white" />
 
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
