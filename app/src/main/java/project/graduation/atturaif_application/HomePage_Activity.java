@@ -10,12 +10,22 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.PopupMenu;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.Objects;
+
+import project.graduation.atturaif_application.Objectes.Tour;
 
 
 public class HomePage_Activity extends BasicActivity implements View.OnClickListener {
@@ -86,7 +96,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                             case "Call us":
                                 call();
                                 break;
-                            case "إتصل":
+                            case "إتصل بنا":
                                 call();
                                 break;
                             case "About us":
@@ -114,29 +124,50 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         }// switch
     } //onClick
 
-    @SuppressLint("RestrictedApi")
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.home_page_menu, menu);
-
-        if(menu instanceof MenuBuilder){
-            MenuBuilder m = (MenuBuilder) menu;
-            m.setOptionalIconsVisible(true);
-        }
-
-        return true;
-    }
 
     private void call() {
-        startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "03030303335", null)));
+
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("contact_information").child("phone");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String phone = dataSnapshot.getValue(String.class);
+                startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "03030303335", null)));
+            } //onDataChange
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), R.string.error_message,
+                        Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
+            } //onCancelled
+        });
+
     } // call
 
     private void sendEmail() {
 
-        Intent mailIntent = new Intent(Intent.ACTION_VIEW);
-        Uri data = Uri.parse("mailto:?subject=" + getString(R.string.Atturaif_Help_Message) + "&body=" + getString(R.string.body_message) + "&to=" + "atturaifgp2@gmail.com");
-        mailIntent.setData(data);
-        startActivity(Intent.createChooser(mailIntent, "Send mail..."));
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("contact_information").child("Email");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String Email = dataSnapshot.getValue(String.class);
+                Intent mailIntent = new Intent(Intent.ACTION_VIEW);
+                Uri data = Uri.parse("mailto:?subject=" + getString(R.string.Atturaif_Help_Message) + "&body=" + getString(R.string.body_message) + "&to=" + Email);
+                mailIntent.setData(data);
+                startActivity(Intent.createChooser(mailIntent, "Send mail..."));
+            } //onDataChange
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(getApplicationContext(), R.string.error_message,
+                        Toast.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
+            } //onCancelled
+        });
+
 
     } // send email
 } //class
