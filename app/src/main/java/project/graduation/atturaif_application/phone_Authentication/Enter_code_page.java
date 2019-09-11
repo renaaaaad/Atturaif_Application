@@ -32,7 +32,7 @@ public class Enter_code_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Enter_code);
+        setContentView(R.layout.enter_code);
 
         mAuth = FirebaseAuth.getInstance();
 
