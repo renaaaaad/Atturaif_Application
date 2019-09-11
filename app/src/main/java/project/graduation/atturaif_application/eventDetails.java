@@ -12,10 +12,6 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
 
-import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_Des;
-import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_NAME;
-import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_TIME;
-import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_URL;
 
 public class eventDetails extends BasicActivity  {
 
@@ -35,10 +31,10 @@ public class eventDetails extends BasicActivity  {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent=getIntent();
-        String name= intent.getStringExtra(EXTRA_NAME);
-        String time=intent.getStringExtra(EXTRA_TIME);
-        String des=intent.getStringExtra(EXTRA_Des);
-        String image=intent.getStringExtra(EXTRA_URL);
+        String name= intent.getStringExtra(Constant.Keys.EVENT_NAME);
+        String time=intent.getStringExtra(Constant.Keys.EVENT_TIME);
+        String des=intent.getStringExtra(Constant.Keys.EVENT_Des);
+        String image=intent.getStringExtra(Constant.Keys.EVENT_URL);
 
         ImageView imageView=(ImageView)findViewById(R.id.eventPhoto);
         TextView Ename=(TextView)findViewById(R.id.eventname);
@@ -67,9 +63,9 @@ public class eventDetails extends BasicActivity  {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
         Intent intent=getIntent();
-        String eventname= intent.getStringExtra(EXTRA_NAME);
-        String eventtime=intent.getStringExtra(EXTRA_TIME);
-        String eventdes=intent.getStringExtra(EXTRA_Des);
+        String eventname= intent.getStringExtra(Constant.Keys.EVENT_NAME);
+        String eventtime=intent.getStringExtra(Constant.Keys.EVENT_TIME);
+        String eventdes=intent.getStringExtra(Constant.Keys.EVENT_Des);
 
         switch (item.getItemId()){
 

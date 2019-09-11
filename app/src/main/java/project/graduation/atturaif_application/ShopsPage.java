@@ -34,10 +34,7 @@ import project.graduation.atturaif_application.Objectes.shope_splash_name;
 
 public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListner {
 
-    public static final String EXTRA_URL = "imageurl";
-    public static final String EXTRA_NAME = "name";
-    public static final String EXTRA_Des = "description";
-    public static final String EXTRA_ID = "id";
+
     List<shope_splash_name> shops_name;
     Timer timer;
     LinearLayout progressbar;
@@ -194,17 +191,17 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
 
         if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
 
-            intent.putExtra(EXTRA_URL, clickeditem.getImage());
-            intent.putExtra(EXTRA_NAME, clickeditem.getNameAr());
-            intent.putExtra(EXTRA_Des, clickeditem.getDescriptionAR());
-            intent.putExtra(EXTRA_ID, clickeditem.getId());
+            intent.putExtra(Constant.Keys.SHOP_URL, clickeditem.getImage());
+            intent.putExtra(Constant.Keys.SHOP_NAME, clickeditem.getNameAr());
+            intent.putExtra(Constant.Keys.SHOP_Des, clickeditem.getDescriptionAR());
+            intent.putExtra(Constant.Keys.SHOP_ID, clickeditem.getId());
 
             startActivity(intent);
         } else {
-            intent.putExtra(EXTRA_URL, clickeditem.getImage());
-            intent.putExtra(EXTRA_NAME, clickeditem.getNameEn());
-            intent.putExtra(EXTRA_Des, clickeditem.getDescriptionEN());
-            intent.putExtra(EXTRA_ID, clickeditem.getId());
+            intent.putExtra(Constant.Keys.SHOP_URL, clickeditem.getImage());
+            intent.putExtra(Constant.Keys.SHOP_NAME, clickeditem.getNameEn());
+            intent.putExtra(Constant.Keys.SHOP_Des, clickeditem.getDescriptionEN());
+            intent.putExtra(Constant.Keys.SHOP_ID, clickeditem.getId());
             startActivity(intent);
         }
 

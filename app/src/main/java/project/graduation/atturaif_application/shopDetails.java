@@ -22,10 +22,7 @@ import java.util.ArrayList;
 import project.graduation.atturaif_application.Adapters.shopdaysitemAdapter;
 import project.graduation.atturaif_application.Objectes.Open_Days;
 
-import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_Des;
-import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_NAME;
-import static project.graduation.atturaif_application.EventsPage_Activity.EXTRA_URL;
-import static project.graduation.atturaif_application.ShopsPage.EXTRA_ID;
+
 
 public class shopDetails extends BasicActivity {
 
@@ -53,10 +50,10 @@ public class shopDetails extends BasicActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent=getIntent();
-        String name= intent.getStringExtra(EXTRA_NAME);
-        String id=intent.getStringExtra(EXTRA_ID);
-        String des=intent.getStringExtra(EXTRA_Des);
-        String image=intent.getStringExtra(EXTRA_URL);
+        String name= intent.getStringExtra(Constant.Keys.SHOP_NAME);
+        String id=intent.getStringExtra(Constant.Keys.SHOP_ID);
+        String des=intent.getStringExtra(Constant.Keys.SHOP_Des);
+        String image=intent.getStringExtra(Constant.Keys.SHOP_URL);
 
         reference = FirebaseDatabase.getInstance().getReference("Shops").child(id).child("days");
         reference.addValueEventListener(new ValueEventListener() {
@@ -87,7 +84,7 @@ public class shopDetails extends BasicActivity {
 
 
                 }
-                madapter=new shopdaysitemAdapter(daylist);
+                madapter=new shopdaysitemAdapter(getApplicationContext(),daylist);
                 recyclerView.setLayoutManager(layoutManager);
                 recyclerView.setAdapter(madapter);
                 }

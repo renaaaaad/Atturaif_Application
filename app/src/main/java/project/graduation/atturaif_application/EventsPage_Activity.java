@@ -50,10 +50,7 @@ import static project.graduation.atturaif_application.R.layout;
 public class EventsPage_Activity extends BasicActivity implements OnDateSelectedListener, EventsAdapter.onItemClickListner {
 
 
-    public static final String EXTRA_URL = "imageurl";
-    public static final String EXTRA_NAME = "name";
-    public static final String EXTRA_Des = "description";
-    public static final String EXTRA_TIME = "time";
+
     public boolean flge = false;
     private MaterialCalendarView mCalendarView;
 
@@ -257,10 +254,10 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
         Intent intent = new Intent(this, eventDetails.class);
         Events clickeditem = eventList.get(position);
 
-        intent.putExtra(EXTRA_URL, clickeditem.getImage());
-        intent.putExtra(EXTRA_NAME, clickeditem.getEventnameEN());
-        intent.putExtra(EXTRA_Des, clickeditem.getDescriptionEN());
-        intent.putExtra(EXTRA_TIME, clickeditem.getEventTime());
+        intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
+        intent.putExtra(Constant.Keys.EVENT_NAME, clickeditem.getEventnameEN());
+        intent.putExtra(Constant.Keys.EVENT_Des, clickeditem.getDescriptionEN());
+        intent.putExtra(Constant.Keys.EVENT_TIME, clickeditem.getEventTime());
 
         startActivity(intent);
 
