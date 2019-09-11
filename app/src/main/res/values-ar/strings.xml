@@ -55,4 +55,10 @@
     <string name="call_us">إتصل بنا</string>
     <string name="error_message">هناك بعض المشاكل ، يرجى المحاولة مرة أخرى لاحقًا</string>
     <string name="working_hours">ساعات العمل</string>
+    <string name="Open_on">يفتح:</string>
+    <string name="Description">وصف:</string>
+
+
+
+
 </resources>

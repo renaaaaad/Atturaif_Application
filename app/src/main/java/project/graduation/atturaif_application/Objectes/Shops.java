@@ -3,14 +3,23 @@ package project.graduation.atturaif_application.Objectes;
 import java.util.List;
 
 public class Shops {
-    String nameEn, nameAr, image, descriptionAR, descriptionEN;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    String id,nameEn, nameAr, image, descriptionAR, descriptionEN;
     List<Open_Days> days;
 
     public Shops() {
 
     }
 
-    public Shops(String nameEn, String nameAr, String image, String descriptionAR, String descriptionEN, List<Open_Days> days) {
+    public Shops(String id ,String nameEn, String nameAr, String image, String descriptionAR, String descriptionEN, List<Open_Days> days) {
+        this.id = id;
         this.nameEn = nameEn;
         this.nameAr = nameAr;
         this.image = image;
