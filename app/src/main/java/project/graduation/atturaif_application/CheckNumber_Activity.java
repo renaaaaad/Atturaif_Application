@@ -1,5 +1,6 @@
 package project.graduation.atturaif_application;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,26 +9,59 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class CheckNumber_Activity extends BasicActivity {
-    Button sendCode;
-    EditText phoneNumber;
-    String phone;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthProvider;
 
+import java.util.concurrent.TimeUnit;
+
+public class CheckNumber_Activity extends AppCompatActivity {
+//fadia
+private EditText phoneNumber;
+    private EditText code;
+    private Button sendCode;
+    String phone;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_number_);
-        sendCode = findViewById(R.id.sendCode);
-        phoneNumber = findViewById(R.id.phoneNumber);
-        phone = "+966" + phoneNumber.getText().toString();
+
+
+        phoneNumber =(EditText) findViewById(R.id.phoneNumber);
+        code =(EditText) findViewById(R.id.code);
+        sendCode=(Button) findViewById(R.id.sendCode);
+        //to do action
         sendCode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CheckNumber_Activity.this, CheckPhoneCode_Activity.class);
-                intent.putExtra("phone", phoneNumber.getText().toString());
-                startActivity(intent);
-                finish();
+
+                String phone="+966" + phoneNumber.getText().toString();
+                PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                       phone,
+                        60,
+                        TimeUnit.SECONDS,
+                        CheckNumber_Activity.this,
+                        mCallbacks
+
+                );
             }
-        }); // onClick
+        });
+
+        mCallbacks= new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            @Override
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+
+            }
+
+            @Override
+            public void onVerificationFailed(@NonNull FirebaseException e) {
+
+            }
+        };
+
     } //onCreate
+
+    //fadia
+
 } // class

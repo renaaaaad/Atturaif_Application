@@ -1,20 +1,15 @@
 package project.graduation.atturaif_application;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.widget.PopupMenu;
 
 import com.google.firebase.database.DataSnapshot;
@@ -22,10 +17,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Objects;
-
-import project.graduation.atturaif_application.Objectes.Tour;
 
 
 public class HomePage_Activity extends BasicActivity implements View.OnClickListener {
@@ -66,7 +57,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         int id = view.getId();
         switch (id) {
             case R.id.ticket:
-                startActivity(new Intent(HomePage_Activity.this, Booking_Activity.class));
+                startActivity(new Intent(HomePage_Activity.this,Booking_Activity.class));
                 break;
             case R.id.event:
                 startActivity(new Intent(HomePage_Activity.this, EventsPage_Activity.class));

@@ -1,7 +1,6 @@
 package project.graduation.atturaif_application;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -9,39 +8,25 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.nightonke.boommenu.BoomButtons.HamButton;
-import com.nightonke.boommenu.BoomMenuButton;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 
 import org.threeten.bp.DayOfWeek;
-import org.threeten.bp.LocalDate;
 import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.ArrayList;
@@ -50,6 +35,7 @@ import java.util.List;
 
 import project.graduation.atturaif_application.Adapters.Ticket_Adapter;
 import project.graduation.atturaif_application.Adapters.Tour_Adapter;
+import project.graduation.atturaif_application.phone_Authentication.Enter_phone_page;
 import project.graduation.atturaif_application.Objectes.Open_Days;
 import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
@@ -138,8 +124,9 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                 final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
                 MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE, text);
                 MySharedPreference.putString(getApplicationContext(), Constant.Keys.TOUT_TYPE, tourTypeText.getText().toString());
-                startActivity(new Intent(Booking_Activity.this, CheckNumber_Activity.class));
+                startActivity(new Intent(Booking_Activity.this, Enter_phone_page.class));
             }//onClick
+
         }); //onClick
 
 
