@@ -66,6 +66,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".phone_Authentication.Enter_phone_page" />
+        <activity android:name=".phone_Authentication.Enter_code_page" />
+
+
     </application>
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
