@@ -8,6 +8,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+
+import project.graduation.atturaif_application.Payment_Activity;
+
 import project.graduation.atturaif_application.R;
 
 public class Enter_phone_page extends AppCompatActivity {
@@ -16,6 +19,9 @@ public class Enter_phone_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.Enter_phone);
+
+        setContentView(R.layout.enter_phone);
+
         editText=findViewById(R.id.editTextPhone);
         findViewById(R.id.buttonContinue).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,7 +46,11 @@ public class Enter_phone_page extends AppCompatActivity {
         super.onStart();
         if(FirebaseAuth.getInstance().getCurrentUser()!=null)
         {
+
             Intent intent=new Intent(this,ProfileActivity.class);
+
+            Intent intent=new Intent(this, Enter_code_page.class);
+
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         }
