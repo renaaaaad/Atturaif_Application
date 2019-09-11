@@ -1,4 +1,5 @@
 package project.graduation.atturaif_application.phone_Authentication;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -33,8 +34,6 @@ public class Enter_code_page extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.Enter_code);
-
         setContentView(R.layout.enter_code);
 
 
@@ -63,28 +62,27 @@ public class Enter_code_page extends AppCompatActivity {
     }
 
     private void verifyCode(String code) {
-        PhoneAuthCredential credential= PhoneAuthProvider.getCredential(verificationId, code);
+        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithCredential(credential);
     }
-    private void signInWithCredential( PhoneAuthCredential credential){
+
+    private void signInWithCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if(task.isSuccessful())
-                        {
-                            Intent intent=new Intent(Enter_code_page.this, Payment_Activity.class);
+                        if (task.isSuccessful()) {
+                            Intent intent = new Intent(Enter_code_page.this, Payment_Activity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
                             startActivity(intent);
 
-                        }else {
-                            Toast.makeText(Enter_code_page.this,task.getException().getMessage(),Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(Enter_code_page.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
                     }
                 });
     }
-
 
 
     private void sendVerificationCode(String number) {
@@ -104,13 +102,13 @@ public class Enter_code_page extends AppCompatActivity {
         }
 
         public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
-           String code = phoneAuthCredential.getSmsCode();
+            String code = phoneAuthCredential.getSmsCode();
             if (code != null) {
                 editText.setText(code);
-               verifyCode(code);
-           }
+                verifyCode(code);
+            }
 
-       }
+        }
 
         @Override
         public void onVerificationFailed(FirebaseException e) {

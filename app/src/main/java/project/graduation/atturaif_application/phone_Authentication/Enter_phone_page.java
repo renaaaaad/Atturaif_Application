@@ -18,7 +18,6 @@ public class Enter_phone_page extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.Enter_phone);
 
         setContentView(R.layout.enter_phone);
 
@@ -41,18 +40,5 @@ public class Enter_phone_page extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if(FirebaseAuth.getInstance().getCurrentUser()!=null)
-        {
 
-            Intent intent=new Intent(this,ProfileActivity.class);
-
-            Intent intent=new Intent(this, Enter_code_page.class);
-
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        }
-    }
 }
