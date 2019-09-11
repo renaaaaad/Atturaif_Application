@@ -10,10 +10,14 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.CubeGrid;
+import com.github.ybq.android.spinkit.style.DoubleBounce;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +34,7 @@ public class Aboutus_Page extends BasicActivity {
     Toolbar toolbar;
     RecyclerView recyclerView;
     Timer timer;
-    ProgressBar progressbar;
+    LinearLayout progressbar;
 
     @Override
 
@@ -38,8 +42,15 @@ public class Aboutus_Page extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aboutus__page);
         text = findViewById(R.id.text);
+
         progressbar = findViewById(R.id.progressbar);
         recyclerView = findViewById(R.id.recyclerView);
+
+        ProgressBar progressBar = findViewById(R.id.spin_kit);
+        Sprite doubleBounce = new CubeGrid();
+        progressBar.setIndeterminateDrawable(doubleBounce);
+
+
         toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

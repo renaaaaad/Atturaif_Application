@@ -2,10 +2,12 @@ package project.graduation.atturaif_application;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -29,15 +31,21 @@ import project.graduation.atturaif_application.Objectes.Shops;
 import project.graduation.atturaif_application.Objectes.shope_splash_name;
 
 public class Splash_Shops extends AppCompatActivity {
-    ProgressBar progressbar;
+    LinearLayout progressbar;
     DatabaseReference reference;
     List<shope_splash_name> shops_name;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash__shops);
         progressbar = findViewById(R.id.progressbar);
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         shops_name = new ArrayList<>();
         reference = FirebaseDatabase.getInstance().getReference().child("Shops");
         reference.addValueEventListener(new ValueEventListener() {

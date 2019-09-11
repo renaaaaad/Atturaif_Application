@@ -8,6 +8,32 @@
     android:orientation="vertical"
     tools:context=".Booking_Activity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@android:style/Widget.Material.Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:title="@string/Booking"
+        app:titleTextColor="@color/white" />
+
+    <LinearLayout
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.CubeGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/colorAccent" />
+    </LinearLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,17 +44,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                style="@android:style/Widget.Material.Toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:background="@color/colorPrimary"
-                android:gravity="center"
-                android:textAlignment="center"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:title="@string/Booking"
-                app:titleTextColor="@color/white" />
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/teacher_info_calendarView"

@@ -19,10 +19,21 @@
         app:title="@string/about_us"
         app:titleTextColor="@color/white" />
 
-    <ProgressBar
+    <LinearLayout
         android:id="@+id/progressbar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:gravity="center_horizontal"
+        android:layout_height="match_parent">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.CubeGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/colorAccent" />
+    </LinearLayout>
+
 
     <ScrollView
         android:layout_width="match_parent"

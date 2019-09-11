@@ -11,5 +11,15 @@ public class Constant {
         String APP_LANGUAGE = "app_Language";
         String NOTIFICATION = "notification";
         String SHOPS_LIST = "shops_list";
+
+        String SHOP_URL = "imageurl";
+        String SHOP_NAME = "name";
+        String SHOP_Des = "description";
+        String SHOP_ID = "id";
+
+        String EVENT_URL = "imageurl";
+        String EVENT_NAME = "name";
+        String EVENT_Des = "description";
+        String EVENT_TIME = "time";
     }//end interface
 } // class

@@ -75,4 +75,5 @@ public class Shops_Adapter extends RecyclerView.Adapter<Shops_Adapter.MyViewHold
             shopListner.onShopClick(getAdapterPosition());
         }
     }
+
 } // class
