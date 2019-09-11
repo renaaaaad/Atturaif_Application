@@ -8,6 +8,7 @@
     <string name="Events">الفعاليات</string>
     <string name="Map">الخريطه</string>
     <string name="Shops">الاسواق</string>
+    <string name="to">إلى</string>
     <string name="Start_AR">بدأ AR</string>
     <string name="virtual_tour">خذّ لفة </string>
     <string name="Language">عربي</string>
@@ -42,7 +43,6 @@
     <string name="notification">الإشعارات</string>
     <string name="QueickGlance">"خذّ لفة "</string>
     <string name="event">فعالية</string>
-    <string name="to">الى</string>
 
 
     <string name="about_us">"عن الطريف "</string>
@@ -57,8 +57,6 @@
     <string name="working_hours">ساعات العمل</string>
     <string name="Open_on">يفتح:</string>
     <string name="Description">وصف:</string>
-
-
 
 
 </resources>
