@@ -15,6 +15,8 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -25,9 +27,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.CubeGrid;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,6 +52,8 @@ import org.threeten.bp.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import project.graduation.atturaif_application.Adapters.Ticket_Adapter;
 import project.graduation.atturaif_application.Adapters.Tour_Adapter;
@@ -61,6 +68,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     List<Open_Days> open_days;
     List<Tour> tours;
     Button Continue;
+    Timer timer;
     public static CalendarDay current_date;
     public static boolean flag1 = false;
     public static boolean flag2 = false;
@@ -68,6 +76,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     RecyclerView recyclerView_tour;
     static Dialog dialog;
     TextView open_Time;
+    LinearLayout progressbar;
     RecyclerView recyclerView;
     public static TextView noAvailableTickets, tourTypeText;
     List<Vistor_price> vistor_prices;
@@ -78,6 +87,11 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_);
+        progressbar = findViewById(R.id.progressbar);
+        ProgressBar progressBar = findViewById(R.id.spin_kit);
+        Sprite doubleBounce = new CubeGrid();
+        progressBar.setIndeterminateDrawable(doubleBounce);
+
         toolbar = findViewById(R.id.toolbar);
         tourType = findViewById(R.id.tourType);
         Continue = findViewById(R.id.Continue);
@@ -92,6 +106,20 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressbar.setVisibility(View.GONE);
+                    }
+                });
+            } //run
+        }, 5000);
+
 
         // custom the calender
         int year = Calendar.getInstance().get(Calendar.YEAR);

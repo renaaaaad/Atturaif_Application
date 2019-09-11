@@ -2,9 +2,12 @@ package project.graduation.atturaif_application;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -13,6 +16,8 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.github.ybq.android.spinkit.sprite.Sprite;
+import com.github.ybq.android.spinkit.style.CubeGrid;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +38,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import project.graduation.atturaif_application.Adapters.EventsAdapter;
 import project.graduation.atturaif_application.Objectes.Events;
@@ -57,19 +64,37 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
     EventsAdapter adapter;
     Toolbar toolbar;
     LinearLayout noeventlayout;
-
+    Timer timer;
+    LinearLayout progressbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_events_page_);
+
+        progressbar = findViewById(R.id.progressbar);
+        ProgressBar progressBar = findViewById(R.id.spin_kit);
+        Sprite doubleBounce = new CubeGrid();
+        progressBar.setIndeterminateDrawable(doubleBounce);
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressbar.setVisibility(View.GONE);
+                    }
+                });
+            } //run
+        }, 5000);
+
         toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        noeventlayout=findViewById(id.linearlayoutnoevent);
-
+        noeventlayout = findViewById(id.linearlayoutnoevent);
 
 
         mCalendarView = (MaterialCalendarView) findViewById(id.calendarView);
@@ -135,7 +160,8 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
 
         String substring = currentDate.substring(0, 2);
 
-        final int Currentday=Integer.parseInt(substring);;
+        final int Currentday = Integer.parseInt(substring);
+        ;
         final int Currentmonth = date2.getMonth();
         final int Currentyear = date2.getYear();
 
@@ -151,11 +177,10 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
                     Events e = ds.getValue(Events.class);
 
                     if (e.getYear() == (Currentyear) && e.getMonth() == (Currentmonth) && e.getDay() == Currentday) {
-                                eventList.add(e);
+                        eventList.add(e);
 
-                                noeventlayout.setVisibility(LinearLayout.GONE);
+                        noeventlayout.setVisibility(LinearLayout.GONE);
                     }
-
 
 
                 }
@@ -195,13 +220,13 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
                     List dates = mCalendarView.getSelectedDates();
 
                     if (e.getYear() == (year) && e.getMonth() == (month) && e.getDay() == day) {
-                                eventList.add(e);
+                        eventList.add(e);
 
-                                noeventlayout.setVisibility(LinearLayout.GONE);
+                        noeventlayout.setVisibility(LinearLayout.GONE);
 
-                            }
+                    }
 
-                    if(eventList.isEmpty()){
+                    if (eventList.isEmpty()) {
                         noeventlayout.setVisibility(LinearLayout.VISIBLE);
 
                     }

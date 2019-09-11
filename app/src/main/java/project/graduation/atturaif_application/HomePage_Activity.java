@@ -118,7 +118,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
                 break;
             case R.id.shop:
-                startActivity(new Intent(HomePage_Activity.this, Splash_Shops.class));
+                startActivity(new Intent(HomePage_Activity.this, ShopsPage.class));
 
                 break;
         }// switch
