@@ -35,10 +35,10 @@ public class shopDetails extends BasicActivity {
         String image=intent.getStringExtra(EXTRA_URL);
 
         ImageView imageView=findViewById(R.id.shopphoto);
-        TextView Sname=findViewById(R.id.eventname);
+        TextView Sname=findViewById(R.id.shopname);
 //        TextView SOpentime=findViewById(R.id.shopopen);
 //        TextView Sclosetime=findViewById(R.id.shopclose);
-        TextView Sdes=findViewById(R.id.eventdesc);
+        TextView Sdes=findViewById(R.id.shopdesc);
 
         Picasso.with(this).load(image).into(imageView);
 
