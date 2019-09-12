@@ -42,7 +42,7 @@
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
     <string name="are_you_sure_you_want_to_leave">are you sure you want to leave</string>
-    <string name="sitting">Sitting</string>
+    <string name="sitting">Settings</string>
     <string name="notification">Notification</string>
     <string name="QueickGlance">Quick glance</string>
 
@@ -58,5 +58,7 @@
     <string name="Open_on">Open on:</string>
     <string name="Description">Description:</string>
     <string name="to">to</string>
+    <string name="No_events">No events</string>
+
 
 </resources>

@@ -68,7 +68,7 @@
                     android:id="@+id/test"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="No event"
+                    android:text="@string/No_events"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp"
                     style="bold"/>

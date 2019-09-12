@@ -254,14 +254,37 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
         Intent intent = new Intent(this, eventDetails.class);
         Events clickeditem = eventList.get(position);
 
-        intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
-        intent.putExtra(Constant.Keys.EVENT_NAME, clickeditem.getEventnameEN());
-        intent.putExtra(Constant.Keys.EVENT_Des, clickeditem.getDescriptionEN());
-        intent.putExtra(Constant.Keys.EVENT_TIME, clickeditem.getEventTime());
-
-        startActivity(intent);
+        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
 
 
+            intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
+            intent.putExtra(Constant.Keys.EVENT_NAME, clickeditem.getEventnameAR());
+            intent.putExtra(Constant.Keys.EVENT_Des, clickeditem.getDescriptionAR());
+            intent.putExtra(Constant.Keys.EVENT_TIME, replaceArabicNumbers(clickeditem.getEventTime()));
+            startActivity(intent);
+        }else{
+            intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
+            intent.putExtra(Constant.Keys.EVENT_NAME, clickeditem.getEventnameEN());
+            intent.putExtra(Constant.Keys.EVENT_Des, clickeditem.getDescriptionEN());
+            intent.putExtra(Constant.Keys.EVENT_TIME, clickeditem.getEventTime());
+            startActivity(intent);
+        }
+
+
+    }
+
+
+    public String replaceArabicNumbers(String original) {
+        return original.toString().replaceAll("1","١")
+                .replaceAll("2","٢")
+                .replaceAll("3","٣")
+                .replaceAll("4","٤")
+                .replaceAll("5","٥")
+                .replaceAll("6","٦")
+                .replaceAll("7","٧")
+                .replaceAll("8","٨")
+                .replaceAll("9","٩")
+                .replaceAll("0","٠");
     }
 
 }
