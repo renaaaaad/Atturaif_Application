@@ -81,8 +81,6 @@ public class shopdaysitemAdapter extends RecyclerView.Adapter<shopdaysitemAdapte
         }
     }
 
-
-
     public String replaceArabicDays(String original) {
         return original.toString().replaceAll("Saturday","السبت")
                 .replaceAll("saturday","السبت")
@@ -99,6 +97,7 @@ public class shopdaysitemAdapter extends RecyclerView.Adapter<shopdaysitemAdapte
                 .replaceAll("Friday","الجمعه")
                 .replaceAll("friday","الجمعه");
     }
+
 
     public String replaceArabicNumbers(String original) {
         return original.toString().replaceAll("1","١")
