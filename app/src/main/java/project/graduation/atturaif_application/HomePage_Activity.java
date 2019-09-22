@@ -57,7 +57,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         int id = view.getId();
         switch (id) {
             case R.id.ticket:
-                startActivity(new Intent(HomePage_Activity.this,Booking_Activity.class));
+                startActivity(new Intent(HomePage_Activity.this, Booking_Activity.class));
                 break;
             case R.id.event:
                 startActivity(new Intent(HomePage_Activity.this, EventsPage_Activity.class));
@@ -72,7 +72,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                     public boolean onMenuItemClick(MenuItem item) {
                         String select = item.getTitle().toString();
                         switch (select) {
-                            case "Sitting":
+                            case "Settings":
                                 startActivity(new Intent(HomePage_Activity.this, SittingPage.class));
                                 break;
                             case "الإعدادات":

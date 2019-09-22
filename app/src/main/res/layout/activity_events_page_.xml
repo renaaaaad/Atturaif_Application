@@ -7,6 +7,7 @@
     android:background="@color/white"
     android:orientation="vertical"
     tools:context=".EventsPage_Activity">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar1"
         style="@android:style/Widget.Material.Toolbar"
@@ -18,11 +19,13 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="@string/Events"
         app:titleTextColor="@color/white" />
+
     <LinearLayout
         android:id="@+id/progressbar"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
-        android:layout_height="match_parent">
+        android:visibility="gone">
 
         <com.github.ybq.android.spinkit.SpinKitView
             android:id="@+id/spin_kit"
@@ -32,6 +35,7 @@
             android:layout_gravity="center"
             app:SpinKit_Color="@color/colorAccent" />
     </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -41,37 +45,42 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-
-
-            <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+                       <com.prolificinteractive.materialcalendarview.MaterialCalendarView
                 android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:mcv_selectionColor="#BF9054"
+                app:mcv_calendarMode="week"
+                app:mcv_firstDayOfWeek="sunday"
+                app:mcv_selectionColor="?attr/colorPrimary"
                 app:mcv_showOtherDates="all"
-                app:mcv_tileHeight="50dp"
-                tools:ignore="MissingConstraints" />
+                app:mcv_tileSize="50dp"
+                app:mcv_titleAnimationOrientation="vertical"
+                />
 
             <LinearLayout
                 android:id="@+id/linearlayoutnoevent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="30sp"
+                android:layout_marginTop="70sp"
+                android:layout_gravity="center_vertical"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/calendar"/>
+                    android:layout_width="99dp"
+                    android:layout_height="84dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/no_event" />
+
                 <TextView
                     android:id="@+id/test"
+                    style="bold"
+                    android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/No_events"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="20sp"
-                    style="bold"/>
+                    android:textSize="20sp" />
 
             </LinearLayout>
 

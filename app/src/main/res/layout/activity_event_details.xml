@@ -20,130 +20,132 @@
         app:title="@string/event"
         app:titleTextColor="@color/white" />
 
-    <RelativeLayout
-        android:id="@+id/relativelayout"
-        android:layout_width="match_parent"
-        android:layout_height="397dp">
 
-
-        <ImageView
-            android:id="@+id/eventPhoto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/placeholder"
-            android:tint="@color/photo_tint"
-            android:layout_marginStart="10dp"
-            android:layout_margin="10dp"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/eventPhoto"
-            android:layout_alignTop="@id/eventPhoto"
-            android:layout_alignRight="@id/eventPhoto"
-            android:layout_alignBottom="@id/eventPhoto"
-            android:layout_margin="1dp"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@id/eventPhoto"
-                android:layout_alignTop="@id/eventPhoto"
-                android:layout_alignRight="@id/eventPhoto"
-                android:layout_alignBottom="@id/eventPhoto"
-                android:layout_margin="1dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="4dp"
-                    android:src="@drawable/clock" />
-
-
-                <TextView
-                    android:id="@+id/EventTime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:gravity="center"
-                    android:text="Event Time"
-                    android:textColor="@android:color/white"
-                    android:textSize="15sp" />
-            </LinearLayout>
-
-            <TextView
-                android:id="@+id/eventname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Event name"
-                android:textColor="@color/white"
-                android:textSize="30sp" />
-
-
-        </LinearLayout>
-
-
-    </RelativeLayout>
-
-
-
-
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
-        android:clipToPadding="false"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:layout_margin="5dp"
+        android:elevation="10dp">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-
-
-            <androidx.cardview.widget.CardView
-                app:cardElevation="5dp"
-                app:cardUseCompatPadding="true"
+            <RelativeLayout
+                android:id="@+id/relativelayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="286dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <com.github.florent37.shapeofview.ShapeOfView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="0dp"
+                    app:shape_clip_drawable="@drawable/image_background">
+
+                    <ImageView
+                        android:id="@+id/eventPhoto"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:tint="@color/photo_tint" />
+                </com.github.florent37.shapeofview.ShapeOfView>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/Description"
-                    android:textStyle="bold"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"/>
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginBottom="1dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/eventdesc"
-                    android:layout_width="wrap_content"
+
+                    <TextView
+                        android:id="@+id/eventname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Event name"
+                        android:textColor="@color/white"
+                        android:textSize="30sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="4dp"
+                            android:src="@drawable/clock" />
+
+
+                        <TextView
+                            android:id="@+id/EventTime"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center"
+                            android:text="Event Time"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+            <androidx.core.widget.NestedScrollView
+                android:id="@+id/nestedScrollView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:lineSpacingMultiplier="1.5"
-                    android:padding="12dp"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"
-
-                    />
+                    android:orientation="vertical">
 
 
-            </androidx.cardview.widget.CardView>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/Description"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/eventdesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:lineSpacingMultiplier="1.5"
+                        android:padding="12dp"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+
+                        />
+
+
+                </LinearLayout>
+
+
+            </androidx.core.widget.NestedScrollView>
+
 
         </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
-    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

@@ -49,8 +49,11 @@
                 android:id="@+id/teacher_info_calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:mcv_showWeekDays="true"
+
                 app:mcv_selectionColor="@color/colorPrimary"
-                app:mcv_showOtherDates="all" />
+                app:mcv_showOtherDates="decorated_disabled"
+                 />
 
             <TextView
                 android:id="@+id/open_Time"

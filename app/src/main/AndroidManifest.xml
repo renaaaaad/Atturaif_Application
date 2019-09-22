@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="project.graduation.atturaif_application">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,8 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".shopdays_item"></activity>
-        <activity android:name=".shopDetails" >
+
+
+        <activity android:name=".shopdays_item" />
+        <activity android:name=".shopDetails">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ShopsPage" />
@@ -68,10 +72,6 @@
         </activity>
         <activity android:name=".phone_Authentication.Enter_phone_page" />
         <activity android:name=".phone_Authentication.Enter_code_page" />
-
-
     </application>
-
-    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>

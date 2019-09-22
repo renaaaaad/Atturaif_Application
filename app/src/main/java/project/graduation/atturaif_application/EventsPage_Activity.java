@@ -105,7 +105,7 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
         mCalendarView.state().edit().
                 setFirstDayOfWeek(DayOfWeek.of(Calendar.SUNDAY)).
                 setMinimumDate(CalendarDay.from(year, month, 1)).
-                setCalendarDisplayMode(CalendarMode.MONTHS).
+                setCalendarDisplayMode(CalendarMode.WEEKS).
                 commit();
 
 
@@ -158,7 +158,7 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
         String substring = currentDate.substring(0, 2);
 
         final int Currentday = Integer.parseInt(substring);
-        ;
+
         final int Currentmonth = date2.getMonth();
         final int Currentyear = date2.getYear();
 
