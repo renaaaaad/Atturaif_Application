@@ -1,14 +1,10 @@
 package project.graduation.atturaif_application;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -18,6 +14,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.CubeGrid;
@@ -42,10 +45,10 @@ import java.util.TimerTask;
 
 import project.graduation.atturaif_application.Adapters.Ticket_Adapter;
 import project.graduation.atturaif_application.Adapters.Tour_Adapter;
-import project.graduation.atturaif_application.phone_Authentication.Enter_phone_page;
 import project.graduation.atturaif_application.Objectes.Open_Days;
 import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
+import project.graduation.atturaif_application.phone_Authentication.Enter_phone_page;
 
 public class Booking_Activity extends BasicActivity implements OnDateSelectedListener {
     Toolbar toolbar;
@@ -68,6 +71,8 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     List<Vistor_price> vistor_prices;
     Ticket_Adapter ticket_adapter;
     public static AlertDialog.Builder alertDialog;
+    LinearLayout Networklayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,8 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
         progressBar.setIndeterminateDrawable(doubleBounce);
+        Networklayout=findViewById(R.id.Networklayout);
+
 
         toolbar = findViewById(R.id.toolbar);
         tourType = findViewById(R.id.tourType);
@@ -107,57 +114,66 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         }, 5000);
 
 
-        // custom the calender
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        mcv.state().edit()
-                .setFirstDayOfWeek(DayOfWeek.of(Calendar.SATURDAY))
-                .setMinimumDate(CalendarDay.from(year, month, 1))
-                .setCalendarDisplayMode(CalendarMode.MONTHS)
-                .commit();
+        if(haveNetwork()) {
 
-        // getting the data from the database
-        getData();
+            // custom the calender
+            int year = Calendar.getInstance().get(Calendar.YEAR);
+            int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+            mcv.state().edit()
+                    .setFirstDayOfWeek(DayOfWeek.of(Calendar.SATURDAY))
+                    .setMinimumDate(CalendarDay.from(year, month, 1))
+                    .setCalendarDisplayMode(CalendarMode.MONTHS)
+                    .commit();
 
-        mcv.setOnDateChangedListener(this);
-        mcv.setOnDateChangedListener(this);
-        mcv.setOnDateChangedListener(this);
-        mcv.setOnDateChangedListener(this);
-        int current_year = Calendar.getInstance().get(Calendar.YEAR);
-        int current_month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-        int current_day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-        current_date = CalendarDay.from(current_year, current_month, current_day);
-        mcv.setDateSelected(CalendarDay.from(current_year, current_month, current_day), true);
-        mcv.getSelectedDate();
-        open_Time.setText(R.string.you_cant_book_today);
+            // getting the data from the database
+            getData();
 
-        // get tour type data
-        getTourType();
+            mcv.setOnDateChangedListener(this);
+            mcv.setOnDateChangedListener(this);
+            mcv.setOnDateChangedListener(this);
+            mcv.setOnDateChangedListener(this);
+            int current_year = Calendar.getInstance().get(Calendar.YEAR);
+            int current_month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+            int current_day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+            current_date = CalendarDay.from(current_year, current_month, current_day);
+            mcv.setDateSelected(CalendarDay.from(current_year, current_month, current_day), true);
+            mcv.getSelectedDate();
+            open_Time.setText(R.string.you_cant_book_today);
 
-        // sit tickets
-        setTeckits();
+            // get tour type data
+            getTourType();
 
-        tourType.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            // sit tickets
+            setTeckits();
 
-                createPopUpWindow(tours);
-            } //onClick
-        });
+            tourType.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-        Continue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-                final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
-                MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE, text);
-                MySharedPreference.putString(getApplicationContext(), Constant.Keys.TOUT_TYPE, tourTypeText.getText().toString());
-                startActivity(new Intent(Booking_Activity.this, Enter_phone_page.class));
-            }//onClick
+                    createPopUpWindow(tours);
+                } //onClick
+            });
 
-        }); //onClick
+            Continue.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+                    final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
+                    MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE, text);
+                    MySharedPreference.putString(getApplicationContext(), Constant.Keys.TOUT_TYPE, tourTypeText.getText().toString());
+                    startActivity(new Intent(Booking_Activity.this, Enter_phone_page.class));
+                }//onClick
+
+            }); //onClick
 
 
+        }//end if statment for netwoek checking
+
+        else if(!haveNetwork())
+        {
+            Networklayout.setVisibility(View.VISIBLE);
+            Toast.makeText(Booking_Activity.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
+        }
     } //onCreate
 
 
@@ -398,5 +414,28 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         tourTypeText.setText(type);
     } //setTourType
 
+    private boolean haveNetwork(){
+
+        boolean have_WIFI=false;
+        boolean have_MobileData=false;
+
+        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+
+        for(NetworkInfo info:networkInfos)
+        {
+            if(info.getTypeName().equalsIgnoreCase("WIFI"))
+                if(info.isConnected())
+                    have_WIFI=true;
+
+            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if(info.isConnected())
+                    have_MobileData=true;
+
+        }
+
+        return have_WIFI || have_MobileData;
+    }
 
 } //class

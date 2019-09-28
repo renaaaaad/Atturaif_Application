@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -92,6 +93,7 @@ public class shopDetails extends BasicActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(shopDetails.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
 
             }
         });
