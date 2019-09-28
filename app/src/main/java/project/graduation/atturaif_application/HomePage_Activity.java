@@ -17,12 +17,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.smarteist.autoimageslider.IndicatorAnimations;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
+
+import project.graduation.atturaif_application.Adapters.SliderAdapterExample;
 
 
 public class HomePage_Activity extends BasicActivity implements View.OnClickListener {
 
     LinearLayout bookingtab_button, eventtab_button, shoptab_button, startARtab_button, vrtab_button, maptab_button;
     ImageButton more_button;
+    SliderView sliderView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +39,14 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         eventtab_button = findViewById(R.id.event);
         shoptab_button = findViewById(R.id.shop);
         startARtab_button = findViewById(R.id.AR);
-        vrtab_button = findViewById(R.id.vrtab_button);
         maptab_button = findViewById(R.id.map);
         more_button = findViewById(R.id.more_button);
+        sliderView = findViewById(R.id.imageSlider);
 
+        sliderView.setSliderAdapter(new SliderAdapterExample(getApplicationContext()));
+        sliderView.startAutoCycle();
+        sliderView.setIndicatorAnimation(IndicatorAnimations.WORM);
+        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
 
         //
         //set the listener
@@ -44,7 +54,6 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         eventtab_button.setOnClickListener(this);
         shoptab_button.setOnClickListener(this);
         startARtab_button.setOnClickListener(this);
-        vrtab_button.setOnClickListener(this);
         maptab_button.setOnClickListener(this);
         more_button.setOnClickListener(this);
 
@@ -104,10 +113,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
                 popup.show();//showing popup menu
                 break;
-            case R.id.vrtab_button:
-                startActivity(new Intent(HomePage_Activity.this, VR_page.class));
 
-                break;
             case R.id.shop:
                 startActivity(new Intent(HomePage_Activity.this, ShopsPage.class));
 

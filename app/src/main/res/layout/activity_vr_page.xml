@@ -94,6 +94,27 @@
                 </TextView>
             </RelativeLayout>
 
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_margin="5dp">
+
+                <com.google.vr.sdk.widgets.pano.VrPanoramaView
+                    android:id="@+id/vrPanoramaView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/vr_background"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:text="third place "
+                    android:textColor="@color/white"
+                    android:textSize="30sp">
+
+                </TextView>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 
