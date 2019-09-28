@@ -1,6 +1,8 @@
 package project.graduation.atturaif_application;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -50,8 +52,6 @@ import static project.graduation.atturaif_application.R.layout;
 public class EventsPage_Activity extends BasicActivity implements OnDateSelectedListener, EventsAdapter.onItemClickListner {
 
 
-
-    public boolean flge = false;
     private MaterialCalendarView mCalendarView;
 
     DatabaseReference reference;
@@ -63,12 +63,14 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
     LinearLayout noeventlayout;
     Timer timer;
     LinearLayout progressbar;
+    LinearLayout Networklayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_events_page_);
 
+        Networklayout=findViewById(id.Networklayout);
         progressbar = findViewById(R.id.progressbar);
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
@@ -86,113 +88,129 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
             } //run
         }, 5000);
 
-        toolbar = findViewById(R.id.toolbar1);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        noeventlayout = findViewById(id.linearlayoutnoevent);
+        //check network connection
 
+            toolbar = findViewById(R.id.toolbar1);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        mCalendarView = (MaterialCalendarView) findViewById(id.calendarView);
-
-        //set current date
-        mCalendarView.setSelectedDate(CalendarDay.today());
-
-        int year = Calendar.getInstance().get(Calendar.YEAR);
-        int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
-
-        mCalendarView.state().edit().
-                setFirstDayOfWeek(DayOfWeek.of(Calendar.SUNDAY)).
-                setMinimumDate(CalendarDay.from(year, month, 1)).
-                setCalendarDisplayMode(CalendarMode.WEEKS).
-                commit();
+        if(haveNetwork()) {
 
 
-        mCalendarView.setOnDateChangedListener(this);
-        mCalendarView.setOnDateChangedListener(this);
-        mCalendarView.setOnDateChangedListener(this);
-        mCalendarView.setOnDateChangedListener(this);
+            noeventlayout = findViewById(id.linearlayoutnoevent);
 
 
-        recyclerView = findViewById(id.Eventrecycleview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        eventList = new ArrayList<Events>();
+            mCalendarView = (MaterialCalendarView) findViewById(id.calendarView);
+
+            //set current date
+            mCalendarView.setSelectedDate(CalendarDay.today());
+
+            int year = Calendar.getInstance().get(Calendar.YEAR);
+            int month = Calendar.getInstance().get(Calendar.MONTH) + 1;
+
+            mCalendarView.state().edit().
+                    setFirstDayOfWeek(DayOfWeek.of(Calendar.SUNDAY)).
+                    setMinimumDate(CalendarDay.from(year, month, 1)).
+                    setCalendarDisplayMode(CalendarMode.WEEKS).
+                    commit();
 
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Events");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                    final Events e = ds.getValue(Events.class);
-
-                    mCalendarView.addDecorator(new DayViewDecorator() {
-                        @Override
-                        public boolean shouldDecorate(CalendarDay day) {
-                            return (day.getYear() == e.getYear()) && (day.getDay() == e.getDay()) && (day.getMonth() == e.getMonth());
-                        }
-
-                        @Override
-                        public void decorate(DayViewFacade view) {
-                            view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), android.R.color.white)));
-                            view.setSelectionDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.event_decorator));
-                        }
-                    });
-                }
+            mCalendarView.setOnDateChangedListener(this);
+            mCalendarView.setOnDateChangedListener(this);
+            mCalendarView.setOnDateChangedListener(this);
+            mCalendarView.setOnDateChangedListener(this);
 
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-        CalendarDay date2 = mCalendarView.getCurrentDate();
-        String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-
-        String substring = currentDate.substring(0, 2);
-
-        final int Currentday = Integer.parseInt(substring);
-
-        final int Currentmonth = date2.getMonth();
-        final int Currentyear = date2.getYear();
+            recyclerView = findViewById(id.Eventrecycleview);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+            eventList = new ArrayList<Events>();
 
 
-        reference1 = FirebaseDatabase.getInstance().getReference().child("Events");
-        reference1.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            reference = FirebaseDatabase.getInstance().getReference().child("Events");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                eventList.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    Events e = ds.getValue(Events.class);
+                        final Events e = ds.getValue(Events.class);
 
-                    if (e.getYear() == (Currentyear) && e.getMonth() == (Currentmonth) && e.getDay() == Currentday) {
-                        eventList.add(e);
+                        mCalendarView.addDecorator(new DayViewDecorator() {
+                            @Override
+                            public boolean shouldDecorate(CalendarDay day) {
+                                return (day.getYear() == e.getYear()) && (day.getDay() == e.getDay()) && (day.getMonth() == e.getMonth());
+                            }
 
-                        noeventlayout.setVisibility(LinearLayout.GONE);
+                            @Override
+                            public void decorate(DayViewFacade view) {
+                                view.addSpan(new ForegroundColorSpan(ContextCompat.getColor(getApplicationContext(), android.R.color.white)));
+                                view.setSelectionDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.event_decorator));
+                            }
+                        });
                     }
 
 
                 }
-                recyclerView.setVisibility(View.VISIBLE);
-                adapter = new EventsAdapter(EventsPage_Activity.this, eventList);
-                recyclerView.setAdapter(adapter);
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(EventsPage_Activity.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+            CalendarDay date2 = mCalendarView.getCurrentDate();
+            String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
+
+            String substring = currentDate.substring(0, 2);
+
+            final int Currentday = Integer.parseInt(substring);
+
+            final int Currentmonth = date2.getMonth();
+            final int Currentyear = date2.getYear();
 
 
-            }
+            reference1 = FirebaseDatabase.getInstance().getReference().child("Events");
+            reference1.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                    eventList.clear();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-            }
-        });
+                        Events e = ds.getValue(Events.class);
+
+                        if (e.getYear() == (Currentyear) && e.getMonth() == (Currentmonth) && e.getDay() == Currentday) {
+                            eventList.add(e);
+
+                            noeventlayout.setVisibility(LinearLayout.GONE);
+                        }
+
+
+                    }
+                    recyclerView.setVisibility(View.VISIBLE);
+                    adapter = new EventsAdapter(EventsPage_Activity.this, eventList);
+                    recyclerView.setAdapter(adapter);
+
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(EventsPage_Activity.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+
+        }//end network condition
+
+        else if(!haveNetwork())
+        {
+            Networklayout.setVisibility(View.VISIBLE);
+            Toast.makeText(EventsPage_Activity.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
+        }
 
     }//onCreat end
 
@@ -285,6 +303,30 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
                 .replaceAll("8","٨")
                 .replaceAll("9","٩")
                 .replaceAll("0","٠");
+    }
+
+    private boolean haveNetwork(){
+
+        boolean have_WIFI=false;
+        boolean have_MobileData=false;
+
+        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        NetworkInfo [] networkInfos=connectivityManager.getAllNetworkInfo();
+
+        for(NetworkInfo info:networkInfos)
+        {
+            if(info.getTypeName().equalsIgnoreCase("WIFI"))
+                if(info.isConnected())
+                   have_WIFI=true;
+
+            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if(info.isConnected())
+                   have_MobileData=true;
+
+        }
+
+        return have_WIFI || have_MobileData;
     }
 
 }

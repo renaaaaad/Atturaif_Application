@@ -36,6 +36,33 @@
             app:SpinKit_Color="@color/colorAccent" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/Networklayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="99dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/nointernet" />
+
+        <TextView
+            android:id="@+id/nowifiText"
+            style="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_wifi"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+
+    </LinearLayout>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -73,7 +100,7 @@
                     android:src="@drawable/no_event" />
 
                 <TextView
-                    android:id="@+id/test"
+                    android:id="@+id/noeventtext"
                     style="bold"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"

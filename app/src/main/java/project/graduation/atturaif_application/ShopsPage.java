@@ -1,12 +1,15 @@
 package project.graduation.atturaif_application;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -48,6 +51,8 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     RecyclerView recyclerView;
     Shops_Adapter adapter;
     Toolbar toolbar;
+    LinearLayout Networklayout;
+
 
 
     @Override
@@ -56,6 +61,8 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         setContentView(R.layout.activity_shops_page);
         toolbar = findViewById(R.id.toolbar1);
         progressbar = findViewById(R.id.progressbar);
+        Networklayout=findViewById(R.id.Networklayout);
+
 
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
@@ -78,92 +85,104 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        shops_name = new ArrayList<>();
-        reference = FirebaseDatabase.getInstance().getReference().child("Shops");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                    if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
-                        String nameAR = ds.child("shopnameAR").getValue(String.class);
-                        String image = ds.child("image").getValue(String.class);
-                        String id = ds.getKey();
-                        final shope_splash_name e = new shope_splash_name(id, nameAR, image);
-                        shops_name.add(e);
-                    } else {
-                        String nameAR = ds.child("shopnameEN").getValue(String.class);
-                        String image = ds.child("image").getValue(String.class);
-                        String id = ds.getKey();
-                        final shope_splash_name e = new shope_splash_name(id, nameAR, image);
-                        shops_name.add(e);
+
+        if(haveNetwork()) {
+
+            shops_name = new ArrayList<>();
+            reference = FirebaseDatabase.getInstance().getReference().child("Shops");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+                            String nameAR = ds.child("shopnameAR").getValue(String.class);
+                            String image = ds.child("image").getValue(String.class);
+                            String id = ds.getKey();
+                            final shope_splash_name e = new shope_splash_name(id, nameAR, image);
+                            shops_name.add(e);
+                        } else {
+                            String nameAR = ds.child("shopnameEN").getValue(String.class);
+                            String image = ds.child("image").getValue(String.class);
+                            String id = ds.getKey();
+                            final shope_splash_name e = new shope_splash_name(id, nameAR, image);
+                            shops_name.add(e);
+                        }
+                    } //for
+                    if (!shops_name.isEmpty()) {
+                        ShopsPage.setShops(shops_name);
+                        listShops();
+
                     }
-                } //for
-                if (!shops_name.isEmpty()) {
-                    ShopsPage.setShops(shops_name);
-                    listShops();
+                } //onDataChange
 
-                }
-            } //onDataChange
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(ShopsPage.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            } //onCancelled
-        });
+                } //onCancelled
+            });
 
 
-        shoplist = new ArrayList<>();
+            shoplist = new ArrayList<>();
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Shops");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            reference = FirebaseDatabase.getInstance().getReference().child("Shops");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    String key = ds.getKey();
-                    String nameAR = ds.child("shopnameAR").getValue(String.class);
-                    String nameEN = ds.child("shopnameEN").getValue(String.class);
+                        String key = ds.getKey();
+                        String nameAR = ds.child("shopnameAR").getValue(String.class);
+                        String nameEN = ds.child("shopnameEN").getValue(String.class);
 
-                    String image = ds.child("image").getValue(String.class);
+                        String image = ds.child("image").getValue(String.class);
 
-                    String DesAR = ds.child("DescriptionAR").getValue(String.class);
-                    String DesEN = ds.child("DescriptionEN").getValue(String.class);
+                        String DesAR = ds.child("DescriptionAR").getValue(String.class);
+                        String DesEN = ds.child("DescriptionEN").getValue(String.class);
 
-                    reference2 = FirebaseDatabase.getInstance().getReference().child("Shops").child("days");
-                    reference2.addValueEventListener(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        reference2 = FirebaseDatabase.getInstance().getReference().child("Shops").child("days");
+                        reference2.addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                            for (DataSnapshot ds2 : dataSnapshot.getChildren()) {
+                                for (DataSnapshot ds2 : dataSnapshot.getChildren()) {
 
-                                Open_Days e = ds2.getValue(Open_Days.class);
+                                    Open_Days e = ds2.getValue(Open_Days.class);
 
-                                dayslist.add(e);
+                                    dayslist.add(e);
+
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                Toast.makeText(ShopsPage.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
 
                             }
-                        }
+                        });
 
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                        final Shops s = new Shops(key, nameEN, nameAR, image, DesAR, DesEN, dayslist);
 
-                        }
-                    });
+                        shoplist.add(s);
 
-                    final Shops s = new Shops(key, nameEN, nameAR, image, DesAR, DesEN, dayslist);
-
-                    shoplist.add(s);
+                    }
 
                 }
 
-            }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
+        }
 
-            }
-        });
+        else if(!haveNetwork())
+        {
+            Networklayout.setVisibility(View.VISIBLE);
+            Toast.makeText(ShopsPage.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
+        }
 
     } //onCreate
 
@@ -211,5 +230,29 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     protected void onRestart() {
         super.onRestart();
         progressbar.setVisibility(View.GONE);
+    }
+
+    private boolean haveNetwork(){
+
+        boolean have_WIFI=false;
+        boolean have_MobileData=false;
+
+        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+
+        for(NetworkInfo info:networkInfos)
+        {
+            if(info.getTypeName().equalsIgnoreCase("WIFI"))
+                if(info.isConnected())
+                    have_WIFI=true;
+
+            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if(info.isConnected())
+                    have_MobileData=true;
+
+        }
+
+        return have_WIFI || have_MobileData;
     }
 } // class
