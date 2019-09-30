@@ -38,8 +38,6 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         bookingtab_button = findViewById(R.id.ticket);
         eventtab_button = findViewById(R.id.event);
         shoptab_button = findViewById(R.id.shop);
-        startARtab_button = findViewById(R.id.AR);
-        maptab_button = findViewById(R.id.map);
         more_button = findViewById(R.id.more_button);
         sliderView = findViewById(R.id.imageSlider);
 
@@ -53,8 +51,6 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         bookingtab_button.setOnClickListener(this);
         eventtab_button.setOnClickListener(this);
         shoptab_button.setOnClickListener(this);
-        startARtab_button.setOnClickListener(this);
-        maptab_button.setOnClickListener(this);
         more_button.setOnClickListener(this);
 
 
