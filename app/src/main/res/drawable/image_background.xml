@@ -16,10 +16,11 @@
                     android:endColor="@color/white2"
                     android:startColor="#0fdcc9" />
                 <corners
-                    android:bottomLeftRadius="00dp"
-                    android:bottomRightRadius="44dp"
-                    android:topLeftRadius="50dp"
-                    android:topRightRadius="0dp" />
+                    android:bottomRightRadius="40dp"
+                    android:topRightRadius="0dp"
+                    android:bottomLeftRadius="40dp"
+                    />
+
                 <stroke
                     android:width="0.8dp"
                     android:color="@color/white2" />

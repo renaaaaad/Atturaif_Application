@@ -21,11 +21,9 @@
         app:titleTextColor="@color/white" />
 
 
-    <androidx.cardview.widget.CardView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        android:elevation="10dp">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,14 +33,8 @@
             <RelativeLayout
                 android:id="@+id/relativelayout"
                 android:layout_width="match_parent"
-                android:layout_height="286dp">
+                android:layout_height="wrap_content">
 
-
-                <com.github.florent37.shapeofview.ShapeOfView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="0dp"
-                    app:shape_clip_drawable="@drawable/image_background">
 
                     <ImageView
                         android:id="@+id/eventPhoto"
@@ -50,102 +42,115 @@
                         android:layout_height="match_parent"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
-                        android:tint="@color/photo_tint" />
-                </com.github.florent37.shapeofview.ShapeOfView>
+                        android:tint="@color/photo_tint"
+                        android:background="@color/colorPrimaryDark"/>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="100dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginBottom="1dp"
-                    android:gravity="center"
                     android:orientation="vertical">
 
-
-                    <TextView
-                        android:id="@+id/eventname"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="100dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="1dp"
                         android:gravity="center"
-                        android:text="Event name"
-                        android:textColor="@color/white"
-                        android:textSize="30sp" />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="1dp"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_margin="4dp"
-                            android:src="@drawable/clock" />
+                        android:orientation="vertical">
 
 
                         <TextView
-                            android:id="@+id/EventTime"
+                            android:id="@+id/eventname"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Event name"
+                            android:textColor="@color/white"
+                            android:textSize="30sp" />
+
+                        <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:clickable="true"
-                            android:focusable="true"
+                            android:layout_margin="1dp"
                             android:gravity="center"
-                            android:text="Event Time"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp" />
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_margin="4dp"
+                                android:src="@drawable/clock" />
+
+
+                            <TextView
+                                android:id="@+id/EventTime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="center"
+                                android:text="Event Time"
+                                android:textColor="@android:color/white"
+                                android:textSize="15sp" />
+                        </LinearLayout>
+
+
+
                     </LinearLayout>
 
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginTop="60sp"
+                        >
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="370dp"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:elevation="10dp"
+                            app:cardCornerRadius="17dp"
+                            android:layout_centerHorizontal="true"
+                            android:innerRadius="0dp"
+                            android:shape="ring"
+                            android:thicknessRatio="1.9"
+                            android:background="@android:color/transparent"
+                            app:cardBackgroundColor="#ccffffff"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginTop="10dp"
+                                android:text="@string/Description"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/eventdesc"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="30dp"
+                                android:lineSpacingMultiplier="1.5"
+                                android:padding="12dp"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                />
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
                 </LinearLayout>
 
             </RelativeLayout>
 
-
-            <androidx.core.widget.NestedScrollView
-                android:id="@+id/nestedScrollView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:clipToPadding="false"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text="@string/Description"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/eventdesc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:lineSpacingMultiplier="1.5"
-                        android:padding="12dp"
-                        android:textColor="@color/black"
-                        android:textSize="14sp"
-
-                        />
-
-
-                </LinearLayout>
-
-
-            </androidx.core.widget.NestedScrollView>
-
-
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
 
-
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>
