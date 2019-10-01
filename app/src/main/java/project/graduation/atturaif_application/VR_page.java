@@ -44,7 +44,7 @@ public class VR_page extends BasicActivity {
 
         AssetManager assetManager = getAssets();
         try {
-            inputStream = assetManager.open("atturaif4.jpg");
+            inputStream = assetManager.open("panorama.jpeg");
             options.inputType = VrPanoramaView.Options.TYPE_MONO;
             mVRPanoramaView4.loadImageFromBitmap(BitmapFactory.decodeStream(inputStream), options);
             inputStream.close();

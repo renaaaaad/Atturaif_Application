@@ -20,7 +20,11 @@
                     android:topRightRadius="0dp"
                     android:bottomLeftRadius="40dp"
                     />
-
+<solid
+                    android:bottomLeftRadius="10dp"
+                    android:bottomRightRadius="10dp"
+                    android:topLeftRadius="10dp"
+                    android:topRightRadius="10dp" />
                 <stroke
                     android:width="0.8dp"
                     android:color="@color/white2" />
