@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".InternetChecking">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@android:style/Widget.Material.Toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextColor="@color/white" />
+
+   <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+       android:id="@+id/Swip"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       >
+
+       <LinearLayout
+           android:id="@+id/Networklayout"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:gravity="center_horizontal"
+           android:orientation="vertical">
+
+           <ImageView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:src="@drawable/nointernet"
+               android:layout_gravity="center_horizontal"
+               android:layout_marginTop="200dp"
+               />
+
+           <TextView
+               android:textStyle="bold"
+               android:gravity="center"
+               android:layout_gravity="center_horizontal"
+               android:layout_width="250dp"
+               android:layout_height="wrap_content"
+               android:text="@string/no_connection"
+               android:textColor="@color/colorPrimaryDark"
+               android:textSize="30sp" />
+
+           <TextView
+               android:id="@+id/nowifiText"
+               android:gravity="center"
+               android:layout_gravity="center_horizontal"
+               android:layout_width="350dp"
+               android:layout_height="wrap_content"
+               android:text="@string/no_wifi"
+               android:textColor="@color/colorPrimaryDark"
+               android:layout_marginTop="13dp"
+               android:textSize="20sp" />
+
+           <Button
+               android:id="@+id/Retry"
+               android:layout_width="100dp"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="10dp"
+               android:layout_marginTop="20dp"
+               android:layout_marginRight="10dp"
+               android:layout_marginBottom="10dp"
+               android:background="@drawable/button_background"
+               android:text="@string/Retry"
+               android:textColor="@color/white"
+               android:textSize="14sp"
+               android:textStyle="bold" />
+
+       </LinearLayout>
+
+
+
+   </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</RelativeLayout>
+
+
+
+
+

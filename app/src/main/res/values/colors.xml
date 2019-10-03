@@ -148,7 +148,7 @@
     <color name="black">#000000</color>
 
     <color name="colorTransparent">#00FFFFFF</color>
-
+    <color name="white3">#99FFFFFF</color>
     <color name="photo_tint">#BFA3A1A1</color>
 
 </resources>

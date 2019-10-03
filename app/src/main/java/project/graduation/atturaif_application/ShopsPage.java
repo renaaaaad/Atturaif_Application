@@ -51,7 +51,6 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     RecyclerView recyclerView;
     Shops_Adapter adapter;
     Toolbar toolbar;
-    LinearLayout Networklayout;
 
 
 
@@ -61,7 +60,6 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         setContentView(R.layout.activity_shops_page);
         toolbar = findViewById(R.id.toolbar1);
         progressbar = findViewById(R.id.progressbar);
-        Networklayout=findViewById(R.id.Networklayout);
 
 
         ProgressBar progressBar = findViewById(R.id.spin_kit);
@@ -180,8 +178,10 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
 
         else if(!haveNetwork())
         {
-            Networklayout.setVisibility(View.VISIBLE);
-            Toast.makeText(ShopsPage.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.setClass(ShopsPage.this,InternetChecking.class);
+            intent.putExtra("Uniqid","ShopsPage");
+            startActivity(intent);
         }
 
     } //onCreate

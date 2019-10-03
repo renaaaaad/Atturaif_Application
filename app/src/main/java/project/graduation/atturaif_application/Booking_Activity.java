@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -71,7 +70,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     List<Vistor_price> vistor_prices;
     Ticket_Adapter ticket_adapter;
     public static AlertDialog.Builder alertDialog;
-    LinearLayout Networklayout;
 
 
     @Override
@@ -82,7 +80,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
         progressBar.setIndeterminateDrawable(doubleBounce);
-        Networklayout=findViewById(R.id.Networklayout);
 
 
         toolbar = findViewById(R.id.toolbar);
@@ -171,8 +168,11 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
         else if(!haveNetwork())
         {
-            Networklayout.setVisibility(View.VISIBLE);
-            Toast.makeText(Booking_Activity.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
+
+            Intent intent = new Intent();
+            intent.setClass(Booking_Activity.this,InternetChecking.class);
+            intent.putExtra("Uniqid","Booking_Activity");
+            startActivity(intent);
         }
     } //onCreate
 

@@ -1,6 +1,8 @@
 package project.graduation.atturaif_application;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -50,70 +52,99 @@ public class shopDetails extends BasicActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        Intent intent=getIntent();
-        String name= intent.getStringExtra(Constant.Keys.SHOP_NAME);
-        String id=intent.getStringExtra(Constant.Keys.SHOP_ID);
-        String des=intent.getStringExtra(Constant.Keys.SHOP_Des);
-        String image=intent.getStringExtra(Constant.Keys.SHOP_URL);
+        if(haveNetwork()) {
+            Intent intent = getIntent();
+            String name = intent.getStringExtra(Constant.Keys.SHOP_NAME);
+            String id = intent.getStringExtra(Constant.Keys.SHOP_ID);
+            String des = intent.getStringExtra(Constant.Keys.SHOP_Des);
+            String image = intent.getStringExtra(Constant.Keys.SHOP_URL);
 
-        reference = FirebaseDatabase.getInstance().getReference("Shops").child(id).child("days");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+            reference = FirebaseDatabase.getInstance().getReference("Shops").child(id).child("days");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    Open_Days e1;
+                        Open_Days e1;
 
-                    try {
-                        String day=ds.getKey();
-                        String open = ds.child("openTime").getValue(String.class);
-                        String close = ds.child("closeTime").getValue(String.class);
+                        try {
+                            String day = ds.getKey();
+                            String open = ds.child("openTime").getValue(String.class);
+                            String close = ds.child("closeTime").getValue(String.class);
 
-                         e1 = new Open_Days(day, open,close);
-                        daylist.add(e1);
-                    } catch (Exception e) {
-                        String day=ds.getKey();
-                        String open = ds.child("openTime").getValue(String.class);
-                        String close = ds.child("closeTime").getValue(String.class);
+                            e1 = new Open_Days(day, open, close);
+                            daylist.add(e1);
+                        } catch (Exception e) {
+                            String day = ds.getKey();
+                            String open = ds.child("openTime").getValue(String.class);
+                            String close = ds.child("closeTime").getValue(String.class);
 
-                         e1= new Open_Days(day, open,close);
+                            e1 = new Open_Days(day, open, close);
 
-                        daylist.add(e1);
-                    } // catch
+                            daylist.add(e1);
+                        } // catch
 
 
+                    }
+                    madapter = new shopdaysitemAdapter(getApplicationContext(), daylist);
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setAdapter(madapter);
+                }
 
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(shopDetails.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
 
                 }
-                madapter=new shopdaysitemAdapter(getApplicationContext(),daylist);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setAdapter(madapter);
-                }
+            });
 
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(shopDetails.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-
-
-
-        ImageView imageView=findViewById(R.id.shopphoto);
-        TextView Sname=findViewById(R.id.shopname);
+            ImageView imageView = findViewById(R.id.shopphoto);
+            TextView Sname = findViewById(R.id.shopname);
 //        TextView SOpentime=findViewById(R.id.shopopen);
 //        TextView Sclosetime=findViewById(R.id.shopclose);
-        TextView Sdes=findViewById(R.id.shopdesc);
+            TextView Sdes = findViewById(R.id.shopdesc);
 
-        Picasso.with(this).load(image).into(imageView);
+            Picasso.with(this).load(image).into(imageView);
 
-        Sname.setText(name);
+            Sname.setText(name);
 //        Sclosetime.setText(Closetime);
 //        SOpentime.setText(Opentime);
-        Sdes.setText(des);
+            Sdes.setText(des);
 
+        }
+        else{
+            Intent intent = new Intent();
+            intent.setClass(shopDetails.this,InternetChecking.class);
+            intent.putExtra("Uniqid","shopDetails");
+            startActivity(intent);
+
+        }
+
+    }
+
+    private boolean haveNetwork(){
+
+        boolean have_WIFI=false;
+        boolean have_MobileData=false;
+
+        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+
+        for(NetworkInfo info:networkInfos)
+        {
+            if(info.getTypeName().equalsIgnoreCase("WIFI"))
+                if(info.isConnected())
+                    have_WIFI=true;
+
+            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if(info.isConnected())
+                    have_MobileData=true;
+
+        }
+
+        return have_WIFI || have_MobileData;
     }
 }

@@ -48,14 +48,26 @@
                     android:layout_height="286dp"
                     app:cardElevation="0dp">
 
-                    <ImageView
-                        android:id="@+id/eventPhoto"
+                    <com.github.florent37.shapeofview.shapes.ArcView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:tint="@color/photo_tint"
-                        android:background="@color/colorPrimaryDark"/>
+                        android:elevation="4dp"
+                        app:shape_arc_cropDirection="outside"
+                        app:shape_arc_height="20dp"
+                        app:shape_arc_position="bottom"
+                        >
+
+                        <ImageView
+                            android:id="@+id/eventPhoto"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:adjustViewBounds="true"
+                            android:scaleType="centerCrop"
+                            android:tint="@color/photo_tint"
+                            android:background="@color/colorPrimaryDark"/>
+
+                    </com.github.florent37.shapeofview.shapes.ArcView>
+
 
 
                 </androidx.cardview.widget.CardView>
@@ -124,25 +136,28 @@
                         android:layout_marginTop="60sp"
                         >
 
+
                         <androidx.cardview.widget.CardView
-                            android:layout_width="370dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginTop="89dp"
                             android:elevation="10dp"
                             app:cardCornerRadius="17dp"
                             android:layout_centerHorizontal="true"
                             android:innerRadius="0dp"
                             android:shape="ring"
                             android:thicknessRatio="1.9"
-                            android:background="@android:color/transparent"
-                            app:cardBackgroundColor="#ccffffff"
-                            >
+                            app:cardBackgroundColor="@color/white3"                            >
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="10dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="20dp"
+                                android:layout_marginBottom="20dp"
+                                android:textColor="@color/black"
                                 android:text="@string/Description"
                                 android:textStyle="bold" />
 
@@ -150,14 +165,27 @@
                                 android:id="@+id/eventdesc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="30dp"
+                                android:layout_marginTop="40dp"
                                 android:lineSpacingMultiplier="1.5"
                                 android:padding="12dp"
                                 android:textColor="@color/black"
                                 android:textSize="14sp"
                                 />
-
                         </androidx.cardview.widget.CardView>
+
+                        <Button
+                            android:id="@+id/BookingTic"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/button_background"
+                            android:text="@string/Booking_Tickt"
+                            android:textColor="@color/white"
+                            android:textSize="14sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
                 </LinearLayout>

@@ -63,14 +63,12 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
     LinearLayout noeventlayout;
     Timer timer;
     LinearLayout progressbar;
-    LinearLayout Networklayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_events_page_);
 
-        Networklayout=findViewById(id.Networklayout);
         progressbar = findViewById(R.id.progressbar);
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
@@ -208,8 +206,10 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
 
         else if(!haveNetwork())
         {
-            Networklayout.setVisibility(View.VISIBLE);
-            Toast.makeText(EventsPage_Activity.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.setClass(EventsPage_Activity.this,InternetChecking.class);
+            intent.putExtra("Uniqid","EventsPage_Activity");
+            startActivity(intent);
         }
 
     }//onCreat end
