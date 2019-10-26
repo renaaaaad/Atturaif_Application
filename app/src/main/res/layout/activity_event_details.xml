@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".eventDetails">
-
+    tools:context=".EventsPage_Activity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar1"
         style="@android:style/Widget.Material.Toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -17,276 +17,111 @@
         android:gravity="center"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="@string/event"
+        app:title="@string/Events"
         app:titleTextColor="@color/white" />
 
-
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/nestedScrollView"
+    <LinearLayout
+        android:id="@+id/progressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:gravity="center_horizontal"
+        android:visibility="gone">
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/spin_kit"
+            style="@style/SpinKitView.Large.CubeGrid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/colorAccent" />
+    </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/Networklayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="20dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:paddingBottom="20dp">
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="99dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/nointernet" />
+
+        <TextView
+            android:id="@+id/nowifiText"
+            style="bold"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/no_wifi"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
 
 
-        <RelativeLayout
-            android:id="@+id/relativelayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    </LinearLayout>
 
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="286dp"
-            app:cardElevation="0dp">
-
-            <com.github.florent37.shapeofview.shapes.ArcView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:elevation="4dp"
-                app:shape_arc_cropDirection="outside"
-                app:shape_arc_height="20dp"
-
-                app:shape_arc_position="bottom">
-
-
-                <ImageView
-                    android:id="@+id/eventPhoto"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:adjustViewBounds="true"
-
-                    android:background="@color/colorPrimaryDark"
-                    android:scaleType="centerCrop"
-                    android:tint="@color/photo_tint" />
-
-                <com.github.florent37.shapeofview.shapes.ArcView
-
-                    android:background="@color/colorPrimaryDark"
-                    android:scaleType="centerCrop"
-                    android:tint="@color/photo_tint" />
-
-            </com.github.florent37.shapeofview.shapes.ArcView>
-
-
-        </androidx.cardview.widget.CardView>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="100dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="1dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                app:mcv_calendarMode="week"
+                app:mcv_firstDayOfWeek="sunday"
+                app:mcv_selectionColor="?attr/colorPrimary"
+                app:mcv_showOtherDates="all"
+                app:mcv_tileSize="50dp"
+                app:mcv_titleAnimationOrientation="vertical"
+                />
 
-
-                <TextView
-                    android:id="@+id/eventname"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Event name"
-                    android:textColor="@color/white"
-                    android:textSize="30sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="1dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_margin="4dp"
-                        android:src="@drawable/clock" />
-
-
-                    <TextView
-                        android:id="@+id/EventTime"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:gravity="center"
-                        android:text="Event Time"
-                        android:textColor="@android:color/white"
-                        android:textSize="15sp" />
-                </LinearLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="1dp"
-                    android:layout_marginTop="-50dp"
-                    android:layout_marginEnd="1dp"
-                    android:layout_marginBottom="10dp"
-                    app:cardCornerRadius="30dp">
-
-
-            </LinearLayout>
-
-
-            <ImageView
+            <LinearLayout
+                android:id="@+id/linearlayoutnoevent"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                android:src="@drawable/clock" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="60sp"
-                android:gravity="center"
+                android:layout_marginTop="70sp"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical|center_horizontal"
                 android:orientation="vertical">
 
+                <ImageView
+                    android:layout_width="99dp"
+                    android:layout_height="84dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/no_event" />
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/noeventtext"
+                    style="bold"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginStart="15dp"
-                    android:layout_marginTop="89dp"
-                    android:layout_marginEnd="15dp"
-                    android:elevation="10dp"
-                    android:innerRadius="0dp"
-                    android:shape="ring"
-                    android:thicknessRatio="1.9"
-                    app:cardBackgroundColor="@color/white3"
-                    app:cardCornerRadius="17dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginTop="20dp"
-                        android:layout_marginBottom="20dp"
-                        android:text="@string/Description"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/eventdesc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="40dp"
-                        android:lineSpacingMultiplier="1.5"
-                        android:padding="12dp"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-                </androidx.cardview.widget.CardView>
-
-                <Button
-                    android:id="@+id/BookingTic"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/button_background"
-
-                    android:textColor="@color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:text="@string/No_events"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textSize="20sp" />
 
             </LinearLayout>
 
-
-            <TextView
-                android:id="@+id/EventTime"
-                android:layout_width="wrap_content"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/Eventrecycleview"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center"
-                android:text="Event Time"
-                android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:layout_margin="10dp"
+                android:nestedScrollingEnabled="false"
+                android:visibility="gone" />
+
+
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60sp"
-        android:gravity="center"
-        android:orientation="vertical">
-
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="89dp"
-            android:layout_marginEnd="15dp"
-            android:elevation="10dp"
-            android:innerRadius="0dp"
-            android:shape="ring"
-            android:thicknessRatio="1.9"
-            app:cardBackgroundColor="@color/white3"
-            app:cardCornerRadius="17dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/Description"
-                android:textColor="@color/black"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/eventdesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:lineSpacingMultiplier="1.5"
-                android:padding="12dp"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
-        </androidx.cardview.widget.CardView>
-
-        <Button
-            android:id="@+id/BookingTic"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/button_background"
-            android:text="@string/Booking_Tickt"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
 </LinearLayout>
-
-    </RelativeLayout>
-
-    </LinearLayout>
-
-    </androidx.core.widget.NestedScrollView></LinearLayout>
