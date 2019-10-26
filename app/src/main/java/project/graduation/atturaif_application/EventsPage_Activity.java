@@ -63,14 +63,17 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
     LinearLayout noeventlayout;
     Timer timer;
     LinearLayout progressbar;
-    LinearLayout Networklayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layout.activity_events_page_);
 
-        Networklayout=findViewById(id.Networklayout);
+
+
+        Networklayout = findViewById(id.Networklayout);
+
+
         progressbar = findViewById(R.id.progressbar);
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
@@ -91,12 +94,12 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
 
         //check network connection
 
-            toolbar = findViewById(R.id.toolbar1);
-            setSupportActionBar(toolbar);
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        toolbar = findViewById(R.id.toolbar1);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        if(haveNetwork()) {
+        if (haveNetwork()) {
 
 
             noeventlayout = findViewById(id.linearlayoutnoevent);
@@ -206,127 +209,145 @@ public class EventsPage_Activity extends BasicActivity implements OnDateSelected
 
         }//end network condition
 
+
+
+        else if (!haveNetwork()) {
+            Networklayout.setVisibility(View.VISIBLE);
+            Toast.makeText(EventsPage_Activity.this, "Network connection is not available!", Toast.LENGTH_SHORT).show();
+
         else if(!haveNetwork())
         {
-            Networklayout.setVisibility(View.VISIBLE);
-            Toast.makeText(EventsPage_Activity.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent();
+            intent.setClass(EventsPage_Activity.this,InternetChecking.class);
+            intent.putExtra("Uniqid","EventsPage_Activity");
+            startActivity(intent);
         }
 
-    }//onCreat end
 
-    @Override
-    public void onDateSelected(@NonNull MaterialCalendarView materialCalendarView, @NonNull CalendarDay calendarDay, boolean b) {
+        else if (!haveNetwork()) {
+                Intent intent = new Intent();
+                intent.setClass(EventsPage_Activity.this, InternetChecking.class);
+                intent.putExtra("Uniqid", "EventsPage_Activity");
+                startActivity(intent);
 
-        CalendarDay date = mCalendarView.getSelectedDate();
-        final int day = date.getDay();
-        final int month = date.getMonth();
-        final int year = date.getYear();
+            }
+
+        }//onCreat end
+
+        @Override
+        public void onDateSelected (@NonNull MaterialCalendarView
+        materialCalendarView, @NonNull CalendarDay calendarDay,boolean b){
+
+            CalendarDay date = mCalendarView.getSelectedDate();
+            final int day = date.getDay();
+            final int month = date.getMonth();
+            final int year = date.getYear();
 
 
-        reference = FirebaseDatabase.getInstance().getReference().child("Events");
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+            reference = FirebaseDatabase.getInstance().getReference().child("Events");
+            reference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                eventList.clear();
-                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    eventList.clear();
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    Events e = ds.getValue(Events.class);
-                    List dates = mCalendarView.getSelectedDates();
+                        Events e = ds.getValue(Events.class);
+                        List dates = mCalendarView.getSelectedDates();
 
-                    if (e.getYear() == (year) && e.getMonth() == (month) && e.getDay() == day) {
-                        eventList.add(e);
+                        if (e.getYear() == (year) && e.getMonth() == (month) && e.getDay() == day) {
+                            eventList.add(e);
 
-                        noeventlayout.setVisibility(LinearLayout.GONE);
+                            noeventlayout.setVisibility(LinearLayout.GONE);
+
+                        }
+
+                        if (eventList.isEmpty()) {
+                            noeventlayout.setVisibility(LinearLayout.VISIBLE);
+
+                        }
+
 
                     }
-
-                    if (eventList.isEmpty()) {
-                        noeventlayout.setVisibility(LinearLayout.VISIBLE);
-
-                    }
+                    recyclerView.setVisibility(View.VISIBLE);
+                    adapter = new EventsAdapter(EventsPage_Activity.this, eventList);
+                    recyclerView.setAdapter(adapter);
+                    adapter.setOnItemClickListener(EventsPage_Activity.this);
 
 
                 }
-                recyclerView.setVisibility(View.VISIBLE);
-                adapter = new EventsAdapter(EventsPage_Activity.this, eventList);
-                recyclerView.setAdapter(adapter);
-                adapter.setOnItemClickListener(EventsPage_Activity.this);
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
-            }
+                    Toast.makeText(EventsPage_Activity.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
+                }
+            });
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                Toast.makeText(EventsPage_Activity.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
-    }
-
-    @Override
-    public void onItemClick(int position) {
-
-        Intent intent = new Intent(this, eventDetails.class);
-        Events clickeditem = eventList.get(position);
-
-        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
-
-
-            intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
-            intent.putExtra(Constant.Keys.EVENT_NAME, clickeditem.getEventnameAR());
-            intent.putExtra(Constant.Keys.EVENT_Des, clickeditem.getDescriptionAR());
-            intent.putExtra(Constant.Keys.EVENT_TIME, replaceArabicNumbers(clickeditem.getEventTime()));
-            startActivity(intent);
-        }else{
-            intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
-            intent.putExtra(Constant.Keys.EVENT_NAME, clickeditem.getEventnameEN());
-            intent.putExtra(Constant.Keys.EVENT_Des, clickeditem.getDescriptionEN());
-            intent.putExtra(Constant.Keys.EVENT_TIME, clickeditem.getEventTime());
-            startActivity(intent);
-        }
-
-
-    }
-
-
-    public String replaceArabicNumbers(String original) {
-        return original.toString().replaceAll("1","١")
-                .replaceAll("2","٢")
-                .replaceAll("3","٣")
-                .replaceAll("4","٤")
-                .replaceAll("5","٥")
-                .replaceAll("6","٦")
-                .replaceAll("7","٧")
-                .replaceAll("8","٨")
-                .replaceAll("9","٩")
-                .replaceAll("0","٠");
-    }
-
-    private boolean haveNetwork(){
-
-        boolean have_WIFI=false;
-        boolean have_MobileData=false;
-
-        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-
-        NetworkInfo [] networkInfos=connectivityManager.getAllNetworkInfo();
-
-        for(NetworkInfo info:networkInfos)
-        {
-            if(info.getTypeName().equalsIgnoreCase("WIFI"))
-                if(info.isConnected())
-                   have_WIFI=true;
-
-            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
-                if(info.isConnected())
-                   have_MobileData=true;
 
         }
 
-        return have_WIFI || have_MobileData;
-    }
+        @Override
+        public void onItemClick ( int position){
 
+            Intent intent = new Intent(this, eventDetails.class);
+            Events clickeditem = eventList.get(position);
+
+            if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+
+
+                intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
+                intent.putExtra(Constant.Keys.EVENT_NAME, clickeditem.getEventnameAR());
+                intent.putExtra(Constant.Keys.EVENT_Des, clickeditem.getDescriptionAR());
+                intent.putExtra(Constant.Keys.EVENT_TIME, replaceArabicNumbers(clickeditem.getEventTime()));
+                startActivity(intent);
+            } else {
+                intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
+                intent.putExtra(Constant.Keys.EVENT_NAME, clickeditem.getEventnameEN());
+                intent.putExtra(Constant.Keys.EVENT_Des, clickeditem.getDescriptionEN());
+                intent.putExtra(Constant.Keys.EVENT_TIME, clickeditem.getEventTime());
+                startActivity(intent);
+            }
+
+
+        }
+
+
+        public String replaceArabicNumbers (String original){
+            return original.toString().replaceAll("1", "١")
+                    .replaceAll("2", "٢")
+                    .replaceAll("3", "٣")
+                    .replaceAll("4", "٤")
+                    .replaceAll("5", "٥")
+                    .replaceAll("6", "٦")
+                    .replaceAll("7", "٧")
+                    .replaceAll("8", "٨")
+                    .replaceAll("9", "٩")
+                    .replaceAll("0", "٠");
+        }
+
+        private boolean haveNetwork () {
+
+            boolean have_WIFI = false;
+            boolean have_MobileData = false;
+
+            ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+            NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
+
+            for (NetworkInfo info : networkInfos) {
+                if (info.getTypeName().equalsIgnoreCase("WIFI"))
+                    if (info.isConnected())
+                        have_WIFI = true;
+
+                if (info.getTypeName().equalsIgnoreCase("MOBILE"))
+                    if (info.isConnected())
+                        have_MobileData = true;
+
+            }
+
+            return have_WIFI || have_MobileData;
+        }
+
+    }
 }

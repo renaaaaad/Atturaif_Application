@@ -59,7 +59,11 @@
     <string name="Description">Description:</string>
     <string name="to">to</string>
     <string name="No_events">No events</string>
-    <string name="no_wifi">Network connection is not available!</string>
+    <string name="no_wifi">Please check your internet connection and try again.</string>
+    <string name="Retry">Retry</string>
+    <string name="no_connection">No connection!</string>
+    <string name="Booking_Tickt">Ticket booking</string>
+
 
 
 </resources>

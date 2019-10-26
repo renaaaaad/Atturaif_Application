@@ -58,7 +58,11 @@
     <string name="Open_on">يفتح:</string>
     <string name="Description">الوصف:</string>
     <string name="No_events">لا يوجد فعاليات</string>
-    <string name="no_wifi">مشكلة في الشبكة!</string>
+    <string name="no_wifi">تحقق من اتصالك بالإنترنت و حاول مرة أخرى.</string>
+    <string name="Retry">إعادة المحاولة</string>
+    <string name="no_connection">لا يوجد اتصال!</string>
+    <string name="Booking_Tickt">حجز تذكرة</string>
+
 
 
 
