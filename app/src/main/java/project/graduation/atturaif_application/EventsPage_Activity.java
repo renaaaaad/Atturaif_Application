@@ -126,38 +126,25 @@ public class EventsPage_Activity extends BasicActivity implements
 
         setContentView(layout.activity_events_page_);
 
-
         progressbar = findViewById(R.id.progressbar);
 
         ProgressBar progressBar = findViewById(R.id.spin_kit);
-
         Sprite doubleBounce = new CubeGrid();
-
         progressBar.setIndeterminateDrawable(doubleBounce);
-
         timer = new Timer();
-
         timer.schedule(new TimerTask() {
-
             @Override
-
             public void run() {
-
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
-
                     @Override
-
                     public void run() {
-
                         progressbar.setVisibility(View.GONE);
-
                     }
-
                 });
-
             } //run
+        }, 4000);
 
-        }, 5000);
+
 
 
 

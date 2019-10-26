@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import project.graduation.atturaif_application.Constant;
-import project.graduation.atturaif_application.HomePage_Activity;
 import project.graduation.atturaif_application.MySharedPreference;
 import project.graduation.atturaif_application.R;
 import project.graduation.atturaif_application.VR_page;
@@ -53,9 +52,20 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                 });
                 break;
             case 1:
-                Glide.with(viewHolder.itemView)
-                        .load(R.drawable.vr_tour_en)
-                        .into(viewHolder.imageViewBackground);
+                if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
+                    Glide.with(viewHolder.itemView)
+                            .load(R.drawable.ar_wallpaper_)
+                            .into(viewHolder.imageViewBackground);
+                else
+                    Glide.with(viewHolder.itemView)
+                            .load(R.drawable.ar_wallpaper__en)
+                            .into(viewHolder.imageViewBackground);
+                viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        context.startActivity(new Intent(context, VR_page.class));
+                    }
+                });
                 break;
 
 
