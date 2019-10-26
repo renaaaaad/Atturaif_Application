@@ -1,5 +1,6 @@
 package project.graduation.atturaif_application;
 
+
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -67,7 +68,8 @@ public class eventDetails extends BasicActivity  {
             @Override
             public void onClick(View view) {
 
-                startActivity(new Intent(eventDetails.this, Booking_Activity.class));
+                startActivity(new Intent(eventDetails.this,
+                        Booking_Activity.class));
             }
         });
 
@@ -112,7 +114,8 @@ public class eventDetails extends BasicActivity  {
         boolean have_WIFI=false;
         boolean have_MobileData=false;
 
-        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager= (ConnectivityManager)
+                getSystemService(CONNECTIVITY_SERVICE);
 
         NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
 
@@ -131,5 +134,3 @@ public class eventDetails extends BasicActivity  {
         return have_WIFI || have_MobileData;
     }
 }
-
-

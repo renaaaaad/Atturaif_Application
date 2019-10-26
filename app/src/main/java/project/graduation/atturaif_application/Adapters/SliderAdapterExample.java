@@ -55,6 +55,20 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                 Glide.with(viewHolder.itemView)
                         .load(R.drawable.vr_tour)
                         .into(viewHolder.imageViewBackground);
+                if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
+                    Glide.with(viewHolder.itemView)
+                            .load(R.drawable.ar_wallpaper_)
+                            .into(viewHolder.imageViewBackground);
+                else
+                    Glide.with(viewHolder.itemView)
+                            .load(R.drawable.ar_wallpaper__en)
+                            .into(viewHolder.imageViewBackground);
+                viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        context.startActivity(new Intent(context, VR_page.class));
+                    }
+                });
                 break;
 
 

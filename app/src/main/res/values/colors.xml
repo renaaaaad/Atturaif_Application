@@ -146,6 +146,7 @@
     <color name="dark_blue">#00008B</color>
     <color name="navy">#000080</color>
     <color name="black">#000000</color>
+    <color name="gray_border">#D1D1D1</color>
 
     <color name="colorTransparent">#00FFFFFF</color>
     <color name="white3">#99FFFFFF</color>
