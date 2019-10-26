@@ -38,11 +38,11 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
             case 0:
                 if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.vr_tour_ar)
+                            .load(R.drawable.vr_tour)
                             .into(viewHolder.imageViewBackground);
                 else
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.vr_tour_en)
+                            .load(R.drawable.vr_tour)
                             .into(viewHolder.imageViewBackground);
                 viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -52,6 +52,9 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                 });
                 break;
             case 1:
+                Glide.with(viewHolder.itemView)
+                        .load(R.drawable.vr_tour)
+                        .into(viewHolder.imageViewBackground);
                 if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
                     Glide.with(viewHolder.itemView)
                             .load(R.drawable.ar_wallpaper_)
