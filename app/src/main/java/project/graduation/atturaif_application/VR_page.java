@@ -1,6 +1,5 @@
 package project.graduation.atturaif_application;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.res.AssetManager;
@@ -38,20 +37,7 @@ public class VR_page extends BasicActivity {
 
     } //onCreate
 
-    private void loadPhotoSphere4() {
-        VrPanoramaView.Options options = new VrPanoramaView.Options();
-        InputStream inputStream = null;
 
-        AssetManager assetManager = getAssets();
-        try {
-            inputStream = assetManager.open("4.jpeg");
-            options.inputType = VrPanoramaView.Options.TYPE_MONO;
-            mVRPanoramaView4.loadImageFromBitmap(BitmapFactory.decodeStream(inputStream), options);
-            inputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private void loadPhotoSphere1() {
         VrPanoramaView.Options options = new VrPanoramaView.Options();
@@ -59,7 +45,7 @@ public class VR_page extends BasicActivity {
 
         AssetManager assetManager = getAssets();
         try {
-            inputStream = assetManager.open("3.jpeg");
+            inputStream = assetManager.open("salwa.png");
             options.inputType = VrPanoramaView.Options.TYPE_MONO;
             mVRPanoramaView1.loadImageFromBitmap(BitmapFactory.decodeStream(inputStream), options);
             inputStream.close();
@@ -75,7 +61,7 @@ public class VR_page extends BasicActivity {
 
         AssetManager assetManager = getAssets();
         try {
-            inputStream = assetManager.open("1.jpeg");
+            inputStream = assetManager.open("casle.png");
             options.inputType = VrPanoramaView.Options.TYPE_MONO;
             mVRPanoramaView2.loadImageFromBitmap(BitmapFactory.decodeStream(inputStream), options);
             inputStream.close();
@@ -91,7 +77,7 @@ public class VR_page extends BasicActivity {
 
         AssetManager assetManager = getAssets();
         try {
-            inputStream = assetManager.open("2.jpeg");
+            inputStream = assetManager.open("house.png");
             options.inputType = VrPanoramaView.Options.TYPE_MONO;
             mVRPanoramaView3.loadImageFromBitmap(BitmapFactory.decodeStream(inputStream), options);
             inputStream.close();
@@ -99,5 +85,20 @@ public class VR_page extends BasicActivity {
             e.printStackTrace();
         }
 
+    }
+
+    private void loadPhotoSphere4() {
+        VrPanoramaView.Options options = new VrPanoramaView.Options();
+        InputStream inputStream = null;
+
+        AssetManager assetManager = getAssets();
+        try {
+            inputStream = assetManager.open("welcome_center.jpg");
+            options.inputType = VrPanoramaView.Options.TYPE_MONO;
+            mVRPanoramaView4.loadImageFromBitmap(BitmapFactory.decodeStream(inputStream), options);
+            inputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 } //class

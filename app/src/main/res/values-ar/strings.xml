@@ -62,10 +62,9 @@
     <string name="Retry">إعادة المحاولة</string>
     <string name="no_connection">لا يوجد اتصال!</string>
     <string name="Booking_Tickt">حجز تذكرة</string>
-
-
-
-
-
+    <string name="welcoming_center">مركز الزوار </string>
+    <string name="neighbours_houses">بيوت الأحياء </string>
+    <string name="the_palace">القصر</string>
+    <string name="salwa_neighbour">حي سلوى</string>
 
 </resources>

@@ -63,7 +63,10 @@
     <string name="Retry">Retry</string>
     <string name="no_connection">No connection!</string>
     <string name="Booking_Tickt">Ticket booking</string>
-
+    <string name="welcoming_center">Welcoming Center</string>
+    <string name="neighbours_houses">Neighbours Houses</string>
+    <string name="the_palace">The Palace</string>
+    <string name="salwa_neighbour">Salwa Neighbour</string>
 
 
 </resources>

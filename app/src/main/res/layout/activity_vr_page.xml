@@ -43,7 +43,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/vr_background"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="first place "
+                    android:text="@string/salwa_neighbour"
                     android:textColor="@color/white"
                     android:textSize="30sp">
 
@@ -65,7 +65,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/vr_background"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="second place"
+                    android:text="@string/the_palace"
                     android:textColor="@color/white"
                     android:textSize="30sp">
 
@@ -87,7 +87,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/vr_background"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="third place "
+                    android:text="@string/neighbours_houses"
                     android:textColor="@color/white"
                     android:textSize="30sp">
 
@@ -109,7 +109,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/vr_background"
                     android:gravity="center_vertical|center_horizontal"
-                    android:text="third place "
+                    android:text="@string/welcoming_center"
                     android:textColor="@color/white"
                     android:textSize="30sp">
 
