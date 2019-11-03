@@ -38,11 +38,11 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
             case 0:
                 if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.vr_tour)
+                            .load(R.drawable.vr_ar)
                             .into(viewHolder.imageViewBackground);
                 else
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.vr_tour)
+                            .load(R.drawable.vr_en)
                             .into(viewHolder.imageViewBackground);
                 viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -52,16 +52,13 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                 });
                 break;
             case 1:
-                Glide.with(viewHolder.itemView)
-                        .load(R.drawable.vr_tour)
-                        .into(viewHolder.imageViewBackground);
                 if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.ar_wallpaper_)
+                            .load(R.drawable.ar_new_ar)
                             .into(viewHolder.imageViewBackground);
                 else
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.ar_wallpaper__en)
+                            .load(R.drawable.ar_en)
                             .into(viewHolder.imageViewBackground);
                 viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -71,6 +68,22 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                 });
                 break;
 
+            case 2:
+                if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
+                    Glide.with(viewHolder.itemView)
+                            .load(R.drawable.museam_new_ar)
+                            .into(viewHolder.imageViewBackground);
+                else
+                    Glide.with(viewHolder.itemView)
+                            .load(R.drawable.museam_new_en)
+                            .into(viewHolder.imageViewBackground);
+                viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        context.startActivity(new Intent(context, VR_page.class));
+                    }
+                });
+                break;
 
         } // switch
 
@@ -79,7 +92,7 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
     @Override
     public int getCount() {
         //slider view count could be dynamic size
-        return 2;
+        return 3;
     }
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
