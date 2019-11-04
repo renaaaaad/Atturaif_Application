@@ -58,15 +58,21 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
                 android:elevation="2dp"
                 app:cardCornerRadius="5dp">
 
                 <com.smarteist.autoimageslider.SliderView
                     android:id="@+id/imageSlider"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="180dp"
                     app:sliderAnimationDuration="600"
+                    android:layout_weight="1"
+                    android:scaleType="fitXY"
                     app:sliderAutoCycleDirection="left"
                     app:sliderAutoCycleEnabled="true"
                     app:sliderCircularHandlerEnabled="true"
