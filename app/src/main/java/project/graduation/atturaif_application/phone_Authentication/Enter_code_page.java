@@ -22,7 +22,6 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-import project.graduation.atturaif_application.Payment_Activity;
 import project.graduation.atturaif_application.R;
 
 public class Enter_code_page extends AppCompatActivity {

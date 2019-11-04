@@ -169,7 +169,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                     MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE, text);
                     MySharedPreference.putString(getApplicationContext(), Constant.Keys.TOUT_TYPE, tourTypeText.getText().toString());
                     if(!tourTypeText.getText().equals("Tour Type")) {
-                        startActivity(new Intent(Booking_Activity.this, Payment_Activity.class));
+                        startActivity(new Intent(Booking_Activity.this, Payment.class));
                     }else {
                         Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
                     }

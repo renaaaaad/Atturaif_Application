@@ -11,20 +11,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Payment"></activity>
         <activity android:name=".InternetChecking">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomePage_Activity" />
         </activity>
-
-
-        <activity android:name=".Save_Ticket"
+        <activity
+            android:name=".Save_Ticket"
             android:parentActivityName=".Billing_Contact" />
-
-        <activity android:name=".Billing_Contact"
-            android:parentActivityName=".Payment_Activity"/>
-
-
+        <activity
+            android:name=".Billing_Contact"
+            android:parentActivityName=".Payment_Activity" />
         <activity android:name=".shopdays_item" />
         <activity android:name=".shopDetails">
             <meta-data
@@ -65,7 +63,6 @@
         </activity>
         <activity android:name=".BasicActivity" />
         <activity android:name=".Language_page" />
-        <activity android:name=".Payment_Activity" />
         <activity android:name=".CheckPhoneCode_Activity" />
         <activity android:name=".CheckNumber_Activity" />
         <activity android:name=".Booking_Activity">
@@ -81,8 +78,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".phone_Authentication.Enter_phone_page" />
-        <activity android:name=".phone_Authentication.Enter_code_page" />
-        <!-- fcm -->
+        <activity android:name=".phone_Authentication.Enter_code_page" /> <!-- fcm -->
         <service android:name=".MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
@@ -93,11 +89,10 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
-
     </application>
-
-    <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
 </manifest>

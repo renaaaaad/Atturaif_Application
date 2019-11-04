@@ -6,10 +6,6 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-
-
-import project.graduation.atturaif_application.Payment_Activity;
 
 import project.graduation.atturaif_application.R;
 

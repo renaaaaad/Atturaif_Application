@@ -14,7 +14,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
-public class Payment_Activity extends BasicActivity {
+public class Payment extends BasicActivity {
     String[] descriptionData = {"Step One", "Step Tow", "Step Three","Step Four"};
     StateProgressBar stateProgressBar;
     TextView price_total, type, date;
@@ -25,7 +25,7 @@ public class Payment_Activity extends BasicActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment_);
+        setContentView(R.layout.activity_payment);
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -39,6 +39,7 @@ public class Payment_Activity extends BasicActivity {
         date.setText(MySharedPreference.getString(getApplicationContext(), Constant.Keys.BOOKING_DATE, ""));
 
 
+
         stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
         stateProgressBar.setStateDescriptionData(descriptionData);
 
@@ -47,7 +48,7 @@ public class Payment_Activity extends BasicActivity {
         Checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Payment_Activity.this, Billing_Contact.class));
+                startActivity(new Intent(Payment.this, Billing_Contact.class));
             }
         });
     } //onCreate
@@ -58,13 +59,15 @@ public class Payment_Activity extends BasicActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Payment_Activity.this);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Payment.this);
                 LayoutInflater inflater = getLayoutInflater();
                 View view2 = inflater.inflate(R.layout.message_goback, null);
                 alertDialog.setCustomTitle(view2);
                 alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(Payment_Activity.this, Splash_page.class));
+                        startActivity(new Intent(Payment.this, Splash_page.class));
+                        MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
+
                     } // yes button
                 }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

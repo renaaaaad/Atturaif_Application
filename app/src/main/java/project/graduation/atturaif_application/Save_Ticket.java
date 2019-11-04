@@ -32,9 +32,9 @@ public class Save_Ticket extends AppCompatActivity {
         price_total = findViewById(R.id.price_total);
         float price = MySharedPreference.getFolat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
         price_total.setText(Float.toString(price) + " " + getApplicationContext().getString(R.string.s_r));
-        MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
         type.setText(MySharedPreference.getString(getApplicationContext(), Constant.Keys.TOUT_TYPE, "Guided"));
         date.setText(MySharedPreference.getString(getApplicationContext(), Constant.Keys.BOOKING_DATE, ""));
+        MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
 
         StateProgressBar stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
         stateProgressBar.setStateDescriptionData(descriptionData);
