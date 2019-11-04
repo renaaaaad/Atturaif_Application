@@ -11,13 +11,20 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Save_Ticket"></activity>
-        <activity android:name=".Billing_Contact" />
         <activity android:name=".InternetChecking">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomePage_Activity" />
         </activity>
+
+
+        <activity android:name=".Save_Ticket"
+            android:parentActivityName=".Billing_Contact" />
+
+        <activity android:name=".Billing_Contact"
+            android:parentActivityName=".Payment_Activity"/>
+
+
         <activity android:name=".shopdays_item" />
         <activity android:name=".shopDetails">
             <meta-data
