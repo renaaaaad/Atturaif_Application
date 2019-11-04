@@ -1,8 +1,5 @@
 package project.graduation.atturaif_application;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -10,13 +7,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-import com.braintreepayments.cardform.view.CardForm;
+import androidx.appcompat.widget.Toolbar;
+
+import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public class Payment_Activity extends BasicActivity {
+    String[] descriptionData = {"Step One", "Step Tow", "Step Three","Step Four"};
+    StateProgressBar stateProgressBar;
     TextView price_total, type, date;
+    TextView me;
     Toolbar toolbar;
+    Button Checkout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +37,21 @@ public class Payment_Activity extends BasicActivity {
         price_total.setText(Float.toString(price) + " " + getApplicationContext().getString(R.string.s_r));
         type.setText(MySharedPreference.getString(getApplicationContext(), Constant.Keys.TOUT_TYPE, "Guided"));
         date.setText(MySharedPreference.getString(getApplicationContext(), Constant.Keys.BOOKING_DATE, ""));
-        MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
-        CardForm cardForm = findViewById(R.id.card_form);
-        cardForm.cardRequired(true)
-                .expirationRequired(true)
-                .cvvRequired(true)
-                .cardholderName(CardForm.FIELD_REQUIRED)
-                .postalCodeRequired(false)
-                .mobileNumberRequired(false)
-                .setup(Payment_Activity.this);
 
+
+        stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
+        stateProgressBar.setStateDescriptionData(descriptionData);
+
+        Checkout = findViewById(R.id.button2);
+
+        Checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Payment_Activity.this, Billing_Contact.class));
+            }
+        });
     } //onCreate
+
 
     // this method to show dialog when the user clicks back button
     @Override

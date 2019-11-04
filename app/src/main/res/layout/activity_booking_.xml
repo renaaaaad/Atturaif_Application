@@ -34,6 +34,21 @@
             android:layout_gravity="center"
             app:SpinKit_Color="@color/colorAccent" />
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/tickets"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+
+
+
+
 
 
     <androidx.core.widget.NestedScrollView
@@ -46,15 +61,41 @@
             android:orientation="vertical">
 
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="311dp"
+                android:src="@drawable/atturaif_"/>
+
+
+
+
+            <com.kofigyan.stateprogressbar.StateProgressBar
+                android:id="@+id/your_state_progress_bar_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:spb_currentStateNumber="one"
+                app:spb_maxStateNumber="four"
+                app:spb_stateBackgroundColor="#BDBDBD"
+                app:spb_stateForegroundColor="#084D14"
+                app:spb_stateNumberBackgroundColor="#808080"
+                app:spb_stateNumberForegroundColor="#eeeeee"
+                app:spb_currentStateDescriptionColor="#084D14"
+                app:spb_stateDescriptionColor="#808080"
+                app:spb_animateToCurrentProgressState="true"
+                app:spb_checkStateCompleted="true"/>
+
+
+
+
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/teacher_info_calendarView"
+                android:layout_marginTop="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:mcv_showWeekDays="true"
-
                 app:mcv_selectionColor="@color/colorPrimary"
                 app:mcv_showOtherDates="decorated_disabled"
-                 />
+                />
 
             <TextView
                 android:id="@+id/open_Time"
@@ -65,16 +106,7 @@
                 android:textColor="@color/dark_red"
                 android:textSize="18sp" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="9dp"
-                android:layout_marginTop="10dp"
-                android:gravity="start"
-                android:text="@string/tickets"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                android:textStyle="bold" />
+
 
             <TextView
                 android:id="@+id/noAvailableTickets"
