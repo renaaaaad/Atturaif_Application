@@ -41,18 +41,19 @@ public class shopdaysitemAdapter extends RecyclerView.Adapter<shopdaysitemAdapte
     @Override
     public void onBindViewHolder(@NonNull shopdayViewHolder holder, int position) {
 
+
         if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
             Open_Days op=open_days.get(position);
             holder.day.setText(replaceArabicDays(op.getDay()));
-            holder.close.setText(replaceArabicNumbers(op.getCloseAt()));
-            holder.open.setText(replaceArabicNumbers(op.getOpenAt()));
+//            holder.close.setText(replaceArabicNumbers(op.getCloseAt()));
+            holder.open.setText(replaceArabicNumbers(op.getOpenAt()+" الى "+ op.getCloseAt()));
 
         } // if  ar
         else {
             Open_Days op=open_days.get(position);
             holder.day.setText(op.getDay());
-            holder.close.setText(op.getCloseAt());
-            holder.open.setText(op.getOpenAt());
+//            holder.close.setText(op.getCloseAt());
+            holder.open.setText(op.getOpenAt()+" to "+op.getCloseAt());
         }
 
 
@@ -75,7 +76,7 @@ public class shopdaysitemAdapter extends RecyclerView.Adapter<shopdaysitemAdapte
 
             day =  itemView.findViewById(R.id.shopday);
             open =  itemView.findViewById(R.id.shopopentime);
-            close =  itemView.findViewById(R.id.shopclosetime);
+//            close =  itemView.findViewById(R.id.shopclosetime);
 
 
         }

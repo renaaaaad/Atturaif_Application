@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">Atturaif_Application</string>
+    <string name="app_name" translatable="false">Atturaif</string>
     <string name="Booking">Booking</string>
     <string name="Home">Home</string>
     <string name="Events">Events</string>
@@ -67,6 +67,10 @@
     <string name="neighbours_houses">Neighbours Houses</string>
     <string name="the_palace">The Palace</string>
     <string name="salwa_neighbour">Salwa Neighbour</string>
+    <string name="shopdayname">Day</string>
+    <string name="opentimeshop">Open Time</string>
+
+
 
 
 </resources>

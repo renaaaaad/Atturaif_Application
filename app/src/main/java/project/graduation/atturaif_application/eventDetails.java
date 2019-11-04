@@ -21,7 +21,6 @@ import com.squareup.picasso.Picasso;
 public class eventDetails extends BasicActivity  {
 
     Toolbar toolbar;
-    Button bookingbtn;
 
 
 
@@ -32,7 +31,6 @@ public class eventDetails extends BasicActivity  {
         setContentView(R.layout.activity_event_details);
 
         toolbar = findViewById(R.id.toolbar);
-        bookingbtn=findViewById(R.id.BookingTic);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -64,14 +62,7 @@ public class eventDetails extends BasicActivity  {
         }
 
 
-        bookingbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                startActivity(new Intent(eventDetails.this,
-                        Booking_Activity.class));
-            }
-        });
 
 
     }
