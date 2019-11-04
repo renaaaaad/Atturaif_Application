@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -47,9 +49,9 @@ import project.graduation.atturaif_application.Adapters.Tour_Adapter;
 import project.graduation.atturaif_application.Objectes.Open_Days;
 import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
-import project.graduation.atturaif_application.phone_Authentication.Enter_phone_page;
 
 public class Booking_Activity extends BasicActivity implements OnDateSelectedListener {
+    String[] descriptionData = {"Step One", "Step Tow", "Step Three","Step Four"};
     Toolbar toolbar;
     LinearLayout tourType;
     MaterialCalendarView mcv;
@@ -70,7 +72,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     List<Vistor_price> vistor_prices;
     Ticket_Adapter ticket_adapter;
     public static AlertDialog.Builder alertDialog;
-
+    StateProgressBar stateProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,13 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
         progressBar.setIndeterminateDrawable(doubleBounce);
+
+
+        stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
+        stateProgressBar.setStateDescriptionData(descriptionData);
+
+
+
 
 
         toolbar = findViewById(R.id.toolbar);
@@ -154,11 +163,17 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             Continue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
                     final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
                     MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE, text);
                     MySharedPreference.putString(getApplicationContext(), Constant.Keys.TOUT_TYPE, tourTypeText.getText().toString());
-                    startActivity(new Intent(Booking_Activity.this, Enter_phone_page.class));
+                    if(!tourTypeText.getText().equals("Tour Type")) {
+                        startActivity(new Intent(Booking_Activity.this, Payment_Activity.class));
+                    }else {
+                        Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
+                    }
+
                 }//onClick
 
             }); //onClick
@@ -174,6 +189,11 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             intent.putExtra("Uniqid","Booking_Activity");
             startActivity(intent);
         }
+
+
+
+
+
     } //onCreate
 
 
@@ -413,6 +433,10 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         dialog.dismiss();
         tourTypeText.setText(type);
     } //setTourType
+    protected void onRestart() {
+        super.onRestart();
+        progressbar.setVisibility(View.GONE);
+    }
 
     private boolean haveNetwork(){
 
