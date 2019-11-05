@@ -27,7 +27,7 @@ public class Billing_Contact extends AppCompatActivity  {
     Button buy;
     CardForm cardForm;
     AlertDialog.Builder alertBuilder;
-    String[] descriptionData = {"Step One", "Step Tow", "Step Three","Step Four"};
+    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
     StateProgressBar stateProgressBar;
     private static final String TAG = "Billing_Contact";
     private FirebaseAuth mAuth;

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".Payment_Activity">
+    tools:context=".Payment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -20,16 +20,7 @@
         app:title="@string/Booking"
         app:titleTextColor="@color/white" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="@string/tickets"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

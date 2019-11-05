@@ -51,7 +51,7 @@ import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
 
 public class Booking_Activity extends BasicActivity implements OnDateSelectedListener {
-    String[] descriptionData = {"Step One", "Step Tow", "Step Three","Step Four"};
+    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
     Toolbar toolbar;
     LinearLayout tourType;
     MaterialCalendarView mcv;

@@ -15,7 +15,7 @@ import androidx.appcompat.widget.Toolbar;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public class Payment extends BasicActivity {
-    String[] descriptionData = {"Step One", "Step Tow", "Step Three","Step Four"};
+    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
     StateProgressBar stateProgressBar;
     TextView price_total, type, date;
     TextView me;

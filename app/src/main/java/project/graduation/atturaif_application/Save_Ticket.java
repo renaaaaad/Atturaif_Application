@@ -19,7 +19,7 @@ import java.io.IOException;
 public class Save_Ticket extends AppCompatActivity {
     Toolbar toolbar;
     TextView price_total, type, date;
-    String[] descriptionData = {"Step One", "Step Tow", "Step Three","Step Four"};
+    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

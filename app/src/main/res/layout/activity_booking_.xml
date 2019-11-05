@@ -34,21 +34,6 @@
             android:layout_gravity="center"
             app:SpinKit_Color="@color/colorAccent" />
     </LinearLayout>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="@string/tickets"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
-
-
-
-
-
 
 
     <androidx.core.widget.NestedScrollView
