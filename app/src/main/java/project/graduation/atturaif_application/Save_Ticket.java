@@ -1,7 +1,12 @@
 package project.graduation.atturaif_application;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -82,4 +87,30 @@ public class Save_Ticket extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "SD card not found", Toast.LENGTH_LONG).show();
         }
     }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Save_Ticket.this);
+                LayoutInflater inflater = getLayoutInflater();
+                View view2 = inflater.inflate(R.layout.message_goback, null);
+                alertDialog.setCustomTitle(view2);
+                alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        startActivity(new Intent(Save_Ticket.this, Splash_page.class));
+                        MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
+
+                    } // yes button
+                }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        return;
+                    } // no button
+                }); // onclick
+
+                alertDialog.show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        } // switch
+    } // onOptionsItemSelected
 }

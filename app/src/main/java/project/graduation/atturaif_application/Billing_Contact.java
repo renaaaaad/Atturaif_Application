@@ -136,6 +136,7 @@ public class Billing_Contact extends AppCompatActivity  {
                 alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         startActivity(new Intent(Billing_Contact.this, Splash_page.class));
+                        MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
                     } // yes button
                 }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
