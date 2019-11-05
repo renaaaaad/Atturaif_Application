@@ -6,17 +6,27 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Gravity;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.BounceInterpolator;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper;
 import com.github.ybq.android.spinkit.sprite.Sprite;
 import com.github.ybq.android.spinkit.style.CubeGrid;
 import com.google.firebase.database.DataSnapshot;
@@ -40,7 +50,7 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
 
     List<shope_splash_name> shops_name;
     Timer timer;
-    LinearLayout progressbar;
+//    LinearLayout progressbar;
     DatabaseReference reference;
     DatabaseReference reference2;
 
@@ -50,6 +60,7 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     public static List<shope_splash_name> shops;
     RecyclerView recyclerView;
     Shops_Adapter adapter;
+    Button btnMore;
     Toolbar toolbar;
 
 
@@ -58,30 +69,32 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops_page);
+        btnMore=findViewById(R.id.btnMore);
         toolbar = findViewById(R.id.toolbar1);
-        progressbar = findViewById(R.id.progressbar);
+//        progressbar = findViewById(R.id.progressbar);
 
 
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
-        progressBar.setIndeterminateDrawable(doubleBounce);
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressbar.setVisibility(View.GONE);
-                    }
-                });
-            } //run
-        }, 4000);
+//        progressBar.setIndeterminateDrawable(doubleBounce);
+//        timer = new Timer();
+//        timer.schedule(new TimerTask() {
+//            @Override
+//            public void run() {
+//                new Handler(Looper.getMainLooper()).post(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        progressbar.setVisibility(View.GONE);
+//                    }
+//                });
+//            } //run
+//        }, 4000);
 
         //default back button
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
 
 
         if(haveNetwork()) {
@@ -190,10 +203,87 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         recyclerView = findViewById(R.id.recyclerView);
         adapter = new Shops_Adapter(getApplicationContext(), shops, this);
         recyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        final LinearLayoutManager linearLayoutManager= new LinearLayoutManager
+                (this,LinearLayoutManager.HORIZONTAL,false);
+//        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setHasFixedSize(true);
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
+
+        // snapping the scroll items
+//        final SnapHelper snapHelper=new GravitySnapHelper(Gravity.START);
+        final SnapHelper snapHelper = new LinearSnapHelper();//
+        snapHelper.attachToRecyclerView(recyclerView);
+
+        //set timer for default item
+        final Handler handler=new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //do something after 1ms
+                RecyclerView.ViewHolder viewHolderDefault= recyclerView.
+                        findViewHolderForAdapterPosition(0);
+
+                LinearLayout shopparentDefault=viewHolderDefault.itemView.
+                        findViewById(R.id.shopparent);
+
+                shopparentDefault.animate().scaleY(1).scaleX(1).setDuration(350).
+                     setInterpolator(new AccelerateInterpolator()).start();
+
+                LinearLayout shopbtnDefa=viewHolderDefault.itemView.
+        findViewById(R.id.btnshopparent);
+                shopbtnDefa.animate().alpha(1).setDuration(300).start();
+            }
+        },100);
+
+
+            //set anmite scroll
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerview, int newState) {
+                super.onScrollStateChanged(recyclerview, newState);
+
+                if(newState == recyclerview.SCROLL_STATE_IDLE){
+
+                    View view=snapHelper.findSnapView(linearLayoutManager);
+                    int pos= linearLayoutManager.getPosition(view);
+
+                    RecyclerView.ViewHolder viewHolder=
+                            recyclerView.findViewHolderForAdapterPosition(pos);
+
+                    LinearLayout shopparent=viewHolder.itemView.findViewById(R.id.shopparent);
+
+                    shopparent.animate().scaleY(1).scaleX(1).setDuration(350).setInterpolator(new AccelerateInterpolator()).start();
+
+                    LinearLayout shopbtn=viewHolder.itemView.findViewById(R.id.btnshopparent);
+                    shopbtn.animate().alpha(1).setDuration(300).start();
+                }
+                else {
+
+                    View view=snapHelper.findSnapView(linearLayoutManager);
+                    int pos= linearLayoutManager.getPosition(view);
+
+                    RecyclerView.ViewHolder viewHolder=
+                            recyclerView.findViewHolderForAdapterPosition(pos);
+
+                    LinearLayout shopparent=viewHolder.itemView.findViewById(R.id.shopparent);
+
+                    shopparent.animate().scaleY(0.7f).scaleX(0.7f).setDuration(350).setInterpolator(new AccelerateInterpolator()).start();
+
+                    LinearLayout shopbtn=viewHolder.itemView.findViewById(R.id.btnshopparent);
+                    shopbtn.animate().alpha(0).setDuration(300).start();
+
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
     }
 
 
@@ -229,7 +319,7 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     @Override
     protected void onRestart() {
         super.onRestart();
-        progressbar.setVisibility(View.GONE);
+//        progressbar.setVisibility(View.GONE);
     }
 
     private boolean haveNetwork(){
