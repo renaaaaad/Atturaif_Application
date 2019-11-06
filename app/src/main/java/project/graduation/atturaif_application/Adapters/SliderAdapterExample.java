@@ -57,11 +57,11 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
 
                 if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.museam_new_ar)
+                            .load(R.drawable.ar_ar)
                             .into(viewHolder.imageViewBackground);
                 else
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.museam_new_en)
+                            .load(R.drawable.ar_en)
                             .into(viewHolder.imageViewBackground);
                 viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
                     @Override
