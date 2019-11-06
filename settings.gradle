@@ -1,4 +1,3 @@
 include ':app'
 
-include ':unityLibrary'
-project(':unityLibrary').projectDir=new File('C:\\Users\\renad\\Desktop\\LipSyncmastr\\AR_V20\\androidBuild\\unityLibrary')
+
