@@ -5,10 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:clickable="true"
     tools:context=".InternetChecking">
 
+
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+        android:id="@+id/toolbar1"
         style="@android:style/Widget.Material.Toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -19,11 +21,8 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:titleTextColor="@color/white" />
 
-   <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-       android:id="@+id/Swip"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       >
+
+
 
        <LinearLayout
            android:id="@+id/Networklayout"
@@ -79,7 +78,6 @@
 
 
 
-   </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </RelativeLayout>
 
 

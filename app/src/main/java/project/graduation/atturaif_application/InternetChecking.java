@@ -10,12 +10,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class InternetChecking extends BasicActivity {
 
 
-    SwipeRefreshLayout swipeRefreshLayout;
     Button Retrybtn;
     Toolbar toolbar;
 
@@ -24,25 +22,41 @@ public class InternetChecking extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_internet_checking);
 
-        swipeRefreshLayout=findViewById(R.id.Swip);
         toolbar=findViewById(R.id.toolbar);
         Retrybtn=findViewById(R.id.Retry);
 
 
-        //default back button
+        toolbar = findViewById(R.id.toolbar1);
+
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               Intent intent1=new Intent(InternetChecking.this,HomePage_Activity.class);
+                startActivity(intent1);
+
+            }
+        });
+
         Intent intent = this.getIntent();
-        final String strdata;
+//        final String strdata;
+//
+//        strdata = intent.getExtras().getString("Uniqid");
+//
+//        String[] parts = strdata.split("_");
+//
+//        String[] actName=parts[0].split("P");
+//        InternetChecking.this.setTitle(actName[0]);
 
-        strdata = intent.getExtras().getString("Uniqid");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        String[] parts = strdata.split("_");
 
-        String[] actName=parts[0].split("P");
-        InternetChecking.this.setTitle(actName[0]);
 
 
         Retrybtn.setOnClickListener(new View.OnClickListener() {
@@ -59,31 +73,11 @@ public class InternetChecking extends BasicActivity {
             }
         });
 
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        swipeRefreshLayout.setRefreshing(false);
-                        if(haveNetwork()){
-                           Intent intt= activityName();
-                            startActivity(intt);
-                        }
-                        else{
-                    Toast.makeText(InternetChecking.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
-
-                }
-                    }
-                },4000);
-
-            }
-        });
 
 
     }
+
+
 
 
     private boolean haveNetwork(){

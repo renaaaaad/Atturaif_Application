@@ -56,13 +56,16 @@ public class Splash_Shops extends AppCompatActivity {
                         String nameAR = ds.child("shopnameAR").getValue(String.class);
                         String image = ds.child("image").getValue(String.class);
                         String id = ds.getKey();
-                        final shope_splash_name e = new shope_splash_name(id, nameAR, image);
+                        String desAR=ds.child("DescriptionAR").getValue(String.class);
+
+                        final shope_splash_name e = new shope_splash_name(id, nameAR, image,desAR);
                         shops_name.add(e);
                     } else {
                         String nameAR = ds.child("shopnameEN").getValue(String.class);
                         String image = ds.child("image").getValue(String.class);
+                        String desEN=ds.child("DescriptionEN").getValue(String.class);
                         String id = ds.getKey();
-                        final shope_splash_name e = new shope_splash_name(id, nameAR, image);
+                        final shope_splash_name e = new shope_splash_name(id, nameAR, image,desEN);
                         shops_name.add(e);
                     }
                 } //for
