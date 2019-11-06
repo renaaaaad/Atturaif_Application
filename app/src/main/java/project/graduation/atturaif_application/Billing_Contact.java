@@ -27,7 +27,7 @@ public class Billing_Contact extends AppCompatActivity  {
     Button buy;
     CardForm cardForm;
     AlertDialog.Builder alertBuilder;
-    String[] descriptionData = {"Step One", "Step Tow", "Step Three","Step Four"};
+    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
     StateProgressBar stateProgressBar;
     private static final String TAG = "Billing_Contact";
     private FirebaseAuth mAuth;
@@ -136,6 +136,7 @@ public class Billing_Contact extends AppCompatActivity  {
                 alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         startActivity(new Intent(Billing_Contact.this, Splash_page.class));
+                        MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
                     } // yes button
                 }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {

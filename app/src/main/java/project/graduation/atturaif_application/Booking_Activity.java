@@ -51,7 +51,7 @@ import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
 
 public class Booking_Activity extends BasicActivity implements OnDateSelectedListener {
-    String[] descriptionData = {"Step One", "Step Tow", "Step Three","Step Four"};
+    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
     Toolbar toolbar;
     LinearLayout tourType;
     MaterialCalendarView mcv;
@@ -68,7 +68,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     TextView open_Time;
     LinearLayout progressbar;
     RecyclerView recyclerView;
-    public static TextView noAvailableTickets, tourTypeText;
+    public static TextView noAvailableTickets;
     List<Vistor_price> vistor_prices;
     Ticket_Adapter ticket_adapter;
     public static AlertDialog.Builder alertDialog;
@@ -94,7 +94,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         toolbar = findViewById(R.id.toolbar);
         tourType = findViewById(R.id.tourType);
         Continue = findViewById(R.id.Continue);
-        tourTypeText = findViewById(R.id.tourTypeText);
         open_Time = findViewById(R.id.open_Time);
         recyclerView = findViewById(R.id.ticket);
         noAvailableTickets = findViewById(R.id.noAvailableTickets);
@@ -167,12 +166,10 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                     final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
                     final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
                     MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE, text);
-                    MySharedPreference.putString(getApplicationContext(), Constant.Keys.TOUT_TYPE, tourTypeText.getText().toString());
-                    if(!tourTypeText.getText().equals("Tour Type")) {
                         startActivity(new Intent(Booking_Activity.this, Payment.class));
-                    }else {
-                        Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
-                    }
+
+                       // Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
+
 
                 }//onClick
 
@@ -253,7 +250,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                tourTypeText.setText(R.string.no_tours_avilible);
             } //onCancelled
         });
     } //getTourType
@@ -429,10 +425,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         return null;
     } //Open_Days
 
-    public static void setTourType(String type) {
-        dialog.dismiss();
-        tourTypeText.setText(type);
-    } //setTourType
+
     protected void onRestart() {
         super.onRestart();
         progressbar.setVisibility(View.GONE);

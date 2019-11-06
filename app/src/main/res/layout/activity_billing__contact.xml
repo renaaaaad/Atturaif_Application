@@ -17,20 +17,10 @@
         android:gravity="center"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-        app:title="@string/payment"
+        app:title="@string/Booking"
         app:titleTextColor="@color/white" />
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="10dp"
-        android:gravity="center"
-        android:text="Billing Contact"
-        android:textColor="@color/black"
-        android:textSize="20sp"
-        android:textStyle="bold" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
