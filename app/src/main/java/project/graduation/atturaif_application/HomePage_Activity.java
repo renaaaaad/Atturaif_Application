@@ -45,7 +45,6 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
         sliderView.setSliderAdapter(new SliderAdapterExample(getApplicationContext()));
         sliderView.startAutoCycle();
-        sliderView.setIndicatorAnimation(IndicatorAnimations.WORM);
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
 
         //

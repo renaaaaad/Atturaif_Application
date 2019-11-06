@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
+import com.unity3d.player.UnityPlayerActivity;
 
 import project.graduation.atturaif_application.Constant;
 import project.graduation.atturaif_application.MySharedPreference;
@@ -56,23 +57,6 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
 
                 if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.ar_new_ar)
-                            .into(viewHolder.imageViewBackground);
-                else
-                    Glide.with(viewHolder.itemView)
-                            .load(R.drawable.ar_en)
-                            .into(viewHolder.imageViewBackground);
-                viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        context.startActivity(new Intent(context, VR_page.class));
-                    }
-                });
-                break;
-
-            case 2:
-                if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
-                    Glide.with(viewHolder.itemView)
                             .load(R.drawable.museam_new_ar)
                             .into(viewHolder.imageViewBackground);
                 else
@@ -82,10 +66,12 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                 viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, VR_page.class));
+                        context.startActivity(new Intent(context, UnityPlayerActivity.class));
                     }
                 });
                 break;
+
+
 
         } // switch
 
@@ -94,7 +80,7 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
     @Override
     public int getCount() {
         //slider view count could be dynamic size
-        return 3;
+        return 2;
     }
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {
