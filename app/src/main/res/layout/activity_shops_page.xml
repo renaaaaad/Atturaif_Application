@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bgshopcustom"
-    android:orientation="vertical"
-    tools:context=".ShopsPage">
+    tools:context=".ShopsPage"
+    >
 
     <LinearLayout
-        android:layout_width="418dp"
-        android:layout_height="89dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -19,7 +19,7 @@
             android:id="@+id/toolbar1"
             style="@android:style/Widget.Material.Toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:background="@color/colorPrimary"
             android:gravity="center"
             android:textAlignment="center"
@@ -33,7 +33,7 @@
         android:layout_marginTop="?attr/actionBarSize"
         android:background="@drawable/bgheader"
         android:layout_width="match_parent"
-        android:layout_height="330dp"
+        android:layout_height="430dp"
         android:layout_marginStart="0dp"
         android:layout_marginEnd="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -49,8 +49,9 @@
         android:layout_marginTop="150dp"
         android:layout_marginEnd="8dp"
         android:text="@string/Atturaif_shops"
-        android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textColor="@color/ghost_white"
+        android:textStyle="bold"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -58,18 +59,21 @@
         />
 
     <androidx.recyclerview.widget.RecyclerView
+
+        android:paddingRight="80dp"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="115dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
-        android:paddingRight="150dp"
-        android:clipToPadding="false">
+        android:clipToPadding="false"
+
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -31,11 +31,9 @@ public class Payment extends BasicActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         price_total = findViewById(R.id.price_total);
-        type = findViewById(R.id.type);
         date = findViewById(R.id.date);
         float price = MySharedPreference.getFolat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
         price_total.setText(Float.toString(price) + " " + getApplicationContext().getString(R.string.s_r));
-        type.setText(MySharedPreference.getString(getApplicationContext(), Constant.Keys.TOUT_TYPE, "Guided"));
         date.setText(MySharedPreference.getString(getApplicationContext(), Constant.Keys.BOOKING_DATE, ""));
 
 

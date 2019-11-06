@@ -42,6 +42,7 @@ public class Save_Ticket extends AppCompatActivity {
         StateProgressBar stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
         stateProgressBar.setStateDescriptionData(descriptionData);
     }
+    //android:background="#8b7d6b"
     //*******writeExternalStorage********//
 
     public void writeExternalStorage(View view) {

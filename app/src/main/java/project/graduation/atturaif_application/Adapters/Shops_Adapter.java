@@ -47,11 +47,17 @@ public class Shops_Adapter extends RecyclerView.Adapter<Shops_Adapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        int num=0;
         shope_splash_name shope = shops.get(position);
         holder.name.setText(shope.getName());
+
+        String dess=shope.getDes();
+
+        if(shope.getDes().length()>90) {
+            dess = shope.getDes().substring(0, 90);
+        }
+        holder.des.setText(dess+" ....");
         Picasso.with(context).load(shope.getImage()).into(holder.imageE);
-
-
     }
 
     @Override
@@ -60,7 +66,7 @@ public class Shops_Adapter extends RecyclerView.Adapter<Shops_Adapter.MyViewHold
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name;
+        TextView name,des;
         ImageView imageE;
         shopListner shopListner;
         Button btnMore;
@@ -68,6 +74,7 @@ public class Shops_Adapter extends RecyclerView.Adapter<Shops_Adapter.MyViewHold
         public MyViewHolder(@NonNull View itemView, final shopListner shopListner) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
+            des=itemView.findViewById(R.id.des);
             imageE = itemView.findViewById(R.id.shopimage);
             btnMore=itemView.findViewById((R.id.btnMore));
             this.shopListner=shopListner;
@@ -92,7 +99,6 @@ public class Shops_Adapter extends RecyclerView.Adapter<Shops_Adapter.MyViewHold
         @Override
         public void onClick(View view) {
 
-//            shopListner.onShopClick(getAdapterPosition());
         }
     }
 

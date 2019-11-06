@@ -145,23 +145,26 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
             Toast.makeText(HomePage_Activity.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
 
         }
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("contact_information").child("phone");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String phone = dataSnapshot.getValue(String.class);
-                startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "03030303335", null)));
-            } //onDataChange
+        else {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), R.string.error_message,
-                        Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
-            } //onCancelled
-        });
 
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("contact_information").child("phone");
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String phone = dataSnapshot.getValue(String.class);
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "03030303335", null)));
+                } //onDataChange
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(), R.string.error_message,
+                            Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
+                } //onCancelled
+            });
+        }
     } // call
 
     private void sendEmail() {
