@@ -45,6 +45,7 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                     Glide.with(viewHolder.itemView)
                             .load(R.drawable.vr_en)
                             .into(viewHolder.imageViewBackground);
+
                 viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -53,6 +54,7 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                 });
                 break;
             case 1:
+
                 if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
                     Glide.with(viewHolder.itemView)
                             .load(R.drawable.ar_new_ar)

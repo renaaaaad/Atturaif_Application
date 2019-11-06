@@ -22,7 +22,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.concurrent.TimeUnit;
 
-import project.graduation.atturaif_application.Payment_Activity;
+import project.graduation.atturaif_application.Payment;
 import project.graduation.atturaif_application.R;
 
 public class Enter_code_page extends AppCompatActivity {
@@ -83,7 +83,7 @@ public class Enter_code_page extends AppCompatActivity {
                                             }
                                         }
                                     });
-                            Intent intent = new Intent(Enter_code_page.this, Payment_Activity.class);
+                            Intent intent = new Intent(Enter_code_page.this, Payment.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
 

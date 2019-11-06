@@ -89,6 +89,8 @@ public class shopDetails extends BasicActivity {
                     madapter = new shopdaysitemAdapter(getApplicationContext(), daylist);
                     recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setAdapter(madapter);
+                    recyclerView.setHasFixedSize(true);
+
                 }
 
 

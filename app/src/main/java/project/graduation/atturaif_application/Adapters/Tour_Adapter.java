@@ -46,7 +46,7 @@ public class Tour_Adapter extends RecyclerView.Adapter<Tour_Adapter.MyViewHolder
             holder.tour.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Booking_Activity.setTourType(tour.getTypeAR());
+                   // Booking_Activity.setTourType(tour.getTypeAR());
                 } // on click
             }); // tour click
         } else {
@@ -56,7 +56,7 @@ public class Tour_Adapter extends RecyclerView.Adapter<Tour_Adapter.MyViewHolder
             holder.tour.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Booking_Activity.setTourType(tour.getTypeEN());
+                    //Booking_Activity.setTourType(tour.getTypeEN());
                 } // on click
             }); // tour click
         }

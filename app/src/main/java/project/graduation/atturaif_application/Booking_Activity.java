@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -28,6 +29,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -47,9 +49,9 @@ import project.graduation.atturaif_application.Adapters.Tour_Adapter;
 import project.graduation.atturaif_application.Objectes.Open_Days;
 import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
-import project.graduation.atturaif_application.phone_Authentication.Enter_phone_page;
 
 public class Booking_Activity extends BasicActivity implements OnDateSelectedListener {
+    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
     Toolbar toolbar;
     LinearLayout tourType;
     MaterialCalendarView mcv;
@@ -66,11 +68,11 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     TextView open_Time;
     LinearLayout progressbar;
     RecyclerView recyclerView;
-    public static TextView noAvailableTickets, tourTypeText;
+    public static TextView noAvailableTickets;
     List<Vistor_price> vistor_prices;
     Ticket_Adapter ticket_adapter;
     public static AlertDialog.Builder alertDialog;
-
+    StateProgressBar stateProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,10 +84,16 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         progressBar.setIndeterminateDrawable(doubleBounce);
 
 
+        stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
+        stateProgressBar.setStateDescriptionData(descriptionData);
+
+
+
+
+
         toolbar = findViewById(R.id.toolbar);
         tourType = findViewById(R.id.tourType);
         Continue = findViewById(R.id.Continue);
-        tourTypeText = findViewById(R.id.tourTypeText);
         open_Time = findViewById(R.id.open_Time);
         recyclerView = findViewById(R.id.ticket);
         noAvailableTickets = findViewById(R.id.noAvailableTickets);
@@ -154,11 +162,15 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             Continue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+
                     final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
                     final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
                     MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE, text);
-                    MySharedPreference.putString(getApplicationContext(), Constant.Keys.TOUT_TYPE, tourTypeText.getText().toString());
-                    startActivity(new Intent(Booking_Activity.this, Enter_phone_page.class));
+                        startActivity(new Intent(Booking_Activity.this, Payment.class));
+
+                       // Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
+
+
                 }//onClick
 
             }); //onClick
@@ -174,6 +186,11 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             intent.putExtra("Uniqid","Booking_Activity");
             startActivity(intent);
         }
+
+
+
+
+
     } //onCreate
 
 
@@ -233,7 +250,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                tourTypeText.setText(R.string.no_tours_avilible);
             } //onCancelled
         });
     } //getTourType
@@ -409,10 +425,11 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         return null;
     } //Open_Days
 
-    public static void setTourType(String type) {
-        dialog.dismiss();
-        tourTypeText.setText(type);
-    } //setTourType
+
+    protected void onRestart() {
+        super.onRestart();
+        progressbar.setVisibility(View.GONE);
+    }
 
     private boolean haveNetwork(){
 

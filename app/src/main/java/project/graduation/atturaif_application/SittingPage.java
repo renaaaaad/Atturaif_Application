@@ -18,7 +18,6 @@ import com.squareup.picasso.Picasso;
 
 public class SittingPage extends BasicActivity {
     LinearLayout language;
-    Switch notification;
     Toolbar toolbar;
     ImageView nextArrow;
 
@@ -47,14 +46,6 @@ public class SittingPage extends BasicActivity {
             }
         }); // onClick
 
-        notification = findViewById(R.id.notification);
-        notification.setChecked(MySharedPreference.getBoolean(getApplicationContext(), Constant.Keys.NOTIFICATION, true));
-        notification.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                MySharedPreference.putBoolean(getApplicationContext(), Constant.Keys.NOTIFICATION, b);
-            }
-        });
 
 
     } //onCreate

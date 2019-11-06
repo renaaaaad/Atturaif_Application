@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F8F9FB"
     tools:context=".eventDetails">
 
 
@@ -46,6 +47,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="286dp"
+                    app:cardBackgroundColor="#F8F9FB"
                     app:cardElevation="0dp">
 
                     <com.github.florent37.shapeofview.shapes.ArcView
@@ -149,7 +151,8 @@
                             android:innerRadius="0dp"
                             android:shape="ring"
                             android:thicknessRatio="1.9"
-                            app:cardBackgroundColor="@color/white3"
+                            app:cardElevation="0dp"
+                            android:background="@drawable/bgshopcustom"
                             >
 
                             <TextView
@@ -160,7 +163,9 @@
                                 android:layout_marginBottom="20dp"
                                 android:textColor="@color/black"
                                 android:text="@string/Description"
-                                android:textStyle="bold" />
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                />
 
                             <TextView
                                 android:id="@+id/eventdesc"
@@ -174,19 +179,7 @@
                                 />
                         </androidx.cardview.widget.CardView>
 
-                        <Button
-                            android:id="@+id/BookingTic"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/button_background"
-                            android:text="@string/Booking_Tickt"
-                            android:textColor="@color/white"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
+
 
                     </LinearLayout>
                 </LinearLayout>

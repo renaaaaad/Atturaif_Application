@@ -1,9 +1,11 @@
 package project.graduation.atturaif_application.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +16,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import project.graduation.atturaif_application.Constant;
+import project.graduation.atturaif_application.MySharedPreference;
+import project.graduation.atturaif_application.Objectes.Shops;
 import project.graduation.atturaif_application.Objectes.shope_splash_name;
 import project.graduation.atturaif_application.R;
 
@@ -58,21 +63,36 @@ public class Shops_Adapter extends RecyclerView.Adapter<Shops_Adapter.MyViewHold
         TextView name;
         ImageView imageE;
         shopListner shopListner;
+        Button btnMore;
 
-        public MyViewHolder(@NonNull View itemView, shopListner shopListner) {
+        public MyViewHolder(@NonNull View itemView, final shopListner shopListner) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             imageE = itemView.findViewById(R.id.shopimage);
+            btnMore=itemView.findViewById((R.id.btnMore));
             this.shopListner=shopListner;
 
-            itemView.setOnClickListener(this);
+
+            btnMore.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(shopListner != null){
+                        int position=getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION){
+                            shopListner.onShopClick(position);
+                        }
+                    }
+                }
+            });
+//            itemView.setOnClickListener(this);
+
 
         }
 
         @Override
         public void onClick(View view) {
 
-            shopListner.onShopClick(getAdapterPosition());
+//            shopListner.onShopClick(getAdapterPosition());
         }
     }
 

@@ -1,6 +1,8 @@
 package project.graduation.atturaif_application;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -120,6 +122,29 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
     private void call() {
 
+        boolean have_WIFI=false;
+        boolean have_MobileData=false;
+
+        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+
+        for(NetworkInfo info:networkInfos)
+        {
+            if(info.getTypeName().equalsIgnoreCase("WIFI"))
+                if(info.isConnected())
+                    have_WIFI=true;
+
+            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if(info.isConnected())
+                    have_MobileData=true;
+
+        }
+
+        if(!(have_WIFI||have_MobileData)) {
+            Toast.makeText(HomePage_Activity.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
+
+        }
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("contact_information").child("phone");
         myRef.addValueEventListener(new ValueEventListener() {
@@ -163,4 +188,6 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
 
     } // send email
+
+
 } //class
