@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.smarteist.autoimageslider.SliderViewAdapter;
+import com.unity3d.player.UnityPlayerActivity;
 
 import project.graduation.atturaif_application.Constant;
 import project.graduation.atturaif_application.MySharedPreference;
@@ -63,7 +64,7 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
                 viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, VR_page.class));
+                        context.startActivity(new Intent(context, UnityPlayerActivity.class));
                     }
                 });
                 break;

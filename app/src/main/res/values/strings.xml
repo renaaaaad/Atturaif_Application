@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name" translatable="false">Atturaif_Application</string>
     <string name="Booking">Booking</string>
     <string name="Home">Home</string>
@@ -67,6 +67,7 @@
     <string name="neighbours_houses">Neighbours Houses</string>
     <string name="the_palace">The Palace</string>
     <string name="salwa_neighbour">Salwa Neighbour</string>
+    <string name="game_view_content_description" tools:ignore="MissingTranslation">Salwa Neighbour</string>
 
 
 </resources>
