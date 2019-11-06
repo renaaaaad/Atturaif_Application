@@ -78,10 +78,7 @@
     <string name="opentimeshop">Open Time</string>
     <string name="Atturaif_shops">Atturaif Shops</string>
     <string name="more">more</string>
-
-
-
-
+    <string name="connection">Network connection is not available!</string>
 
 
 </resources>
