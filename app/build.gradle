@@ -7,21 +7,35 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "project.graduation.atturaif_application"
-        minSdkVersion 23
+        minSdkVersion 27
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        merge 'lib/armeabi-v7a/libmain.so'
+        merge 'lib/x86/libmain.so'
+        merge 'lib/armeabi-v7a/libunity.so'
+        merge 'lib/x86/libunity.so'
+        merge 'lib/armeabi-v7a/libmono.so'
+        merge 'lib/x86/libmono.so'
+    }
+
 }
+configurations.all {exclude group: 'bitter.jnibridge.JNIBridge$a', module: 'bitter.jnibridge.JNIBridge$a'}
 
 dependencies {
+
+    implementation project(':unityLibrary')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

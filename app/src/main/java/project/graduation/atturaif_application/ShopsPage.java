@@ -60,7 +60,6 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     public static List<shope_splash_name> shops;
     RecyclerView recyclerView;
     Shops_Adapter adapter;
-    Button btnMore;
     Toolbar toolbar;
 
 
@@ -69,12 +68,11 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops_page);
-        btnMore=findViewById(R.id.btnMore);
         toolbar = findViewById(R.id.toolbar1);
 //        progressbar = findViewById(R.id.progressbar);
 
 
-        ProgressBar progressBar = findViewById(R.id.spin_kit);
+//        ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
 //        progressBar.setIndeterminateDrawable(doubleBounce);
 //        timer = new Timer();
@@ -84,7 +82,7 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
 //                new Handler(Looper.getMainLooper()).post(new Runnable() {
 //                    @Override
 //                    public void run() {
-//                        progressbar.setVisibility(View.GONE);
+////                        progressbar.setVisibility(View.GONE);
 //                    }
 //                });
 //            } //run
@@ -108,14 +106,16 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
                         if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
                             String nameAR = ds.child("shopnameAR").getValue(String.class);
                             String image = ds.child("image").getValue(String.class);
+                            String desAR=ds.child("DescriptionAR").getValue(String.class);
                             String id = ds.getKey();
-                            final shope_splash_name e = new shope_splash_name(id, nameAR, image);
+                            final shope_splash_name e = new shope_splash_name(id, nameAR, image,desAR);
                             shops_name.add(e);
                         } else {
                             String nameAR = ds.child("shopnameEN").getValue(String.class);
                             String image = ds.child("image").getValue(String.class);
+                            String desEN=ds.child("DescriptionEN").getValue(String.class);
                             String id = ds.getKey();
-                            final shope_splash_name e = new shope_splash_name(id, nameAR, image);
+                            final shope_splash_name e = new shope_splash_name(id, nameAR, image,desEN);
                             shops_name.add(e);
                         }
                     } //for

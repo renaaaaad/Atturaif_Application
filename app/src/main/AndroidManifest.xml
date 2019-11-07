@@ -12,12 +12,21 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Payment"></activity>
-        <activity android:name=".InternetChecking">
+
+        <activity android:name=".Payment" />
+
+
+
+
+
+        <activity
+            android:name=".InternetChecking"
+            android:parentActivityName=".HomePage_Activity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".HomePage_Activity" />
         </activity>
+
         <activity
             android:name=".Save_Ticket"
             android:parentActivityName=".Billing_Contact" />

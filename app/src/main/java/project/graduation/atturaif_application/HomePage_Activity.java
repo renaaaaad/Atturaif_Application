@@ -45,7 +45,6 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
         sliderView.setSliderAdapter(new SliderAdapterExample(getApplicationContext()));
         sliderView.startAutoCycle();
-        sliderView.setIndicatorAnimation(IndicatorAnimations.WORM);
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
 
         //
@@ -142,51 +141,81 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         }
 
         if(!(have_WIFI||have_MobileData)) {
-            Toast.makeText(HomePage_Activity.this,"Network connection is not available!",Toast.LENGTH_SHORT).show();
+            Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
 
         }
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("contact_information").child("phone");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String phone = dataSnapshot.getValue(String.class);
-                startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "03030303335", null)));
-            } //onDataChange
+        else {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), R.string.error_message,
-                        Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
-            } //onCancelled
-        });
 
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("contact_information").child("phone");
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String phone = dataSnapshot.getValue(String.class);
+                    startActivity(new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", "03030303335", null)));
+                } //onDataChange
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(), R.string.error_message,
+                            Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
+                } //onCancelled
+            });
+        }
     } // call
 
     private void sendEmail() {
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("contact_information").child("Email");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                String Email = dataSnapshot.getValue(String.class);
-                Intent mailIntent = new Intent(Intent.ACTION_VIEW);
-                Uri data = Uri.parse("mailto:?subject=" + getString(R.string.Atturaif_Help_Message) + "&body=" + getString(R.string.body_message) + "&to=" + Email);
-                mailIntent.setData(data);
-                startActivity(Intent.createChooser(mailIntent, "Send mail..."));
-            } //onDataChange
+        boolean have_WIFI=false;
+        boolean have_MobileData=false;
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(getApplicationContext(), R.string.error_message,
-                        Toast.LENGTH_LONG).show();
-                startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
-            } //onCancelled
-        });
+        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+
+        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+
+        for(NetworkInfo info:networkInfos)
+        {
+            if(info.getTypeName().equalsIgnoreCase("WIFI"))
+                if(info.isConnected())
+                    have_WIFI=true;
+
+            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if(info.isConnected())
+                    have_MobileData=true;
+
+        }
+
+        if(!(have_WIFI||have_MobileData)) {
+            Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
+
+        }
+
+        else {
 
 
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference myRef = database.getReference("contact_information").child("Email");
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String Email = dataSnapshot.getValue(String.class);
+                    Intent mailIntent = new Intent(Intent.ACTION_VIEW);
+                    Uri data = Uri.parse("mailto:?subject=" + getString(R.string.Atturaif_Help_Message) + "&body=" + getString(R.string.body_message) + "&to=" + Email);
+                    mailIntent.setData(data);
+                    startActivity(Intent.createChooser(mailIntent, "Send mail..."));
+                } //onDataChange
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(getApplicationContext(), R.string.error_message,
+                            Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
+                } //onCancelled
+            });
+
+        }
     } // send email
 
 
