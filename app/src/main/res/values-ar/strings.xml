@@ -70,6 +70,15 @@
     <string name="opentimeshop">اوقات الافتتاح</string>
     <string name="Atturaif_shops">اسواق الطريف</string>
     <string name="more">المزيد</string>
+    <string name="ticketCopy"> يجب عليك الان الاحتفاظ بنسخة من التذكرة لتتمكن من عرضها عند زيارة الطريف </string>
+    <string name="ticketInfo">معلومات التذكرة</string>
+    <string name="ticketSave">حفظ التذكرة</string>
+    <string name="total">المجموع</string>
+    <string name="buy">شراء التذكرة</string>
+    <string name="checkout">الدفع</string>
+    <string name="Adult">البالغين</string>
+
+
     <string name="connection">لا يوجد إتصال في الانترنت !</string>
 
 

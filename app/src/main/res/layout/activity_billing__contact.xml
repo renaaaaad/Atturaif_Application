@@ -66,7 +66,7 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_background"
-                android:text="Buy"
+                android:text="@string/buy"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold"/>

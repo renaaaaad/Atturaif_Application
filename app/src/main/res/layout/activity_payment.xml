@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="9dp"
                 android:layout_marginTop="20dp"
-                android:text="Total"
+                android:text="@string/total"
                 android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -97,7 +97,7 @@
                                 android:orientation="horizontal">
 
                                 <LinearLayout
-                                    android:layout_width="220dp"
+                                    android:layout_width="176dp"
                                     android:layout_height="84dp"
                                     android:layout_margin="1dp"
                                     android:layout_weight="4"
@@ -173,7 +173,7 @@
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/button_background"
-                        android:text="Checkout"
+                        android:text="@string/checkout"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         android:textStyle="bold"/>

@@ -50,7 +50,7 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
 
     List<shope_splash_name> shops_name;
     Timer timer;
-//    LinearLayout progressbar;
+    LinearLayout progressbar;
     DatabaseReference reference;
     DatabaseReference reference2;
 
@@ -73,7 +73,7 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
 
 
 //        ProgressBar progressBar = findViewById(R.id.spin_kit);
-        Sprite doubleBounce = new CubeGrid();
+//        Sprite doubleBounce = new CubeGrid();
 //        progressBar.setIndeterminateDrawable(doubleBounce);
 //        timer = new Timer();
 //        timer.schedule(new TimerTask() {
@@ -82,7 +82,7 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
 //                new Handler(Looper.getMainLooper()).post(new Runnable() {
 //                    @Override
 //                    public void run() {
-////                        progressbar.setVisibility(View.GONE);
+//                        progressbar.setVisibility(View.GONE);
 //                    }
 //                });
 //            } //run

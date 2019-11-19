@@ -60,7 +60,7 @@
                 android:layout_marginEnd="5dp"
 
                 android:gravity="center"
-                android:text="Now you must keep a copy of the ticket information to display it when you visit Atturaif"
+                android:text="@string/ticketCopy"
                 android:textColor="@color/black"
                 android:textSize="17sp"
                 android:textStyle="bold" />
@@ -70,7 +70,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
-                android:text="Ticket Information:"
+                android:text="@string/ticketInfo"
                 android:textColor="#808080"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -160,7 +160,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_background"
                 android:onClick="writeExternalStorage"
-                android:text="Save Ticket"
+                android:text="@string/ticketSave"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:textStyle="bold" />

@@ -53,8 +53,8 @@ public class Shops_Adapter extends RecyclerView.Adapter<Shops_Adapter.MyViewHold
 
         String dess=shope.getDes();
 
-        if(shope.getDes().length()>90) {
-            dess = shope.getDes().substring(0, 90);
+        if(shope.getDes().length()>30) {
+            dess = shope.getDes().substring(0, 30);
         }
         holder.des.setText(dess+" ....");
         Picasso.with(context).load(shope.getImage()).into(holder.imageE);

@@ -51,7 +51,8 @@ import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
 
 public class Booking_Activity extends BasicActivity implements OnDateSelectedListener {
-    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
+    String[] descriptionDataEN = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
+    String[] descriptionDataAR = {"حجز تذكرة", "معاينة التذكرة", "الدفع","حفظ التذكرة"};
     Toolbar toolbar;
     LinearLayout tourType;
     MaterialCalendarView mcv;
@@ -85,8 +86,20 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
 
         stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
-        stateProgressBar.setStateDescriptionData(descriptionData);
 
+
+
+
+        if (MySharedPreference.getString(getApplicationContext(),
+                Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+
+            stateProgressBar.setStateDescriptionData(descriptionDataAR);
+
+
+        }else{
+
+            stateProgressBar.setStateDescriptionData(descriptionDataEN);
+        }
 
 
 

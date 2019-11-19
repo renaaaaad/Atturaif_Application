@@ -15,7 +15,9 @@ import androidx.appcompat.widget.Toolbar;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public class Payment extends BasicActivity {
-    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
+
+    String[] descriptionDataEN = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
+    String[] descriptionDataAR = {"حجز تذكرة", "معاينة التذكرة", "الدفع","حفظ التذكرة"};
     StateProgressBar stateProgressBar;
     TextView price_total, type, date;
     TextView me;
@@ -39,7 +41,19 @@ public class Payment extends BasicActivity {
 
 
         stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
-        stateProgressBar.setStateDescriptionData(descriptionData);
+
+        stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
+
+        if (MySharedPreference.getString(getApplicationContext(),
+                Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+
+            stateProgressBar.setStateDescriptionData(descriptionDataAR);
+
+
+        }else{
+
+            stateProgressBar.setStateDescriptionData(descriptionDataEN);
+        }
 
         Checkout = findViewById(R.id.button2);
 
