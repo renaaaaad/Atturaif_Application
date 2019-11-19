@@ -24,8 +24,6 @@ android {
     packagingOptions {
         merge 'lib/armeabi-v7a/libmain.so'
         merge 'lib/x86/libmain.so'
-        merge 'lib/armeabi-v7a/libunity.so'
-        merge 'lib/x86/libunity.so'
         merge 'lib/armeabi-v7a/libmono.so'
         merge 'lib/x86/libmono.so'
     }

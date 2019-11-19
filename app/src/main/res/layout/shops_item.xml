@@ -56,10 +56,11 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:lineSpacingExtra="8dp"
+                android:fontFamily="@font/arabtype"
                 android:text="Ecotourism With a Master Boo"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="29sp"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -72,7 +73,8 @@
                 android:lineSpacingExtra="8dp"
                 android:text="Ecotourism With a Master Boo"
                 android:textColor="#989898"
-                android:textSize="12sp"
+                android:fontFamily="@font/arabtype"
+                android:textSize="20sp"
                 android:layout_below="@+id/name"
                 />
 
@@ -98,7 +100,8 @@
                     android:text="@string/more"
                     android:textColor="@color/wheat"
                     android:gravity="center"
-                    android:textSize="14sp"
+                    android:textSize="24sp"
+                    android:fontFamily="@font/arabtype"
                     android:layout_below="@+id/des"
 
                     />

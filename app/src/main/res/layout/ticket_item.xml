@@ -40,7 +40,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/Adult"
                 android:textColor="@color/black"
-                android:textSize="22sp"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_marginTop="10dp"
                 android:text="fffffff"
                 android:textColor="@color/black"
-                android:textSize="19sp" />
+                android:textSize="25sp" />
 
 
             <LinearLayout

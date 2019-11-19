@@ -12,12 +12,13 @@
         android:id="@+id/toolbar"
         style="@android:style/Widget.Material.Toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="@string/Booking"
+        app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
         app:titleTextColor="@color/white" />
 
     <LinearLayout
@@ -60,6 +61,10 @@
                 android:layout_height="wrap_content"
                 app:spb_currentStateNumber="one"
                 app:spb_maxStateNumber="four"
+                android:layout_marginTop="15dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
                 app:spb_stateBackgroundColor="#BDBDBD"
                 app:spb_stateForegroundColor="#084D14"
                 app:spb_stateNumberBackgroundColor="#808080"
@@ -67,6 +72,7 @@
                 app:spb_currentStateDescriptionColor="#084D14"
                 app:spb_stateDescriptionColor="#808080"
                 app:spb_animateToCurrentProgressState="true"
+                android:theme="@style/AppTheme"
                 app:spb_checkStateCompleted="true"/>
 
 
@@ -74,22 +80,25 @@
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/teacher_info_calendarView"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:mcv_showWeekDays="true"
                 app:mcv_selectionColor="@color/colorPrimary"
                 app:mcv_showOtherDates="decorated_disabled"
+                app:mcv_headerTextAppearance="@style/calender"
+                app:mcv_weekDayTextAppearance="@style/calender"
+                app:mcv_dateTextAppearance="@style/calender"
+
                 />
 
             <TextView
                 android:id="@+id/open_Time"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
                 android:gravity="center"
                 android:textColor="@color/dark_red"
-                android:textSize="18sp" />
+                android:textSize="26sp" />
 
 
 

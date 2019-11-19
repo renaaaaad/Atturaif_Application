@@ -37,17 +37,35 @@ public class Ticket_Adapter extends RecyclerView.Adapter<Ticket_Adapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, int position) {
+        String price_en = "R.S";
+        String price_ar = "ر.س";
+
         Vistor_price vistor_price = vistor_prices.get(position);
         holder.visitor_type.setText(vistor_price.getType());
         double price = vistor_price.getPrice();
         double descount = vistor_price.getDiscount();
-        if (descount == 0)
-            holder.price.setText(Double.toString(price) + " " + context.getString(R.string.s_r));
+        if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+
+            if (descount == 0)
+                holder.price.setText(Double.toString(price) + " " + price_ar);
+            else {
+                descount = descount / 100;
+                price = price * descount;
+                holder.price.setText(Double.toString(price) + " " + price_ar);
+            } // else
+
+
+        }// if
         else {
-            descount = descount / 100;
-            price = price * descount;
-            holder.price.setText(Double.toString(price) + " " + context.getString(R.string.s_r));
-        } // else
+            if (descount == 0)
+                holder.price.setText(Double.toString(price) + " " + price_en);
+            else {
+                descount = descount / 100;
+                price = price * descount;
+                holder.price.setText(Double.toString(price) + " " + price_en);
+            } // else
+        } //else
+
 
         final double finalPrice = price;
         holder.add.setOnClickListener(new View.OnClickListener() {

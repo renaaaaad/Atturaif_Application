@@ -19,6 +19,7 @@
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="@string/event"
+        app:titleTextAppearance="@style/AppTheme"
         app:titleTextColor="@color/white" />
 
 
