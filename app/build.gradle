@@ -7,7 +7,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "project.graduation.atturaif_application"
-        minSdkVersion 27
+        minSdkVersion 25
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -35,7 +35,6 @@ configurations.all {exclude group: 'bitter.jnibridge.JNIBridge$a', module: 'bitt
 
 dependencies {
 
-    implementation project(':unityLibrary')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

@@ -194,7 +194,6 @@ public class EventsPage_Activity extends BasicActivity implements
 
 
 
-            mCalendarView.setOnDateChangedListener(this);
 
             mCalendarView.setOnDateChangedListener(this);
 
@@ -202,7 +201,9 @@ public class EventsPage_Activity extends BasicActivity implements
 
             mCalendarView.setOnDateChangedListener(this);
 
+            mCalendarView.setOnDateChangedListener(this);
 
+//
 
             recyclerView = findViewById(id.Eventrecycleview);
 
@@ -405,6 +406,7 @@ public class EventsPage_Activity extends BasicActivity implements
 
                     Events e = ds.getValue(Events.class);
 
+
                     List dates = mCalendarView.getSelectedDates();
 
 
@@ -423,8 +425,6 @@ public class EventsPage_Activity extends BasicActivity implements
                     if (eventList.isEmpty()) {
 
                         noeventlayout.setVisibility(LinearLayout.VISIBLE);
-
-
                     }
 
 
