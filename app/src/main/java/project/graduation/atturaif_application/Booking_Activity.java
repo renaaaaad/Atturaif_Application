@@ -38,9 +38,13 @@ import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import org.threeten.bp.DayOfWeek;
 import org.threeten.bp.format.DateTimeFormatter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -57,10 +61,13 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     LinearLayout tourType;
     MaterialCalendarView mcv;
     List<Open_Days> open_days;
+    Open_Days open;
     List<Tour> tours;
+    DatabaseReference reference;
     Button Continue;
     Timer timer;
     public static CalendarDay current_date;
+
     public static boolean flag1 = false;
     public static boolean flag2 = false;
     public static boolean flag3 = false;
@@ -98,13 +105,19 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         toolbar = findViewById(R.id.toolbar);
         tourType = findViewById(R.id.tourType);
         Continue = findViewById(R.id.Continue);
+        //
         open_Time = findViewById(R.id.open_Time);
+
         recyclerView = findViewById(R.id.ticket);
         noAvailableTickets = findViewById(R.id.noAvailableTickets);
         tours = new ArrayList<>();
         vistor_prices = new ArrayList<>();
+        //
         open_days = new ArrayList<>();
+        //
+
         mcv = findViewById(R.id.teacher_info_calendarView);
+
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
@@ -134,7 +147,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                     .setCalendarDisplayMode(CalendarMode.MONTHS)
                     .commit();
 
-            // getting the data from the database
+
             getData();
 
             mcv.setOnDateChangedListener(this);
@@ -147,7 +160,10 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             current_date = CalendarDay.from(current_year, current_month, current_day);
             mcv.setDateSelected(CalendarDay.from(current_year, current_month, current_day), true);
             mcv.getSelectedDate();
+            //
             open_Time.setText(R.string.you_cant_book_today);
+            recyclerView.setVisibility(LinearLayout.GONE);
+            Continue.setVisibility(LinearLayout.GONE);
 
             // get tour type data
             getTourType();
@@ -305,135 +321,66 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
     private void getData() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("open_hours");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    String day = child.getKey();
 
-                    if (day == null)
-                        return;
 
-                    String open_At = child.child("open").getValue(String.class);
-                    String close_At = child.child("close").getValue(String.class);
-                    Open_Days open_days_obj = new Open_Days(day, open_At, close_At);
-                    open_days.add(open_days_obj);
-                } // for
-                flag1 = true;
-            } //onDataChange
+        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
 
-            @Override
-            public void onCancelled(DatabaseError error) {
-                open_Time.setText(R.string.museum_close);
-            } //onCancelled
-        });
+            DatabaseReference myRef = database.getReference("open_hours").child("ar");
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        String day = child.getKey();
+
+                        if (day == null)
+                            return;
+
+                        String open_At = child.child("open").getValue(String.class);
+                        String close_At = child.child("close").getValue(String.class);
+                        Open_Days open_days_obj = new Open_Days(day, open_At, close_At);
+                        open_days.add(open_days_obj);
+                    } // for
+                    flag1 = true;
+                } //onDataChange
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    open_Time.setText(R.string.museum_close);
+                } //onCancelled
+            });
+
+        }
+
+        else{
+            DatabaseReference myRef = database.getReference("open_hours").child("en");
+            myRef.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot child : dataSnapshot.getChildren()) {
+                        String day = child.getKey();
+
+                        if (day == null)
+                            return;
+
+                        String open_At = child.child("open").getValue(String.class);
+                        String close_At = child.child("close").getValue(String.class);
+                        Open_Days open_days_obj = new Open_Days(day, open_At, close_At);
+                        open_days.add(open_days_obj);
+                    } // for
+                    flag1 = true;
+                } //onDataChange
+
+                @Override
+                public void onCancelled(DatabaseError error) {
+                    open_Time.setText(R.string.museum_close);
+                } //onCancelled
+            });
+
+        }
+
     } // get data
 
 
-    @Override
-    public void onDateSelected(@NonNull MaterialCalendarView materialCalendarView, @NonNull CalendarDay calendarDay, boolean b) {
-        if (calendarDay.equals(current_date)) {
-            open_Time.setText(R.string.you_cant_book_today);
-            return;
-        }
-        final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("EEE, d MMM yyyy");
-        final String text = b ? FORMATTER.format(calendarDay.getDate()) : "No Selection";
-
-        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
-            String first_three_letters = text.substring(0, 4);
-            Open_Days open_days1 = findDate(first_three_letters);
-            if (open_days1 == null) {
-                open_Time.setText(R.string.museum_close);
-                return;
-            } // if
-            open_Time.setText(getString(R.string.opens_at) + "   " + open_days1.getOpenAt() + " - " + open_days1.getCloseAt());
-        } else {
-            String first_three_letters = text.substring(0, 3);
-            Open_Days open_days1 = findDate(first_three_letters);
-            if (open_days1 == null) {
-                open_Time.setText(R.string.museum_close);
-                return;
-            } // if
-            open_Time.setText(getString(R.string.opens_at) + "   " + open_days1.getOpenAt() + " - " + open_days1.getCloseAt());
-
-        } //else
-
-
-    } //onDateSelected
-
-    private Open_Days findDate(String first_three_letters) {
-        Open_Days open_days2 = new Open_Days();
-        switch (first_three_letters) {
-            case "Sun":
-                open_days2 = search("Sunday");
-
-                break;
-            case "Mon":
-
-                open_days2 = search("Monday");
-                break;
-            case "Tue":
-
-                open_days2 = search("Tuesday");
-                break;
-            case "Sat":
-
-                open_days2 = search("Saturday");
-                break;
-            case "Fri":
-
-                open_days2 = search("Friday");
-                break;
-            case "Wed":
-
-                open_days2 = search("Wednesday");
-                break;
-            case "Thu":
-
-                open_days2 = search("Thursday");
-                break;
-            case "الأح":
-                open_days2 = search("Sunday");
-                break;
-            case "الاث":
-                open_days2 = search("Monday");
-
-
-                break;
-            case "الثل":
-                open_days2 = search("Tuesday");
-                break;
-            case "الأر":
-                open_days2 = search("Wednesday");
-
-                break;
-            case "الخم":
-                open_days2 = search("Thursday");
-
-                break;
-            case "الجم":
-                open_days2 = search("Friday");
-
-                break;
-            case "السب":
-                open_days2 = search("Saturday");
-
-
-                break;
-        }// switch
-        return open_days2;
-    } //findDate
-
-    private Open_Days search(String day) {
-        for (int i = 0; i < open_days.size(); i++) {
-            if (open_days.get(i).getDay().equals(day))
-                return open_days.get(i);
-            else
-                continue;
-        }// for
-        return null;
-    } //Open_Days
 
 
     protected void onRestart() {
@@ -464,5 +411,141 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
         return have_WIFI || have_MobileData;
     }
+
+    @Override
+    public void onDateSelected(@NonNull MaterialCalendarView widget, @NonNull CalendarDay calendarDay, boolean selected) {
+
+        if (calendarDay.equals(current_date)) {
+            open_Time.setText(R.string.you_cant_book_today);
+            recyclerView.setVisibility(LinearLayout.GONE);
+            Continue.setVisibility(LinearLayout.GONE);
+            return;
+        }
+
+        CalendarDay selectedDate = mcv.getSelectedDate();
+
+        final int Sday = selectedDate.getDay();
+
+        final int Smonth = selectedDate.getMonth();
+
+        final int Syear = selectedDate.getYear();
+
+        if(current_date.getYear()>Syear){
+            open_Time.setText(R.string.you_cant_book_today);
+            recyclerView.setVisibility(LinearLayout.GONE);
+            Continue.setVisibility(LinearLayout.GONE);
+            return;
+        }
+        else {
+            if (current_date.getMonth() > Smonth) {
+                open_Time.setText(R.string.you_cant_book_today);
+                recyclerView.setVisibility(LinearLayout.GONE);
+                Continue.setVisibility(LinearLayout.GONE);
+                return;
+            }else {
+                if (current_date.getDay() > Sday) {
+                    open_Time.setText(R.string.you_cant_book_today);
+                    recyclerView.setVisibility(LinearLayout.GONE);
+                    Continue.setVisibility(LinearLayout.GONE);
+                    return;
+                }
+            }
+        }
+
+
+        open=new Open_Days();
+
+        String dateString = String.format("%d-%d-%d", Syear, Smonth, Sday);
+        Date date1 = null;
+        try {
+            date1= new SimpleDateFormat("yyyy-M-d").parse(dateString);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        // Then get the day of week from the Date based on specific locale.
+
+        final String dayOfWeek = new SimpleDateFormat("EEEE", Locale.ENGLISH).format(date1);
+
+
+        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+
+            final String dayOfWeekAR=ArdayOfWeek(dayOfWeek);
+            boolean done=false;
+            for(int i=0;i<open_days.size();i++){
+                Open_Days o= open_days.get(i);
+                if(o.getDay().equals(dayOfWeekAR)){
+                    open_Time.setText(getString(R.string.opens_at) + "  " + o.getOpenAt() + " الى " + o.getCloseAt());
+                    done=true;
+                    break;
+                }
+
+            }
+            if(done==false)
+                open_Time.setText(R.string.you_cant_book_today);
+
+
+        }
+        else{
+
+            boolean done=false;
+
+            for(int i=0;i<open_days.size();i++){
+                Open_Days o= open_days.get(i);
+                if(o.getDay().equals(dayOfWeek)){
+                    open_Time.setText(getString(R.string.opens_at) + "   " + o.getOpenAt() + " to " + o.getCloseAt());
+                    done=true;
+                }
+
+            }
+            if(done==false)
+                open_Time.setText(R.string.you_cant_book_today);
+            }
+
+        recyclerView.setVisibility(View.VISIBLE);
+        Continue.setVisibility(View.VISIBLE);
+        }
+
+
+
+
+
+
+
+    private String ArdayOfWeek(String dayOfWeek) {
+
+        String dayAR=null;
+
+        switch (dayOfWeek) {
+            case "Sunday":
+                dayAR = "الأحد";
+
+                break;
+            case "Monday":
+                dayAR = "الاثنين";
+                break;
+            case "Tuesday":
+                dayAR = "الثلاثاء";
+                break;
+            case "Saturday":
+
+                dayAR = "السبت";
+                break;
+            case "Friday":
+
+                dayAR = "الجمعة";
+                break;
+            case "Wednesday":
+
+                dayAR = "الأربعاء";
+                break;
+            case "Thursday":
+                        dayAR = "الخميس";
+                break;
+
+        }// switch
+        return dayAR;
+    } //findDate
+
 
 } //class
