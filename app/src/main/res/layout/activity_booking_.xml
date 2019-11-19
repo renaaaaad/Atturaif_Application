@@ -21,10 +21,13 @@
         app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
         app:titleTextColor="@color/white" />
 
+
     <LinearLayout
         android:id="@+id/progressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
+        android:visibility="visible"
         android:gravity="center_horizontal">
 
         <com.github.ybq.android.spinkit.SpinKitView
@@ -35,7 +38,6 @@
             android:layout_gravity="center"
             app:SpinKit_Color="@color/colorAccent" />
     </LinearLayout>
-
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -52,31 +54,89 @@
                 android:layout_height="311dp"
                 android:src="@drawable/atturaif_"/>
 
-
-
-
             <com.kofigyan.stateprogressbar.StateProgressBar
                 android:id="@+id/your_state_progress_bar_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:spb_animateToCurrentProgressState="true"
+                app:spb_checkStateCompleted="true"
+                app:spb_currentStateDescriptionColor="#084D14"
                 app:spb_currentStateNumber="one"
                 app:spb_maxStateNumber="four"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="5dp"
-                android:layout_marginEnd="5dp"
-                android:layout_marginBottom="10dp"
                 app:spb_stateBackgroundColor="#BDBDBD"
+                app:spb_stateDescriptionColor="#808080"
                 app:spb_stateForegroundColor="#084D14"
                 app:spb_stateNumberBackgroundColor="#808080"
-                app:spb_stateNumberForegroundColor="#eeeeee"
-                app:spb_currentStateDescriptionColor="#084D14"
-                app:spb_stateDescriptionColor="#808080"
-                app:spb_animateToCurrentProgressState="true"
-                android:theme="@style/AppTheme"
-                app:spb_checkStateCompleted="true"/>
+                app:spb_stateNumberForegroundColor="#eeeeee" />
+
+            <LinearLayout
+                android:layout_width="428dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="58dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="59dp"
+                        android:layout_height="42dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/calendar_book" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="23dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="51dp"
+                        android:layout_height="34dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/total_tickets" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="23dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="55dp"
+                        android:layout_height="34dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/credit_card" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="23dp"
+                    android:layout_height="54dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="32dp"
+                        android:layout_margin="5dp"
+                        android:src="@drawable/download" />
+
+                </LinearLayout>
 
 
-
+            </LinearLayout>
 
             <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/teacher_info_calendarView"
