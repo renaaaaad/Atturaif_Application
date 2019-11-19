@@ -1,5 +1,9 @@
-<resources>
-    <string name="app_name" translatable="false">Atturaif</string>
+
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" translatable="false">Atturaif_Application</string>
+
+
+
     <string name="Booking">Booking</string>
     <string name="Home">Home</string>
     <string name="Events">Events</string>
@@ -64,6 +68,9 @@
     <string name="neighbours_houses">Neighbours Houses</string>
     <string name="the_palace">The Palace</string>
     <string name="salwa_neighbour">Salwa Neighbour</string>
+
+    <string name="game_view_content_description" tools:ignore="MissingTranslation">Salwa Neighbour</string>
+
     <string name="shopdayname">Day</string>
     <string name="opentimeshop">Open Time</string>
     <string name="Atturaif_shops">Atturaif Shops</string>
@@ -75,5 +82,7 @@
     <string name="buy">Buy ticket</string>
     <string name="checkout">Checkout</string>
     <string name="Adult">Adult</string>
+    <string name="connection">Network connection is not available!</string>
+
 
 </resources>
