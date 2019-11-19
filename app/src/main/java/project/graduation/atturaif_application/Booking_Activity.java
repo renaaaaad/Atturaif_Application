@@ -51,8 +51,8 @@ import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
 
 public class Booking_Activity extends BasicActivity implements OnDateSelectedListener {
-    String[] descriptionDataEN = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
-    String[] descriptionDataAR = {"حجز تذكرة", "معاينة التذكرة", "الدفع","حفظ التذكرة"};
+
+
     Toolbar toolbar;
     LinearLayout tourType;
     MaterialCalendarView mcv;
@@ -90,16 +90,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
 
 
-        if (MySharedPreference.getString(getApplicationContext(),
-                Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
-
-            stateProgressBar.setStateDescriptionData(descriptionDataAR);
-
-
-        }else{
-
-            stateProgressBar.setStateDescriptionData(descriptionDataEN);
-        }
+     
 
 
 
@@ -275,7 +266,13 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    String type = child.getKey();
+                    String type="";
+                    if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")){
+                       type  = child.child("name_ar").getValue(String.class);
+                    }
+                    else
+                        type  = child.child("name_en").getValue(String.class);
+
                     int price = child.child("price").getValue(Integer.class);
                     int discount = child.child("discount").getValue(Integer.class);
                     Vistor_price vistor_price = new Vistor_price(type, price, discount);

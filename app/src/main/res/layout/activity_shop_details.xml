@@ -18,6 +18,7 @@
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="@string/Shops"
+        app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
         app:titleTextColor="@color/white" />
 
 
@@ -90,9 +91,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
-                            android:text="shop name"
+                            android:text="shop  name"
                             android:textColor="@color/ghost_white"
-                            android:textSize="30sp" />
+                            android:textSize="60sp" />
 
 
                     </LinearLayout>
@@ -135,9 +136,10 @@
                                     android:layout_marginStart="10dp"
                                     android:layout_marginTop="20dp"
                                     android:text="@string/Description"
-                                    android:textColor="@color/black"
-                                    android:textSize="18sp"
-                                    android:textStyle="bold"/>
+                                    android:textStyle="bold"
+                                    android:textColor="@color/dark_gray"
+                                    android:textSize="30sp"
+                                   />
 
                                 <TextView
                                     android:id="@+id/shopdesc"
@@ -146,8 +148,8 @@
                                     android:layout_below="@+id/viewdes"
                                     android:lineSpacingMultiplier="1.5"
                                     android:padding="12dp"
-                                    android:textColor="@color/Lightblack"
-                                    android:textSize="14sp" />
+                                    android:textColor="@color/dark_gray"
+                                    android:textSize="26sp" />
 
 
                                 <TextView
@@ -157,9 +159,9 @@
                                     android:layout_below="@+id/shopdesc"
                                     android:layout_marginStart="10dp"
                                     android:text="@string/Open_on"
-                                    android:textColor="@color/black"
+                                    android:textColor="@color/dark_gray"
                                     android:textStyle="bold"
-                                    android:textSize="18sp"
+                                    android:textSize="30sp"
                                     />
 
 

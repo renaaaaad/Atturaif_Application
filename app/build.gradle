@@ -24,8 +24,6 @@ android {
     packagingOptions {
         merge 'lib/armeabi-v7a/libmain.so'
         merge 'lib/x86/libmain.so'
-        merge 'lib/armeabi-v7a/libunity.so'
-        merge 'lib/x86/libunity.so'
         merge 'lib/armeabi-v7a/libmono.so'
         merge 'lib/x86/libmono.so'
     }
@@ -35,7 +33,6 @@ configurations.all {exclude group: 'bitter.jnibridge.JNIBridge$a', module: 'bitt
 
 dependencies {
 
-    implementation project(':unityLibrary')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
