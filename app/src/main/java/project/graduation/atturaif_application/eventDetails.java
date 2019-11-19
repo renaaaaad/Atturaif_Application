@@ -35,6 +35,7 @@ public class eventDetails extends BasicActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
         if(haveNetwork()) {
             Intent intent = getIntent();
             String name = intent.getStringExtra(Constant.Keys.EVENT_NAME);

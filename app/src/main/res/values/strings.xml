@@ -9,8 +9,6 @@
     <string name="virtual_tour">take quick glance</string>
     <string name="Language">EN</string>
     <string name="event">event</string>
-
-
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="museum_close">The Museum are close</string>
@@ -45,7 +43,6 @@
     <string name="sitting">Settings</string>
     <string name="notification">Notification</string>
     <string name="QueickGlance">Quick glance</string>
-
     <string name="atturaif_is_a_district_located_in_al_dir_iya_at_northwest_of_riyadh_city_in_kingdom_of_saudi_arabia_it_was_the_first_capital_of_the_saudi_dynasty_after_mohammed_bin_abdul_wahhabi_religious_renewal_call_in_1157">Atturaif is a district located in Al-Dir’iya, at Northwest of Riyadh city in Kingdom of Saudi Arabia. It was the first capital of the Saudi Dynasty after Mohammed bin Abdul Wahhabi religious renewal call in 1157.</string>
     <string name="about_us">About us </string>
     <string name="contact_us">Contact us :</string>
@@ -71,9 +68,12 @@
     <string name="opentimeshop">Open Time</string>
     <string name="Atturaif_shops">Atturaif Shops</string>
     <string name="more">more</string>
-
-
-
-
+    <string name="ticketCopy">Now you must keep a copy of the ticket information to display it when you visit Atturaif</string>
+    <string name="ticketInfo">Ticket Information:</string>
+    <string name="ticketSave">Save Ticket</string>
+    <string name="total">Total</string>
+    <string name="buy">Buy ticket</string>
+    <string name="checkout">Checkout</string>
+    <string name="Adult">Adult</string>
 
 </resources>

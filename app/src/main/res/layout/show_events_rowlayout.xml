@@ -5,13 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    android:elevation="1dp"
-    android:orientation="vertical">
+    android:elevation="10dp"
+    android:orientation="vertical"
+    app:cardCornerRadius="17dp"
+    app:cardElevation="0dp"
+    android:layout_centerHorizontal="true"
+    android:innerRadius="0dp"
+    android:shape="ring"
+    android:thicknessRatio="1.9"
+    app:cardBackgroundColor="@color/ghost_white"
+
+    >
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+        <com.github.florent37.shapeofview.shapes.RoundRectView
+            app:shape_roundRect_topRightRadius="8dp"
+            app:shape_roundRect_topLeftRadius="8dp"
+            app:shape_roundRect_bottomLeftRadius="8dp"
+            app:shape_roundRect_bottomRightRadius="8dp"
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/EventImage"
             android:layout_width="402dp"
@@ -19,6 +35,7 @@
             android:scaleType="centerCrop"
             android:src="@drawable/placeholder"
             android:tint="@color/photo_tint" />
+        </com.github.florent37.shapeofview.shapes.RoundRectView>
 
         <LinearLayout
             android:layout_width="match_parent"

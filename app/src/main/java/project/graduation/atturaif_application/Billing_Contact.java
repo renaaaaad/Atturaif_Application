@@ -27,7 +27,9 @@ public class Billing_Contact extends AppCompatActivity  {
     Button buy;
     CardForm cardForm;
     AlertDialog.Builder alertBuilder;
-    String[] descriptionData = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
+    String[] descriptionDataEN = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
+    String[] descriptionDataAR = {"حجز تذكرة", "معاينة التذكرة", "الدفع","حفظ التذكرة"};
+
     StateProgressBar stateProgressBar;
     private static final String TAG = "Billing_Contact";
     private FirebaseAuth mAuth;
@@ -47,7 +49,18 @@ public class Billing_Contact extends AppCompatActivity  {
         buy = findViewById(R.id.btnBuy);
 
         stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
-        stateProgressBar.setStateDescriptionData(descriptionData);
+
+        if (MySharedPreference.getString(getApplicationContext(),
+                Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+
+            stateProgressBar.setStateDescriptionData(descriptionDataAR);
+
+
+        }else{
+
+            stateProgressBar.setStateDescriptionData(descriptionDataEN);
+        }
+
 
 
         // progressBar = (ProgressBar) findViewById(R.id.progressbar);
@@ -95,30 +108,70 @@ public class Billing_Contact extends AppCompatActivity  {
             public void onClick(View view) {
                 if (cardForm.isValid()) {
                     alertBuilder = new AlertDialog.Builder(Billing_Contact.this);
-                    alertBuilder.setTitle("Confirm before purchase");
-                    alertBuilder.setMessage("Card number: " + cardForm.getCardNumber() + "\n" +
-                            "Card expiry date: " + cardForm.getExpirationDateEditText().getText().toString() + "\n" +
-                            "Card CVV: " + cardForm.getCvv() + "\n" +
-                            "Postal code: " + cardForm.getPostalCode() + "\n" +
-                            "Phone number: " + cardForm.getMobileNumber());
-                    alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                            startActivity(new Intent(Billing_Contact.this, Save_Ticket.class));
-                        }
-                    });
-                    alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                            dialogInterface.dismiss();
-                        }
-                    });
+
+
+
+
+                    if (MySharedPreference.getString(getApplicationContext(),
+                            Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+
+                        alertBuilder.setTitle("تأكيد عملية الشراء");
+                        alertBuilder.setMessage("رقم البطاقة:" + cardForm.getCardNumber() + "\n" +
+                                "تاريخ انتهاء البطاقة:" + cardForm.getExpirationDateEditText().getText().toString() + "\n" +
+                                "الرقم السري للبطاقة:" + cardForm.getCvv() + "\n" +
+                                "الرمز البريدي:" + cardForm.getPostalCode() + "\n" +
+                                "رقم الهاتف:" + cardForm.getMobileNumber());
+                        alertBuilder.setPositiveButton("تأكيد", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                startActivity(new Intent(Billing_Contact.this, Save_Ticket.class));
+                            }
+                        });
+                        alertBuilder.setNegativeButton("الغاء", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+
+                    }
+                    else{
+
+                        alertBuilder.setTitle("Confirm before purchase");
+                        alertBuilder.setMessage("Card number: " + cardForm.getCardNumber() + "\n" +
+                                "Card expiry date: " + cardForm.getExpirationDateEditText().getText().toString() + "\n" +
+                                "Card CVV: " + cardForm.getCvv() + "\n" +
+                                "Postal code: " + cardForm.getPostalCode() + "\n" +
+                                "Phone number: " + cardForm.getMobileNumber());
+                        alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                startActivity(new Intent(Billing_Contact.this, Save_Ticket.class));
+                            }
+                        });
+                        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                            }
+                        });
+                    }
+
                     AlertDialog alertDialog = alertBuilder.create();
                     alertDialog.show();
 
                 } else {
-                    Toast.makeText(Billing_Contact.this, "Please complete the form", Toast.LENGTH_LONG).show();
+
+                    if (MySharedPreference.getString(getApplicationContext(),
+                            Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+                        Toast.makeText(Billing_Contact.this, "الرجاء تأكد من ملء النموذج", Toast.LENGTH_LONG).show();
+                    }
+                    else{
+                        Toast.makeText(Billing_Contact.this, "Please complete the form", Toast.LENGTH_LONG).show();
+
+                    }
                 }
             }
         });
