@@ -72,7 +72,7 @@
     <string name="the_palace">The Palace</string>
     <string name="salwa_neighbour">Salwa Neighbour</string>
 
-    <string name="game_view_content_description" tools:ignore="MissingTranslation">Salwa Neighbour</string>
+    <string name="game_view_content_description" tools:ignore="MissingTranslation">game_view_content_description</string>
 
     <string name="shopdayname">Day</string>
     <string name="opentimeshop">Open Time</string>

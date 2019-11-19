@@ -43,7 +43,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         more_button = findViewById(R.id.more_button);
         sliderView = findViewById(R.id.imageSlider);
 
-        sliderView.setSliderAdapter(new SliderAdapterExample(getApplicationContext()));
+        sliderView.setSliderAdapter(new SliderAdapterExample(HomePage_Activity.this));
         sliderView.startAutoCycle();
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
 

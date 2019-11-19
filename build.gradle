@@ -17,13 +17,14 @@ buildscript {
 allprojects {
     repositories {
 
-        flatDir {
-            dirs "${project(':unityLibrary').projectDir}/libs"
-        }
-
         maven { url 'https://jitpack.io'}
         google()
         jcenter()
+
+
+        flatDir {
+            dirs "${project(':unityLibrary').projectDir}/libs"
+        }
         
     }
 }
