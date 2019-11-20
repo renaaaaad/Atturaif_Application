@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    >
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -12,5 +13,45 @@
         android:layout_marginTop="18dp"
         android:text="@string/are_you_sure_you_want_to_leave"
         android:textColor="@color/colorAccent"
-        android:textSize="18sp" />
-</LinearLayout>
+        android:textAppearance="@style/AppTheme"
+        android:textSize="25dp"
+        />
+
+    <LinearLayout
+        android:layout_below="@+id/text"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_yes"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/yes"
+            android:background="@drawable/dialogbtn"
+            android:layout_margin="10dp"
+            android:textAppearance="@style/AppTheme"
+            android:textSize="30dp"
+
+            />
+
+        <Button
+            android:id="@+id/btn_no"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/no"
+            android:background="@drawable/dialogbtn"
+            android:layout_margin="10dp"
+            android:textAppearance="@style/AppTheme"
+            android:textSize="30dp"
+
+            />
+
+
+    </LinearLayout>
+</RelativeLayout>

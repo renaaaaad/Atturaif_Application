@@ -29,10 +29,10 @@
 
         <activity
             android:name=".Save_Ticket"
-            android:parentActivityName=".Billing_Contact" />
+             />
         <activity
             android:name=".Billing_Contact"
-            android:parentActivityName=".Payment" />
+          />
         <activity android:name=".shopdays_item" />
         <activity android:name=".shopDetails">
             <meta-data

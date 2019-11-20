@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:layout_marginTop="18dp"
+            android:text="@string/Confirm_before_purchase"
+            android:textColor="@color/colorAccent"
+            android:textAppearance="@style/AppTheme"
+            android:textSize="25dp"
+            />
+
+
+            <TextView
+                android:id="@+id/card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="1dp"
+                android:text="card"
+                android:layout_marginStart="5dp"
+                android:textAppearance="@style/AppTheme"
+                android:textColor="@color/colorAccent"
+                android:textSize="20dp"
+                android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/expdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="card"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/AppTheme"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/ccv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="card"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/AppTheme"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/postcode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="card"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/AppTheme"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/phonenum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
+            android:text="card"
+            android:layout_marginStart="5dp"
+            android:textAppearance="@style/AppTheme"
+            android:textColor="@color/colorAccent"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@+id/text"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_con"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/confirm"
+            android:background="@drawable/dialogbtn"
+            android:layout_margin="10dp"
+            android:textAppearance="@style/AppTheme"
+            android:textSize="30dp"
+
+            />
+
+        <Button
+            android:id="@+id/btn_can"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/Cancel"
+            android:background="@drawable/dialogbtn"
+            android:layout_margin="10dp"
+            android:textAppearance="@style/AppTheme"
+            android:textSize="30dp"
+
+            />
+
+
+    </LinearLayout>
+</RelativeLayout>

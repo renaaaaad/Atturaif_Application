@@ -17,6 +17,8 @@
         android:gravity="center"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
+
         app:title="@string/Booking"
         app:titleTextColor="@color/white" />
 
@@ -58,100 +60,115 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="5dp"
-
-                android:gravity="center"
                 android:text="@string/ticketCopy"
                 android:textColor="@color/black"
-                android:textSize="17sp"
-                android:textStyle="bold" />
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="20dp"
-                android:gravity="center"
-                android:text="@string/ticketInfo"
-                android:textColor="#808080"
-                android:textSize="16sp"
+                android:textAppearance="@style/AppTheme"
+                android:textSize="20dp"
                 android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="282dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:text="@string/ticketInfo"
+                    android:textAppearance="@style/AppTheme"
+
+                    android:textColor="#808080"
+                    android:textStyle="bold" />
+                <View
+                    android:layout_width="310dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:background="@color/gray" />
 
                 <LinearLayout
                     android:layout_width="280dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="3dp"
                     android:layout_marginStart="70dp"
                     android:orientation="horizontal">
 
                     <LinearLayout
-                        android:layout_width="220dp"
-                        android:layout_height="84dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_margin="1dp"
-                        android:layout_weight="4"
-
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_weight="1"
-                            android:layout_marginStart="45dp"
-                            android:text="@string/date"
-                            android:textColor="@color/dark_gray"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:id="@+id/date"
-                            android:layout_width="wrap_content"
-                            android:layout_height="12dp"
-                            android:layout_margin="5dp"
-                            android:layout_weight="1"
-                            android:textColor="@color/black"
-                            android:textSize="16sp" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="90dp"
-                        android:layout_height="81dp"
-                        android:layout_margin="5dp"
                         android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
-                            android:layout_width="53dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="18dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
                             android:layout_weight="1"
+                            android:text="@string/date"
+                            android:textAppearance="@style/AppTheme"
+
+                            android:textColor="@color/dark_gray" />
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:text="ffd"
+                            android:textColor="@color/black"
+                            android:textSize="20sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
                             android:text="@string/price"
-                            android:layout_marginStart="6.5dp"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_weight="1"
+                            android:textAppearance="@style/AppTheme"
+
                             android:textColor="@color/dark_gray"
-                            android:textSize="16sp" />
+
+                            />
 
                         <TextView
                             android:id="@+id/price_total"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_margin="3dp"
                             android:layout_weight="1"
                             android:textColor="@color/black"
-                            android:textSize="16sp" />
+                            android:layout_marginStart="10dp"
+                            android:text="ffd"
+                            android:textSize="20sp"
+                            />
                     </LinearLayout>
 
-                </LinearLayout>
-
-
-
-
+            </LinearLayout>
 
 
 
             </LinearLayout>
+            
             <Button
+                android:id="@+id/save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -162,8 +179,9 @@
                 android:onClick="writeExternalStorage"
                 android:text="@string/ticketSave"
                 android:textColor="@color/white"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:textAppearance="@style/AppTheme"
+                />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
