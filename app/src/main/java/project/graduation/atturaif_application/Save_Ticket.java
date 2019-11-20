@@ -24,8 +24,6 @@ import java.io.IOException;
 public class Save_Ticket extends AppCompatActivity {
     Toolbar toolbar;
     TextView price_total, date;
-    String[] descriptionDataEN = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
-    String[] descriptionDataAR = {"حجز تذكرة", "معاينة التذكرة", "الدفع","حفظ التذكرة"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,16 +41,7 @@ public class Save_Ticket extends AppCompatActivity {
 
         StateProgressBar stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
 
-        if (MySharedPreference.getString(getApplicationContext(),
-                Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
 
-            stateProgressBar.setStateDescriptionData(descriptionDataAR);
-
-
-        }else{
-
-            stateProgressBar.setStateDescriptionData(descriptionDataEN);
-        }
 
 
     }

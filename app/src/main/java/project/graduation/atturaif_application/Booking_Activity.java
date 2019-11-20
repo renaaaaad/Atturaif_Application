@@ -2,6 +2,7 @@ package project.graduation.atturaif_application;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -11,6 +12,7 @@ import android.os.Looper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -29,7 +31,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.kofigyan.stateprogressbar.StateProgressBar;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.CalendarMode;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
@@ -54,6 +55,8 @@ import project.graduation.atturaif_application.Objectes.Open_Days;
 import project.graduation.atturaif_application.Objectes.Tour;
 import project.graduation.atturaif_application.Objectes.Vistor_price;
 
+import static project.graduation.atturaif_application.Constant.Keys.BOOKING_DATE;
+
 public class Booking_Activity extends BasicActivity implements OnDateSelectedListener {
 
 
@@ -64,6 +67,9 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     Open_Days open;
     List<Tour> tours;
     DatabaseReference reference;
+    EditText numberOfTickets;
+    Context context;
+
     Button Continue;
     Timer timer;
     public static CalendarDay current_date;
@@ -80,7 +86,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     List<Vistor_price> vistor_prices;
     Ticket_Adapter ticket_adapter;
     public static AlertDialog.Builder alertDialog;
-    StateProgressBar stateProgressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +97,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         progressBar.setIndeterminateDrawable(doubleBounce);
 
 
-        stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
 
 
 
@@ -182,15 +186,19 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             Continue.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-                    final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
-                    MySharedPreference.putString(getApplicationContext(), Constant.Keys.BOOKING_DATE, text);
+                    //MySharedPreference.getFolat(context, Constant.Keys.User_PRICE, 0
+                    if (MySharedPreference.getFolat(context,Constant.Keys.User_PRICE,0)!=0) {
+                        final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
+                        final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
+                        MySharedPreference.putString(getApplicationContext(), BOOKING_DATE, text);
                         startActivity(new Intent(Booking_Activity.this, Payment.class));
 
-                       // Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
 
 
+                        // Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
+                    }
                 }//onClick
 
             }); //onClick

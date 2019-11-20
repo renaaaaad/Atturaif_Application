@@ -143,7 +143,7 @@
                                 android:layout_marginTop="5dp"
                                 android:layout_marginBottom="5dp"
                                 android:gravity="center"
-                                android:text="@string/Booking"
+                                android:text="@string/Book"
                                 android:textColor="#BF9054"
                                 android:textSize="26sp" />
                         </LinearLayout>

@@ -27,8 +27,6 @@ public class Billing_Contact extends AppCompatActivity  {
     Button buy;
     CardForm cardForm;
     AlertDialog.Builder alertBuilder;
-    String[] descriptionDataEN = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
-    String[] descriptionDataAR = {"حجز تذكرة", "معاينة التذكرة", "الدفع","حفظ التذكرة"};
 
     StateProgressBar stateProgressBar;
     private static final String TAG = "Billing_Contact";
@@ -50,16 +48,7 @@ public class Billing_Contact extends AppCompatActivity  {
 
         stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
 
-        if (MySharedPreference.getString(getApplicationContext(),
-                Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
 
-            stateProgressBar.setStateDescriptionData(descriptionDataAR);
-
-
-        }else{
-
-            stateProgressBar.setStateDescriptionData(descriptionDataEN);
-        }
 
 
 
