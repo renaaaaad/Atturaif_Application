@@ -16,7 +16,9 @@
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="@string/language"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/white"
+        app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
+        />
 
     <LinearLayout
         android:id="@+id/lang"
@@ -35,7 +37,8 @@
             android:gravity="center"
             android:text="@string/arabic"
             android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
+            android:textAppearance="@style/AppTheme"
+            />
 
 
     </LinearLayout>
@@ -62,7 +65,8 @@
             android:gravity="center"
             android:text="@string/english"
             android:textColor="@color/colorPrimary"
-            android:textSize="20sp" />
+            android:textAppearance="@style/AppTheme"
+            />
 
 
     </LinearLayout>

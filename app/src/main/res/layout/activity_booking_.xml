@@ -206,6 +206,7 @@
                 android:textColor="@color/white"
                 android:textSize="26sp"
                 android:textStyle="bold" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

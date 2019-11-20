@@ -484,6 +484,8 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                 Open_Days o= open_days.get(i);
                 if(o.getDay().equals(dayOfWeekAR)){
                     open_Time.setText(getString(R.string.opens_at) + "  " + o.getOpenAt() + " الى " + o.getCloseAt());
+                    recyclerView.setVisibility(View.VISIBLE);
+                    Continue.setVisibility(View.VISIBLE);
                     done=true;
                     break;
                 }
@@ -491,8 +493,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             }
             if(done==false)
                 open_Time.setText(R.string.you_cant_book_today);
-
-
         }
         else{
 
@@ -502,16 +502,17 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                 Open_Days o= open_days.get(i);
                 if(o.getDay().equals(dayOfWeek)){
                     open_Time.setText(getString(R.string.opens_at) + "   " + o.getOpenAt() + " to " + o.getCloseAt());
+                    recyclerView.setVisibility(View.VISIBLE);
+                    Continue.setVisibility(View.VISIBLE);
                     done=true;
                 }
 
             }
             if(done==false)
                 open_Time.setText(R.string.you_cant_book_today);
+            return;
             }
 
-        recyclerView.setVisibility(View.VISIBLE);
-        Continue.setVisibility(View.VISIBLE);
         }
 
 

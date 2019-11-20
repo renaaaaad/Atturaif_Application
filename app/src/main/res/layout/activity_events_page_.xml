@@ -17,6 +17,7 @@
         android:gravity="center"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
         app:title="@string/Events"
         app:titleTextColor="@color/white" />
 
@@ -82,7 +83,13 @@
                 app:mcv_showOtherDates="all"
                 app:mcv_tileSize="50dp"
                 app:mcv_titleAnimationOrientation="vertical"
-                />
+
+                           xmlns:app="http://schemas.android.com/apk/res-auto"
+                           app:mcv_headerTextAppearance="@style/calender"
+                           app:mcv_weekDayTextAppearance="@style/calender"
+                           app:mcv_dateTextAppearance="@style/calender"
+
+                           />
 
             <LinearLayout
                 android:id="@+id/linearlayoutnoevent"
@@ -107,7 +114,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/No_events"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="20sp" />
+                    android:textAppearance="@style/AppTheme"
+                    />
 
             </LinearLayout>
 

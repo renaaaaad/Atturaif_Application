@@ -15,6 +15,7 @@
         android:gravity="center"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
         app:title="@string/sitting"
         app:titleTextColor="@color/white" />
 
@@ -32,8 +33,12 @@
             android:layout_width="170dp"
             android:layout_height="match_parent"
             android:text="@string/language"
+            android:textAppearance="@style/AppTheme"
             android:textColor="@color/colorPrimary"
+
             android:textSize="25sp" />
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -43,13 +48,13 @@
             <ImageView
                 android:id="@+id/nextArrow"
                 android:layout_width="30dp"
+                android:layout_marginTop="12dp"
                 android:layout_height="30dp"
                 android:layout_gravity="end"
                 android:src="@drawable/arrow_next" />
 
         </LinearLayout>
     </LinearLayout>
-    <!--......................Divider1......................-->
 
     <View
         android:layout_width="match_parent"

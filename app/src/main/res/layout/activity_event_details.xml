@@ -18,8 +18,8 @@
         android:gravity="center"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
         app:title="@string/event"
-        app:titleTextAppearance="@style/AppTheme"
         app:titleTextColor="@color/white" />
 
 
@@ -98,7 +98,8 @@
                             android:gravity="center"
                             android:text="Event name"
                             android:textColor="@color/white"
-                            android:textSize="30sp" />
+                            android:textAppearance="@style/AppTheme"
+                            />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -123,6 +124,7 @@
                                 android:gravity="center"
                                 android:text="Event Time"
                                 android:textColor="@android:color/white"
+                                android:textAppearance="@style/AppTheme"
                                 android:textSize="15sp" />
                         </LinearLayout>
 
@@ -162,21 +164,22 @@
                                 android:layout_marginStart="10dp"
                                 android:layout_marginTop="20dp"
                                 android:layout_marginBottom="20dp"
-                                android:textColor="@color/black"
                                 android:text="@string/Description"
-                                android:textSize="18sp"
                                 android:textStyle="bold"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="30sp"
                                 />
 
                             <TextView
                                 android:id="@+id/eventdesc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="40dp"
+                                android:layout_marginTop="50dp"
                                 android:lineSpacingMultiplier="1.5"
                                 android:padding="12dp"
-                                android:textColor="@color/black"
-                                android:textSize="14sp"
+                                android:text="kjbj,bnkn,mn,nn, knmn,n,kmn,nkmn,n,nkm ,b bj,m,nkj kjbb,,mkn,nk"
+                                android:textColor="@color/dark_gray"
+                                android:textSize="26sp"
                                 />
                         </androidx.cardview.widget.CardView>
 

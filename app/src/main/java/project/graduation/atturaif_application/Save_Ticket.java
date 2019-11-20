@@ -1,6 +1,8 @@
 package project.graduation.atturaif_application;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +28,7 @@ public class Save_Ticket extends AppCompatActivity {
     Toolbar toolbar;
     TextView price_total, date;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +44,7 @@ public class Save_Ticket extends AppCompatActivity {
         MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
 
         StateProgressBar stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
+
 
 
 
@@ -83,30 +88,45 @@ public class Save_Ticket extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "SD card not found", Toast.LENGTH_LONG).show();
         }
     }
+    @SuppressLint("ResourceType")
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Save_Ticket.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View view2 = inflater.inflate(R.layout.message_goback, null);
-                alertDialog.setCustomTitle(view2);
-                alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(Save_Ticket.this, Splash_page.class));
+
+                final Dialog dialog=new Dialog(Save_Ticket.this);
+                dialog.setContentView(R.layout.message_goback);
+                dialog.setCancelable(false);
+                dialog.show();
+
+                Button btn_yes,btn_no;
+
+                btn_no=dialog.findViewById(R.id.btn_no);
+                btn_yes=dialog.findViewById(R.id.btn_yes);
+
+
+                btn_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(Save_Ticket.this, HomePage_Activity.class));
                         MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
 
-                    } // yes button
-                }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    } // no button
-                }); // onclick
+                    }
+                });
+                btn_no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
 
-                alertDialog.show();
-                return true;
+                    }
+                });
+
+
+
 
             default:
                 return super.onOptionsItemSelected(item);
         } // switch
     } // onOptionsItemSelected
+
+
 }

@@ -1,6 +1,7 @@
 package project.graduation.atturaif_application;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,24 +76,36 @@ public class Payment extends BasicActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(Payment.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View view2 = inflater.inflate(R.layout.message_goback, null);
-                alertDialog.setCustomTitle(view2);
-                alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(Payment.this, Splash_page.class));
+
+                final Dialog dialog=new Dialog(Payment.this);
+                dialog.setContentView(R.layout.message_goback);
+                dialog.setCancelable(false);
+                dialog.show();
+
+                Button btn_yes,btn_no;
+
+                btn_no=dialog.findViewById(R.id.btn_no);
+                btn_yes=dialog.findViewById(R.id.btn_yes);
+
+
+                btn_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(Payment.this, HomePage_Activity.class));
                         MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
 
-                    } // yes button
-                }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    } // no button
-                }); // onclick
+                    }
+                });
+                btn_no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
 
-                alertDialog.show();
-                return true;
+                    }
+                });
+
+
+
 
             default:
                 return super.onOptionsItemSelected(item);

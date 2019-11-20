@@ -123,15 +123,31 @@
             </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="20dp"
-                android:text="@string/total"
+                android:text="@string/View_Ticket"
                 android:textColor="@color/black"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+
+
+
+
+
+
+        </LinearLayout>
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -167,15 +183,15 @@
                                 android:orientation="horizontal">
 
                                 <LinearLayout
-                                    android:layout_width="176dp"
-                                    android:layout_height="84dp"
+                                    android:layout_width="82dp"
+                                    android:layout_height="104dp"
                                     android:layout_margin="1dp"
                                     android:layout_weight="4"
 
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="wrap_content"
+                                        android:layout_width="69dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="20dp"
                                         android:layout_weight="1"
@@ -183,25 +199,34 @@
                                         android:textColor="@color/dark_gray"
                                         android:textSize="25sp" />
 
+                                        android:textAppearance="@style/AppTheme"
+                                        android:textStyle="bold" />
+
                                     <TextView
                                         android:id="@+id/date"
                                         android:layout_width="wrap_content"
-                                        android:layout_height="12dp"
+                                        android:layout_height="wrap_content"
                                         android:layout_margin="5dp"
                                         android:layout_weight="1"
+                                        android:text="dbdfbdfbdfb"
+                                        android:textAppearance="@style/AppTheme"
                                         android:textColor="@color/black"
                                         android:textSize="20sp" />
+
+
+                                        android:textSize="25sp" />
+
                                 </LinearLayout>
 
                                 <LinearLayout
                                     android:layout_width="90dp"
-                                    android:layout_height="94dp"
+                                    android:layout_height="wrap_content"
                                     android:layout_margin="5dp"
                                     android:layout_weight="1"
                                     android:orientation="vertical">
 
                                     <TextView
-                                        android:layout_width="53dp"
+                                        android:layout_width="75dp"
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="18dp"
                                         android:layout_weight="1"
@@ -209,14 +234,25 @@
                                         android:textColor="@color/dark_gray"
                                         android:textSize="25sp" />
 
+                                        android:textAppearance="@style/AppTheme"
+                                        android:textStyle="bold"
+
+                                        />
+
                                     <TextView
                                         android:id="@+id/price_total"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_margin="3dp"
                                         android:layout_weight="1"
+                                        android:layout_marginStart="10dp"
+                                        android:text="dfbdffdghdf"
                                         android:textColor="@color/black"
                                         android:textSize="20sp" />
+
+                                        android:textAppearance="@style/AppTheme"
+
+                                        android:textSize="25sp" />
                                 </LinearLayout>
 
 
@@ -247,6 +283,10 @@
                         android:textColor="@color/white"
                         android:textSize="26sp"
                         android:textStyle="bold"/>
+
+                        android:textAppearance="@style/AppTheme"
+                        />
+
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

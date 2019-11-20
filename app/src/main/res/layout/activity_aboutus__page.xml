@@ -17,7 +17,9 @@
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:title="@string/about_us"
-        app:titleTextColor="@color/white" />
+        app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
+        app:titleTextColor="@color/white"
+        />
 
     <LinearLayout
         android:id="@+id/progressbar"
@@ -33,6 +35,7 @@
             android:layout_gravity="center"
             app:SpinKit_Color="@color/colorAccent" />
     </LinearLayout>
+
 
 
     <androidx.core.widget.NestedScrollView
@@ -51,8 +54,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="10dp"
                 android:text="@string/about_us"
-                android:textColor="@color/black"
-                android:textSize="16.5sp"
+                android:textAppearance="@style/AppTheme"
                 android:textStyle="bold" />
 
             <TextView
@@ -61,7 +63,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:textColor="@color/black"
-                android:textSize="15.5sp" />
+                android:textAppearance="@style/AppTheme"
+                 />
 
             <TextView
                 android:layout_width="match_parent"
@@ -70,8 +73,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="10dp"
                 android:text="@string/working_hours"
-                android:textColor="@color/black"
-                android:textSize="16.5sp"
+                android:textAppearance="@style/AppTheme"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView

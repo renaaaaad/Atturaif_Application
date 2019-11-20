@@ -123,7 +123,8 @@
             <com.braintreepayments.cardform.view.CardForm
                 android:id="@+id/card_form"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                />
 
 
             <Button
@@ -140,12 +141,14 @@
                 android:textSize="26sp"
                 android:textStyle="bold"/>
 
+
             <ProgressBar
                 android:id="@+id/progressbar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
+
                 android:visibility="gone" />
 
 

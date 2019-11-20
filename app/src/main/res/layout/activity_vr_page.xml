@@ -25,6 +25,7 @@
                 android:gravity="center"
                 android:textAlignment="center"
                 android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
                 app:title="@string/QueickGlance"
                 app:titleTextColor="@color/white" />
 
@@ -45,7 +46,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/salwa_neighbour"
                     android:textColor="@color/white"
-                    android:textSize="30sp">
+                    android:textAppearance="@style/AppTheme"
+>
 
                 </TextView>
             </RelativeLayout>
@@ -67,7 +69,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/the_palace"
                     android:textColor="@color/white"
-                    android:textSize="30sp">
+                    android:textAppearance="@style/AppTheme"
+>
 
                 </TextView>
             </RelativeLayout>
@@ -89,7 +92,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/neighbours_houses"
                     android:textColor="@color/white"
-                    android:textSize="30sp">
+                    android:textAppearance="@style/AppTheme"
+                    >
 
                 </TextView>
             </RelativeLayout>
@@ -111,7 +115,8 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/welcoming_center"
                     android:textColor="@color/white"
-                    android:textSize="30sp">
+                    android:textAppearance="@style/AppTheme"
+                    >
 
                 </TextView>
             </RelativeLayout>

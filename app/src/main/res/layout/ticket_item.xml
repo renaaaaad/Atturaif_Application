@@ -40,7 +40,7 @@
                 android:layout_marginTop="10dp"
                 android:text="@string/Adult"
                 android:textColor="@color/black"
-                android:textSize="30sp"
+                android:textAppearance="@style/AppTheme"
                 android:textStyle="bold" />
 
             <TextView
@@ -52,7 +52,8 @@
                 android:layout_marginTop="10dp"
                 android:text="fffffff"
                 android:textColor="@color/black"
-                android:textSize="25sp" />
+                android:textAppearance="@style/AppTheme"
+                android:textSize="22sp" />
 
 
             <LinearLayout
@@ -73,10 +74,11 @@
                 <EditText
                     android:id="@+id/numberOfTickets"
                     android:layout_width="40dp"
-                    android:layout_height="56dp"
+                    android:layout_height="60dp"
                     android:inputType="number"
                     android:maxLength="2"
                     android:text="0"
+
                     android:textAlignment="center" />
 
                 <ImageButton

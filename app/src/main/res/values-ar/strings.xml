@@ -82,5 +82,12 @@
 
     <string name="connection">لا يوجد إتصال في الانترنت !</string>
 
+    <string name="Confirm_before_purchase">تأكيد قبل عملية الشراء</string>
+    <string name="confirm">تأكيد</string>
+    <string name="Cancel">الغاء</string>
+    <string name="View_Ticket">معاينة التذكرة</string>
+
+
+
 
 </resources>
