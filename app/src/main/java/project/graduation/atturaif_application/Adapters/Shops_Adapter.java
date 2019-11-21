@@ -79,8 +79,16 @@ public class Shops_Adapter extends RecyclerView.Adapter<Shops_Adapter.MyViewHold
             btnMore=itemView.findViewById((R.id.btnMore));
             this.shopListner=shopListner;
 
+            if (MySharedPreference.getString(context.getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+           btnMore.setText("المزيد");
+            }
+            else {
+                btnMore.setText("More");
 
-            btnMore.setOnClickListener(new View.OnClickListener() {
+            }
+
+
+                btnMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(shopListner != null){

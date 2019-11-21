@@ -24,8 +24,6 @@
         android:id="@+id/progressbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:visibility="visible"
         android:gravity="center_horizontal">
 
         <com.github.ybq.android.spinkit.SpinKitView
@@ -36,7 +34,6 @@
             android:layout_gravity="center"
             app:SpinKit_Color="@color/colorAccent" />
     </LinearLayout>
-
 
 
     <androidx.core.widget.NestedScrollView
@@ -70,10 +67,12 @@
                 app:spb_stateNumberForegroundColor="#eeeeee" />
 
             <LinearLayout
-                android:layout_width="411dp"
+                android:id="@+id/enlayout_en"
+                android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginTop="0dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
@@ -84,35 +83,40 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="59dp"
-                        android:layout_height="42dp"
-                        android:layout_margin="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_marginStart="11dp"
+                        android:layout_width="48dp"
+                        android:layout_height="49dp"
                         android:src="@drawable/calendar_book" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="23dp"
-                    android:layout_height="54dp"
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="73dp"
-                        android:layout_height="34dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="53dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="12dp"
                         android:layout_margin="5dp"
                         android:src="@drawable/total_tickets" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="23dp"
-                    android:layout_height="54dp"
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
+                        android:layout_marginTop="0dp"
+                        android:layout_marginStart="17dp"
                         android:layout_width="70dp"
                         android:layout_height="34dp"
                         android:layout_margin="5dp"
@@ -121,16 +125,18 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="23dp"
-                    android:layout_height="54dp"
+                    android:gravity="end"
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    >
 
                     <ImageView
+                        android:layout_marginTop="0dp"
                         android:layout_width="67dp"
                         android:layout_height="32dp"
-                        android:layout_margin="5dp"
                         android:src="@drawable/download" />
 
                 </LinearLayout>
@@ -138,9 +144,85 @@
 
             </LinearLayout>
 
-            <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/enlayout_ar"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="15dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="58dp"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="0dp"
+                        android:layout_width="53dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/download"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="0dp"
+                        android:layout_width="53dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="12dp"
+                        android:src="@drawable/credit_card" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="0dp"
+                        android:layout_width="53dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/total_tickets" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    >
+
+                    <ImageView
+                        android:layout_marginTop="0dp"
+                        android:layout_marginStart="26dp"
+                        android:layout_width="48dp"
+                        android:layout_height="49dp"
+                        android:src="@drawable/calendar_book"  />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/teacher_info_calendarView"
-                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:mcv_showWeekDays="true"

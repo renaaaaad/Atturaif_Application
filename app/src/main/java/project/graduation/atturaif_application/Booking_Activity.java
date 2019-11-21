@@ -96,6 +96,17 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         Sprite doubleBounce = new CubeGrid();
         progressBar.setIndeterminateDrawable(doubleBounce);
 
+        LinearLayout layoutAR=findViewById(R.id.enlayout_ar);
+        LinearLayout layoutEN=findViewById(R.id.enlayout_en);
+
+
+
+
+        if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")) {
+            layoutEN.setVisibility(View.GONE);
+            layoutAR.setVisibility(View.VISIBLE);
+
+        }
 
 
 
@@ -104,9 +115,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
 
 
-
-
-        toolbar = findViewById(R.id.toolbar);
+            toolbar = findViewById(R.id.toolbar);
         tourType = findViewById(R.id.tourType);
         Continue = findViewById(R.id.Continue);
         //
