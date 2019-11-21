@@ -52,7 +52,9 @@
                 app:spb_currentStateDescriptionColor="#084D14"
                 app:spb_stateDescriptionColor="#808080"
                 app:spb_animateToCurrentProgressState="true"
-                app:spb_checkStateCompleted="true"/>
+                app:spb_checkStateCompleted="true"
+                />
+            
             <LinearLayout
                 android:layout_width="428dp"
                 android:layout_height="70dp"
