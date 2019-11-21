@@ -26,7 +26,7 @@
                 android:gravity="center"
                 android:text="yyyyyyyyyyyyy"
                 android:textColor="@color/white"
-                android:textSize="20sp"
+                android:textAppearance="@style/AppTheme"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -45,7 +45,8 @@
                     android:gravity="start"
                     android:text="yyyyyyyyyyyyy"
                     android:textColor="@color/white"
-                    android:textSize="15sp"
+                    android:textAppearance="@style/AppTheme"
+                    android:textSize="19sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -59,7 +60,8 @@
                     android:gravity="end"
                     android:text="yyyyyyyyyyyyy"
                     android:textColor="@color/white"
-                    android:textSize="15sp"
+                    android:textSize="19sp"
+                    android:textAppearance="@style/AppTheme"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>

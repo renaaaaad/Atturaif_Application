@@ -33,6 +33,7 @@
     <string name="send_code">SEND CODE</string>
     <string name="please_enter_the_code">Please Enter The Receiving Code</string>
     <string name="enter">Enter</string>
+    <string name="Book">Book Tickets</string>
     <string name="payment">Payment</string>
     <string name="please_pay_to_complete_the_booking">* Please Pay To Complete The Booking</string>
     <string name="price">Price</string>
@@ -43,7 +44,7 @@
     <string name="help">Help</string>
     <string name="english">English</string>
     <string name="arabic">Arabic</string>
-    <string name="are_you_sure_you_want_to_leave">are you sure you want to leave</string>
+    <string name="are_you_sure_you_want_to_leave">Are you sure you want to leave?</string>
     <string name="sitting">Settings</string>
     <string name="notification">Notification</string>
     <string name="QueickGlance">Quick glance</string>
@@ -74,7 +75,7 @@
     <string name="shopdayname">Day</string>
     <string name="opentimeshop">Open Time</string>
     <string name="Atturaif_shops">Atturaif Shops</string>
-    <string name="more">more</string>
+    <string name="more">More</string>
     <string name="ticketCopy">Now you must keep a copy of the ticket information to display it when you visit Atturaif</string>
     <string name="ticketInfo">Ticket Information:</string>
     <string name="ticketSave">Save Ticket</string>
@@ -83,6 +84,15 @@
     <string name="checkout">Checkout</string>
     <string name="Adult">Adult</string>
     <string name="connection">Network connection is not available!</string>
+    <string name="Confirm_before_purchase">Confirm before purchase</string>
+    <string name="confirm">Confirm</string>
+    <string name="Cancel">Cancel</string>
+    <string name="View_Ticket">View Ticket</string>
+    <string name="premission"> You have to enable the permission to save the ticket</string>
+    <string name="enable">Enable</string>
+    <string name="reject">Reject</string>
+
+
 
 
 </resources>

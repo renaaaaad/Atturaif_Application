@@ -6,11 +6,32 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/arabtype</item>
+        <item name="android:textSize">35dp</item>
+
     </style>
+
+    <style name="card">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textSize">40dp</item>
+    </style>
+
+
+    <style name="calender" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>        <item name="android:textSize">25dp</item>
+
+    </style>
+
 
     <style name="CollapsedAppbar" parent="@android:style/TextAppearance.Medium">
 
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">33sp</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:textStyle">normal</item>
 

@@ -20,20 +20,29 @@ android {
     }
 
     packagingOptions {
+
         pickFirst 'lib/armeabi-v7a/libmain.so'
         pickFirst 'lib/armeabi-v7a/libmono.so'
         pickFirst 'lib/armeabi-v7a/libunity.so'
         pickFirst 'lib/x86/libmain.so'
         pickFirst 'lib/x86/libmain.so'
         pickFirst 'lib/x86/libmain.so'
+
+        merge 'lib/armeabi-v7a/libmain.so'
+        merge 'lib/x86/libmain.so'
+        merge 'lib/armeabi-v7a/libmono.so'
+        merge 'lib/x86/libmono.so'
     }
 
 
 }
 
 dependencies {
+
     implementation project(':unityLibrary')
     implementation fileTree(dir: project(':unityLibrary').getProjectDir().toString() + ('\\libs'), include: ['*.jar'])
+
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'

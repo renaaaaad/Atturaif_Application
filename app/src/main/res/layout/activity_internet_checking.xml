@@ -13,12 +13,13 @@
         android:id="@+id/toolbar1"
         style="@android:style/Widget.Material.Toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="@color/colorPrimary"
         android:gravity="center"
         app:title="@string/no_connection"
         android:textAlignment="center"
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
         app:titleTextColor="@color/white" />
 
 
@@ -47,7 +48,8 @@
                android:layout_height="wrap_content"
                android:text="@string/no_connection"
                android:textColor="@color/colorPrimaryDark"
-               android:textSize="30sp" />
+               android:textAppearance="@style/AppTheme"
+ />
 
            <TextView
                android:id="@+id/nowifiText"
@@ -58,11 +60,12 @@
                android:text="@string/no_wifi"
                android:textColor="@color/colorPrimaryDark"
                android:layout_marginTop="13dp"
-               android:textSize="20sp" />
+               android:textAppearance="@style/AppTheme"
+               android:textSize="30sp" />
 
            <Button
                android:id="@+id/Retry"
-               android:layout_width="100dp"
+               android:layout_width="150dp"
                android:layout_height="wrap_content"
                android:layout_marginLeft="10dp"
                android:layout_marginTop="20dp"
@@ -71,8 +74,8 @@
                android:background="@drawable/button_background"
                android:text="@string/Retry"
                android:textColor="@color/white"
-               android:textSize="14sp"
-               android:textStyle="bold" />
+               android:textAppearance="@style/AppTheme"
+/>
 
        </LinearLayout>
 

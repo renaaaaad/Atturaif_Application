@@ -28,6 +28,7 @@
     <string name="opens_at">"يفتح "</string>
     <string name="pay">إدفع</string>
     <string name="payment">الدفع</string>
+    <string name="Book">حجز التذاكر</string>
     <string name="please_enter_the_code">الرجاء إدخال رمز التحقق</string>
     <string name="please_enter_your_phone_number">الرجاء إدخال رقم الهاتف</string>
     <string name="please_pay_to_complete_the_booking">* الرجاء الدفع لإكمال الحجز</string>
@@ -80,6 +81,17 @@
 
 
     <string name="connection">لا يوجد إتصال في الانترنت !</string>
+
+    <string name="Confirm_before_purchase">تأكيد قبل عملية الشراء</string>
+    <string name="confirm">تأكيد</string>
+    <string name="Cancel">الغاء</string>
+    <string name="View_Ticket">معاينة التذكرة</string>
+    <string name="premission"> يجب تمكين البرنامج للوصول الى التحميلات لحفظ معلومات التذكرة</string>
+    <string name="enable">تمكين</string>
+    <string name="reject">رفض</string>
+
+
+
 
 
 </resources>

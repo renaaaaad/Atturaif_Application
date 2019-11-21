@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="project.graduation.atturaif_application">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/iconlogo"
@@ -29,10 +31,10 @@
 
         <activity
             android:name=".Save_Ticket"
-            android:parentActivityName=".Billing_Contact" />
+             />
         <activity
             android:name=".Billing_Contact"
-            android:parentActivityName=".Payment" />
+          />
         <activity android:name=".shopdays_item" />
         <activity android:name=".shopDetails">
             <meta-data
@@ -99,6 +101,10 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />

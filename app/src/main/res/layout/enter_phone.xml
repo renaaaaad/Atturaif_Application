@@ -31,6 +31,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="10px"
             android:hint="you phone number"
+            android:textAppearance="@style/AppTheme"
+
             android:maxLength="9" />
 
     </LinearLayout>
@@ -47,8 +49,8 @@
         android:text="@string/continue_tour"
         android:textAllCaps="false"
         android:textColor="#ffffff"
-        android:textSize="14sp"
-        android:textStyle="bold" />
+        android:textAppearance="@style/AppTheme"
+        />
 
 
 </LinearLayout>

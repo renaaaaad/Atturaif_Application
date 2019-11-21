@@ -1,7 +1,10 @@
 package project.graduation.atturaif_application;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -9,6 +12,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,11 +26,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.kofigyan.stateprogressbar.StateProgressBar;
 
-public class Billing_Contact extends AppCompatActivity  {
+public class Billing_Contact extends BasicActivity  {
     //ProgressBar progressBar;
     Toolbar toolbar;
     Button buy;
     CardForm cardForm;
+
     AlertDialog.Builder alertBuilder;
     String[] descriptionDataEN = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
     String[] descriptionDataAR = {"حجز تذكرة", "معاينة التذكرة", "الدفع","حفظ التذكرة"};
@@ -43,23 +49,25 @@ public class Billing_Contact extends AppCompatActivity  {
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         // stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
         // stateProgressBar.setStateDescriptionData(descriptionData);
         cardForm = findViewById(R.id.card_form);
+
         buy = findViewById(R.id.btnBuy);
 
         stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
 
-        if (MySharedPreference.getString(getApplicationContext(),
-                Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+        LinearLayout layoutAR=findViewById(R.id.enlayout_ar);
+        LinearLayout layoutEN=findViewById(R.id.enlayout_en);
 
-            stateProgressBar.setStateDescriptionData(descriptionDataAR);
-
-
-        }else{
-
-            stateProgressBar.setStateDescriptionData(descriptionDataEN);
+        if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")) {
+            layoutEN.setVisibility(View.GONE);
+            layoutAR.setVisibility(View.VISIBLE);
         }
+
 
 
 
@@ -107,60 +115,57 @@ public class Billing_Contact extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 if (cardForm.isValid()) {
-                    alertBuilder = new AlertDialog.Builder(Billing_Contact.this);
+                    final Dialog dialog=new Dialog(Billing_Contact.this);
+                    dialog.setContentView(R.layout.confirmcard);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.setCancelable(false);
+                    dialog.show();
 
-
-
+                    TextView card = dialog.findViewById(R.id.card);
+                    TextView expdate = dialog.findViewById(R.id.expdate);
+                    TextView ccv = dialog.findViewById(R.id.ccv);
+                    TextView postcode = dialog.findViewById(R.id.postcode);
+                    TextView phonenum = dialog.findViewById(R.id.phonenum);
 
                     if (MySharedPreference.getString(getApplicationContext(),
                             Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
 
-                        alertBuilder.setTitle("تأكيد عملية الشراء");
-                        alertBuilder.setMessage("رقم البطاقة:" + cardForm.getCardNumber() + "\n" +
-                                "تاريخ انتهاء البطاقة:" + cardForm.getExpirationDateEditText().getText().toString() + "\n" +
-                                "الرقم السري للبطاقة:" + cardForm.getCvv() + "\n" +
-                                "الرمز البريدي:" + cardForm.getPostalCode() + "\n" +
-                                "رقم الهاتف:" + cardForm.getMobileNumber());
-                        alertBuilder.setPositiveButton("تأكيد", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                                startActivity(new Intent(Billing_Contact.this, Save_Ticket.class));
-                            }
-                        });
-                        alertBuilder.setNegativeButton("الغاء", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        });
+
+                        card.setText("رقم البطاقة: " + cardForm.getCardNumber());
+                        expdate.setText(" تاريخ انتهاء البطاقة: " + cardForm.getExpirationDateEditText().getText().toString());
+                        ccv.setText(" الرقم السري للبطاقة: " + cardForm.getCvv());
+                        postcode.setText(" الرمز البريدي: " + cardForm.getPostalCode());
+                        phonenum.setText(" رقم الهاتف: " + cardForm.getMobileNumber());
 
                     }
-                    else{
+                    else {
 
-                        alertBuilder.setTitle("Confirm before purchase");
-                        alertBuilder.setMessage("Card number: " + cardForm.getCardNumber() + "\n" +
-                                "Card expiry date: " + cardForm.getExpirationDateEditText().getText().toString() + "\n" +
-                                "Card CVV: " + cardForm.getCvv() + "\n" +
-                                "Postal code: " + cardForm.getPostalCode() + "\n" +
-                                "Phone number: " + cardForm.getMobileNumber());
-                        alertBuilder.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                                startActivity(new Intent(Billing_Contact.this, Save_Ticket.class));
-                            }
-                        });
-                        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                dialogInterface.dismiss();
-                            }
-                        });
+                        card.setText("Card number: " + cardForm.getCardNumber());
+                        expdate.setText("Card expiry date: " + cardForm.getExpirationDateEditText().getText().toString());
+                        ccv.setText("Card CVV: " + cardForm.getCvv());
+                        postcode.setText("Postal code: " + cardForm.getPostalCode());
+                        phonenum.setText("Phone number: " + cardForm.getMobileNumber());
                     }
 
-                    AlertDialog alertDialog = alertBuilder.create();
-                    alertDialog.show();
+
+
+                    Button btn_yes,btn_no;
+                    btn_no=dialog.findViewById(R.id.btn_can);
+                    btn_yes=dialog.findViewById(R.id.btn_con);
+
+                    btn_yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            startActivity(new Intent(Billing_Contact.this, Save_Ticket.class));
+                        }
+                    });
+                    btn_no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+
+                        }
+                    });
 
                 } else {
 
@@ -177,32 +182,46 @@ public class Billing_Contact extends AppCompatActivity  {
         });
         //*******finished payment*********//
     }//onCreate
+
     // this method to show dialog when the user clicks back button
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(Billing_Contact.this);
-                LayoutInflater inflater = getLayoutInflater();
-                View view2 = inflater.inflate(R.layout.message_goback, null);
-                alertDialog.setCustomTitle(view2);
-                alertDialog.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        startActivity(new Intent(Billing_Contact.this, Splash_page.class));
-                        MySharedPreference.putFloat(getApplicationContext(), Constant.Keys.User_PRICE, 0);
-                    } // yes button
-                }).setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        return;
-                    } // no button
-                }); // onclick
 
-                alertDialog.show();
-                return true;
+                final Dialog dialog=new Dialog(Billing_Contact.this);
+                dialog.setContentView(R.layout.message_goback);
+                dialog.setCancelable(false);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
 
+                Button btn_yes,btn_no;
+
+                btn_no=dialog.findViewById(R.id.btn_no);
+                btn_yes=dialog.findViewById(R.id.btn_yes);
+
+
+                btn_yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(Billing_Contact.this, HomePage_Activity.class));
+
+                    }
+                });
+                btn_no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+
+                    }
+                });
             default:
                 return super.onOptionsItemSelected(item);
         } // switch
     } // onOptionsItemSelected
+
+
+
+
 
 }//Billing class

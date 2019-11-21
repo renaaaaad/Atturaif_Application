@@ -19,8 +19,8 @@
                     android:layout_height="match_parent"
                     android:text="Sunday"
                     android:layout_weight="1"
-                    android:textColor="@color/black"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/dark_gray"
+                    android:textSize="26sp"/>
 
                 <TextView
 
@@ -30,8 +30,8 @@
                     android:layout_weight="1"
                     android:gravity="center_horizontal"
                     android:text="16:20 to 20:20"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:textColor="@color/dark_gray"
+                    android:textSize="26sp" />
 
         </LinearLayout>
         <!--......................Divider1......................-->

@@ -69,24 +69,24 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shops_page);
         toolbar = findViewById(R.id.toolbar1);
-//        progressbar = findViewById(R.id.progressbar);
+        progressbar = findViewById(R.id.progressbar);
 
 
-//        ProgressBar progressBar = findViewById(R.id.spin_kit);
-//        Sprite doubleBounce = new CubeGrid();
-//        progressBar.setIndeterminateDrawable(doubleBounce);
-//        timer = new Timer();
-//        timer.schedule(new TimerTask() {
-//            @Override
-//            public void run() {
-//                new Handler(Looper.getMainLooper()).post(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        progressbar.setVisibility(View.GONE);
-//                    }
-//                });
-//            } //run
-//        }, 4000);
+        ProgressBar progressBar = findViewById(R.id.spin_kit);
+        Sprite doubleBounce = new CubeGrid();
+        progressBar.setIndeterminateDrawable(doubleBounce);
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        progressbar.setVisibility(View.GONE);
+                    }
+                });
+            } //run
+        }, 5000);
 
         //default back button
         setSupportActionBar(toolbar);
@@ -198,6 +198,8 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         }
 
     } //onCreate
+
+
 
     private void listShops() {
         recyclerView = findViewById(R.id.recyclerView);
@@ -316,11 +318,7 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
 
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-//        progressbar.setVisibility(View.GONE);
-    }
+
 
     private boolean haveNetwork(){
 
@@ -344,5 +342,11 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         }
 
         return have_WIFI || have_MobileData;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 } // class
