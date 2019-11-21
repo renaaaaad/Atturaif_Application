@@ -87,6 +87,10 @@
     <string name="confirm">Confirm</string>
     <string name="Cancel">Cancel</string>
     <string name="View_Ticket">View Ticket</string>
+    <string name="premission"> You have to enable the permission to save the ticket</string>
+    <string name="enable">Enable</string>
+    <string name="reject">Reject</string>
+
 
 
 

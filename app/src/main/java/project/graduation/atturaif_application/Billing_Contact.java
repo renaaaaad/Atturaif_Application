@@ -3,6 +3,8 @@ package project.graduation.atturaif_application;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,8 +31,6 @@ public class Billing_Contact extends BasicActivity  {
     Toolbar toolbar;
     Button buy;
     CardForm cardForm;
-    String[] descriptionDataEN = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
-    String[] descriptionDataAR = {"حجز تذكرة", "معاينة التذكرة", "الدفع","حفظ التذكرة"};
 
     StateProgressBar stateProgressBar;
     private static final String TAG = "Billing_Contact";
@@ -46,6 +47,7 @@ public class Billing_Contact extends BasicActivity  {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
         // stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
         // stateProgressBar.setStateDescriptionData(descriptionData);
         cardForm = findViewById(R.id.card_form);
@@ -54,15 +56,12 @@ public class Billing_Contact extends BasicActivity  {
 
         stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
 
-        if (MySharedPreference.getString(getApplicationContext(),
-                Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+        LinearLayout layoutAR=findViewById(R.id.enlayout_ar);
+        LinearLayout layoutEN=findViewById(R.id.enlayout_en);
 
-            stateProgressBar.setStateDescriptionData(descriptionDataAR);
-
-
-        }else{
-
-            stateProgressBar.setStateDescriptionData(descriptionDataEN);
+        if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")) {
+            layoutEN.setVisibility(View.GONE);
+            layoutAR.setVisibility(View.VISIBLE);
         }
 
 
@@ -113,6 +112,7 @@ public class Billing_Contact extends BasicActivity  {
                 if (cardForm.isValid()) {
                     final Dialog dialog=new Dialog(Billing_Contact.this);
                     dialog.setContentView(R.layout.confirmcard);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     dialog.setCancelable(false);
                     dialog.show();
 
@@ -187,6 +187,7 @@ public class Billing_Contact extends BasicActivity  {
                 final Dialog dialog=new Dialog(Billing_Contact.this);
                 dialog.setContentView(R.layout.message_goback);
                 dialog.setCancelable(false);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
                 Button btn_yes,btn_no;

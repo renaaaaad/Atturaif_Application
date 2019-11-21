@@ -56,13 +56,10 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:lineSpacingExtra="8dp"
-                android:fontFamily="@font/arabtype"
                 android:text="Ecotourism With a Master Boo"
                 android:textColor="@color/colorPrimary"
                 android:textStyle="bold"
-                android:textSize="27sp"
-                android:textAppearance="@style/AppTheme"
-
+                android:textSize="29sp"
                 tools:ignore="MissingConstraints" />
 
             <TextView
@@ -70,16 +67,14 @@
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginBottom="0dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:lineSpacingExtra="8dp"
                 android:text="Ecotourism With a Master Boo"
                 android:textColor="#989898"
-                android:fontFamily="@font/arabtype"
                 android:textSize="20sp"
                 android:layout_below="@+id/name"
-                android:textAppearance="@style/AppTheme"
-
                 />
 
 
@@ -99,15 +94,13 @@
                 <Button
                     android:id="@+id/btnMore"
                     android:layout_width="177dp"
-                    android:layout_height="25dp"
+                    android:layout_height="23dp"
                     android:background="@drawable/btnmoreshop"
                     android:text="@string/more"
                     android:textColor="@color/wheat"
                     android:gravity="center"
-                    android:textSize="24sp"
+                    android:textSize="18sp"
                     android:layout_below="@+id/des"
-                    android:textAppearance="@style/AppTheme"
-
 
                     />
 

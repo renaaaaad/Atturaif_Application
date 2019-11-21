@@ -25,6 +25,7 @@
 
 
 
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -54,68 +55,156 @@
                 app:spb_animateToCurrentProgressState="true"
                 app:spb_checkStateCompleted="true"/>
             <LinearLayout
-                android:layout_width="428dp"
+                android:id="@+id/enlayout_en"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="15dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="0dp"
                 android:orientation="horizontal">
+
 
                 <LinearLayout
                     android:layout_width="5dp"
-                    android:layout_height="58dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
+                        android:layout_marginTop="0dp"
                         android:layout_width="53dp"
                         android:layout_height="32dp"
-                        android:layout_margin="5dp"
+                        android:layout_marginStart="8dp"
                         android:src="@drawable/calendar_book" />
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="23dp"
-                    android:layout_height="60dp"
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="44dp"
-                        android:layout_height="33dp"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/total_tickets" />
+                        android:layout_marginTop="0dp"
+                        android:layout_width="53dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="13dp"
+                        android:src="@drawable/total_tickets"/>
+
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="23dp"
-                    android:layout_height="54dp"
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="55dp"
-                        android:layout_height="34dp"
-                        android:layout_margin="5dp"
+                        android:layout_marginTop="0dp"
+                        android:layout_width="53dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="22dp"
                         android:src="@drawable/credit_card" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="23dp"
-                    android:layout_height="60dp"
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
+
+                        android:layout_marginTop="0dp"
                         android:layout_width="48dp"
                         android:layout_height="49dp"
-                        android:layout_margin="5dp"
+                        android:layout_gravity="end"
                         android:src="@drawable/download" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:visibility="gone"
+                android:id="@+id/enlayout_ar"
+                android:layout_width="match_parent"
+                android:layout_marginEnd="15dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="0dp"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="0dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_width="48dp"
+                        android:layout_height="49dp"
+                        android:src="@drawable/download"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="0dp"
+                        android:layout_width="53dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="15dp"
+                        android:src="@drawable/credit_card"/>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="0dp"
+                        android:layout_width="53dp"
+                        android:layout_height="32dp"
+                        android:layout_marginStart="22dp"
+                        android:src="@drawable/total_tickets" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="5dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_marginTop="0dp"
+                        android:layout_width="53dp"
+                        android:layout_height="32dp"
+                        android:layout_gravity="end"
+                        android:src="@drawable/calendar_book" />
 
                 </LinearLayout>
 
@@ -126,7 +215,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginEnd="5dp"
                 android:text="@string/ticketCopy"
                 android:textColor="@color/black"
@@ -234,13 +322,14 @@
 
 
             </LinearLayout>
-            
+
+
             <Button
                 android:id="@+id/save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="19dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_background"
@@ -250,7 +339,9 @@
                 android:textStyle="bold"
                 android:textAppearance="@style/AppTheme"
                 />
-        </LinearLayout>
+
+            </LinearLayout>
+
     </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

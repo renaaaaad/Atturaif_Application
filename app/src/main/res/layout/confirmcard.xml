@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/dialogcorner"
     >
 
     <LinearLayout
@@ -20,7 +21,7 @@
             android:text="@string/Confirm_before_purchase"
             android:textColor="@color/colorAccent"
             android:textAppearance="@style/AppTheme"
-            android:textSize="25dp"
+            android:textSize="29dp"
             />
 
 

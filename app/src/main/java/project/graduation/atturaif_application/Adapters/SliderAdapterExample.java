@@ -38,17 +38,22 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
             case 0:
                 if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.vr_ar)
+                            .load(R.drawable.vr_background)
                             .into(viewHolder.imageViewBackground);
                 else
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.vr_en)
+                            .load(R.drawable.vr_background)
                             .into(viewHolder.imageViewBackground);
 
                 viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        context.startActivity(new Intent(context, VR_page.class));
+
+                        Intent i=new Intent(context, VR_page.class);
+                        //for android version below Android - 6 then we need to add this line otherwise it will work above Android - 6.
+                        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                        context.startActivity(i);
                     }
                 });
                 break;

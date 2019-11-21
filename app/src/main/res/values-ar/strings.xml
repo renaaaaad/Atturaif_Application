@@ -85,6 +85,10 @@
     <string name="confirm">تأكيد</string>
     <string name="Cancel">الغاء</string>
     <string name="View_Ticket">معاينة التذكرة</string>
+    <string name="premission"> يجب تمكين البرنامج للوصول الى التحميلات لحفظ معلومات التذكرة</string>
+    <string name="enable">تمكين</string>
+    <string name="reject">رفض</string>
+
 
 
 

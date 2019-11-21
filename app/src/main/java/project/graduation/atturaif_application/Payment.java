@@ -4,11 +4,14 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.widget.Toolbar;
@@ -17,8 +20,7 @@ import com.kofigyan.stateprogressbar.StateProgressBar;
 
 public class Payment extends BasicActivity {
 
-    String[] descriptionDataEN = {"Book Ticket", "View Ticket", "Payment","Save Ticket"};
-    String[] descriptionDataAR = {"حجز تذكرة", "معاينة التذكرة", "الدفع","حفظ التذكرة"};
+
     StateProgressBar stateProgressBar;
     TextView price_total, type, date;
     TextView me;
@@ -39,22 +41,19 @@ public class Payment extends BasicActivity {
         price_total.setText(Float.toString(price) + " " + getApplicationContext().getString(R.string.s_r));
         date.setText(MySharedPreference.getString(getApplicationContext(), Constant.Keys.BOOKING_DATE, ""));
 
+        LinearLayout layoutAR=findViewById(R.id.enlayout_ar);
+        LinearLayout layoutEN=findViewById(R.id.enlayout_en);
 
-
-        stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
-
-        stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
-
-        if (MySharedPreference.getString(getApplicationContext(),
-                Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
-
-            stateProgressBar.setStateDescriptionData(descriptionDataAR);
-
-
-        }else{
-
-            stateProgressBar.setStateDescriptionData(descriptionDataEN);
+        if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")) {
+            layoutEN.setVisibility(View.GONE);
+            layoutAR.setVisibility(View.VISIBLE);
         }
+
+        stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
+
+        stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
+
+
 
         Checkout = findViewById(R.id.button2);
 
@@ -77,6 +76,7 @@ public class Payment extends BasicActivity {
                 dialog.setContentView(R.layout.message_goback);
                 dialog.setCancelable(false);
                 dialog.show();
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 Button btn_yes,btn_no;
 
