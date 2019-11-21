@@ -20,6 +20,7 @@
         app:title="@string/Booking"
         app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
         app:titleTextColor="@color/white" />
+
     <LinearLayout
         android:id="@+id/progressbar"
         android:layout_width="match_parent"
@@ -35,7 +36,6 @@
             app:SpinKit_Color="@color/colorAccent" />
     </LinearLayout>
 
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -43,12 +43,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+
             android:orientation="vertical">
 
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="311dp"
+                android:layout_marginTop="0dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/atturaif_"/>
 
             <com.kofigyan.stateprogressbar.StateProgressBar

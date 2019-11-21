@@ -73,83 +73,42 @@ public class Save_Ticket extends AppCompatActivity {
 
         if (!(ContextCompat.checkSelfPermission(Save_Ticket.this,
                 Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)){
-            requestStoragePermission();
 
         }
 
 
+            state = Environment.getExternalStorageState();
 
-        state = Environment.getExternalStorageState();
+            if (Environment.MEDIA_MOUNTED.equals(state)) {
+                File Root = Environment.getExternalStorageDirectory();
+                File Dir = new File(Root.getAbsolutePath() + "/Downloads");
+                if (!Dir.exists()) {
 
-        if (Environment.MEDIA_MOUNTED.equals(state)) {
-            File Root = Environment.getExternalStorageDirectory();
-            File Dir = new File(Root.getAbsolutePath() + "/Downloads");
-            if (!Dir.exists()) {
+                    Dir.mkdir();
+                }
+                File file = new File(Dir, "Ticket Information.txt");
+                String Message = "Date:" + date.getText().toString() + "\n" + "Price:" + price_total.getText().toString();
 
-                Dir.mkdir();
+
+                try {
+                    FileOutputStream fileOutputStream = new FileOutputStream(file);
+                    fileOutputStream.write(Message.getBytes());
+                    fileOutputStream.close();
+                    Toast.makeText(getApplicationContext(), "Ticket saved in Storage/Downloads", Toast.LENGTH_LONG).show();
+
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                Toast.makeText(getApplicationContext(), "SD card not found", Toast.LENGTH_LONG).show();
             }
-            File file = new File(Dir, "Ticket Information.txt");
-            String Message ="Date:"+ date.getText().toString()+"\n"+"Price:"+ price_total.getText().toString();
 
-
-            try {
-                FileOutputStream fileOutputStream = new FileOutputStream(file);
-                fileOutputStream.write(Message.getBytes());
-                fileOutputStream.close();
-                Toast.makeText(getApplicationContext(), "Ticket saved in Storage/Downloads", Toast.LENGTH_LONG).show();
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-        } else {
-            Toast.makeText(getApplicationContext(), "SD card not found", Toast.LENGTH_LONG).show();
-        }
     }
 
-    private void requestStoragePermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                Manifest.permission.READ_EXTERNAL_STORAGE)){
 
-
-            dialogPre=new Dialog(Save_Ticket.this);
-            dialogPre.setContentView(R.layout.premissionlayout);
-            Button btn_yes,btn_no;
-            dialogPre.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-
-            btn_no=dialogPre.findViewById(R.id.btn_no);
-            btn_yes=dialogPre.findViewById(R.id.btn_yes);
-
-            dialogPre.setCancelable(false);
-            dialogPre.show();
-
-
-            btn_yes.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    ActivityCompat.requestPermissions(Save_Ticket.this,
-                                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
-
-                }
-            });
-            btn_no.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialogPre.dismiss();
-
-                }
-            });
-
-        }
-
-        else {
-            ActivityCompat.requestPermissions(this,
-                    new String[] {Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

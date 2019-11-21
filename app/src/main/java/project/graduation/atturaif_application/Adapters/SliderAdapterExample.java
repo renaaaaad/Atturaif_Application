@@ -38,11 +38,11 @@ public class SliderAdapterExample extends SliderViewAdapter<SliderAdapterExample
             case 0:
                 if (MySharedPreference.getString(context, Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.vr_background)
+                            .load(R.drawable.vr_ar)
                             .into(viewHolder.imageViewBackground);
                 else
                     Glide.with(viewHolder.itemView)
-                            .load(R.drawable.vr_background)
+                            .load(R.drawable.vr_en)
                             .into(viewHolder.imageViewBackground);
 
                 viewHolder.imageViewBackground.setOnClickListener(new View.OnClickListener() {
