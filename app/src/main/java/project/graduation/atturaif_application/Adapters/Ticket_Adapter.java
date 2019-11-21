@@ -66,14 +66,13 @@ public class Ticket_Adapter extends RecyclerView.Adapter<Ticket_Adapter.MyViewHo
             } // else
         } //else
 
-
         final double finalPrice = price;
         holder.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String value = holder.numberOfTickets.getText().toString();
                 int finalValue = Integer.parseInt(value);
-                if (finalValue == 50)
+                if (finalValue == 20)
                     return;
                 finalValue = finalValue + 1;
                 holder.numberOfTickets.setText(Integer.toString(finalValue));

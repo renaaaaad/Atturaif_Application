@@ -14,9 +14,23 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.kofigyan.stateprogressbar.StateProgressBar;
+
+import project.graduation.atturaif_application.Adapters.Ticket_Adapter;
+import project.graduation.atturaif_application.Objectes.Vistor_price;
+
+import static project.graduation.atturaif_application.Booking_Activity.noAvailableTickets;
 
 public class Payment extends BasicActivity {
 
@@ -52,7 +66,6 @@ public class Payment extends BasicActivity {
         stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
 
         stateProgressBar = (StateProgressBar) findViewById(R.id.your_state_progress_bar_id);
-
 
 
         Checkout = findViewById(R.id.button2);
@@ -107,5 +120,41 @@ public class Payment extends BasicActivity {
                 return super.onOptionsItemSelected(item);
         } // switch
     } // onOptionsItemSelected
+
+    private void setTeckits() {
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("price");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    String type="";
+                    if (MySharedPreference.getString(getApplicationContext(),
+                            Constant.Keys.APP_LANGUAGE, "en").equals("ar")){
+                        type  = child.child("name_ar").getValue(String.class);
+
+                    }
+
+                    else
+                        type  = child.child("name_en").getValue(String.class);
+
+                    int price = child.child("price").getValue(Integer.class);
+                    int discount = child.child("discount").getValue(Integer.class);
+                    Vistor_price vistor_price = new Vistor_price(type, price, discount);
+                }// for
+
+            } //onDataChange
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                noAvailableTickets.setVisibility(View.VISIBLE);
+
+            } //onCancelled
+
+
+        });
+
+    } // setTickets
 
 } // class

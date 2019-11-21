@@ -48,9 +48,8 @@ public class MySharedPreference {
     }//end putString
 
 
-    public static void putInt(Context context, String key, int value) {
+    public static void putInt(Context context, String key, double value) {
         SharedPreferences.Editor editor = getInstance(context).edit();
-        editor.putInt(key, value).commit();
     }//end putInt
 
     public static void putBoolean(Context context, String key, boolean value) {

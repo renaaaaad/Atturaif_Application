@@ -33,6 +33,7 @@
     <string name="send_code">SEND CODE</string>
     <string name="please_enter_the_code">Please Enter The Receiving Code</string>
     <string name="enter">Enter</string>
+    <string name="Book">Book Tickets</string>
     <string name="payment">Payment</string>
     <string name="please_pay_to_complete_the_booking">* Please Pay To Complete The Booking</string>
     <string name="price">Price</string>

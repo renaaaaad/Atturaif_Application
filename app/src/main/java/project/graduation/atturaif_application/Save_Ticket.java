@@ -64,7 +64,6 @@ public class Save_Ticket extends AppCompatActivity {
         }
 
 
-
     }
     //android:background="#8b7d6b"
     //*******writeExternalStorage********//

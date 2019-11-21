@@ -317,13 +317,28 @@
                             />
                     </LinearLayout>
 
-            </LinearLayout>
+                </LinearLayout>
 
 
 
             </LinearLayout>
 
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/premission"
+                android:textAppearance="@style/AppTheme"
+                android:textSize="20dp"
+
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:textColor="@color/red"
+                android:textStyle="bold"
+
+
+                />
             <Button
                 android:id="@+id/save"
                 android:layout_width="match_parent"

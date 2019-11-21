@@ -20,9 +20,6 @@
         app:title="@string/Booking"
         app:titleTextAppearance="@style/Theme.AppCompat.Light.NoActionBar"
         app:titleTextColor="@color/white" />
-
-
-
     <LinearLayout
         android:id="@+id/progressbar"
         android:layout_width="match_parent"
@@ -105,6 +102,7 @@
                         android:layout_width="53dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="12dp"
+                        android:layout_margin="5dp"
                         android:src="@drawable/total_tickets" />
 
                 </LinearLayout>
@@ -118,9 +116,10 @@
 
                     <ImageView
                         android:layout_marginTop="0dp"
-                        android:layout_width="53dp"
-                        android:layout_height="32dp"
                         android:layout_marginStart="17dp"
+                        android:layout_width="70dp"
+                        android:layout_height="34dp"
+                        android:layout_margin="5dp"
                         android:src="@drawable/credit_card" />
 
                 </LinearLayout>
@@ -136,7 +135,7 @@
 
                     <ImageView
                         android:layout_marginTop="0dp"
-                        android:layout_width="53dp"
+                        android:layout_width="67dp"
                         android:layout_height="32dp"
                         android:src="@drawable/download" />
 
@@ -287,7 +286,9 @@
                 android:background="@drawable/button_background"
                 android:text="@string/continue_tour"
                 android:textColor="@color/white"
-                android:textAppearance="@style/AppTheme" />
+                android:textSize="26sp"
+                android:textStyle="bold" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </LinearLayout>

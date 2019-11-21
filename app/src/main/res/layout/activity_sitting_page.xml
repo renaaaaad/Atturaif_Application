@@ -10,7 +10,7 @@
         android:id="@+id/toolbar"
         style="@android:style/Widget.Material.Toolbar"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="60dp"
         android:background="@color/colorPrimary"
         android:gravity="center"
         android:textAlignment="center"
@@ -35,7 +35,10 @@
             android:text="@string/language"
             android:textAppearance="@style/AppTheme"
             android:textColor="@color/colorPrimary"
-            />
+
+            android:textSize="25sp" />
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -52,7 +55,6 @@
 
         </LinearLayout>
     </LinearLayout>
-    <!--......................Divider1......................-->
 
     <View
         android:layout_width="match_parent"
