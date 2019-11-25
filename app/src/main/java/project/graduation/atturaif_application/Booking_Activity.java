@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -69,6 +70,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     DatabaseReference reference;
     EditText numberOfTickets;
     Context context;
+    TextView compleate_booking;
 
     Button Continue;
     Timer timer;
@@ -95,27 +97,20 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
         progressBar.setIndeterminateDrawable(doubleBounce);
+        compleate_booking = findViewById(R.id.compleate_booking);
 
-        LinearLayout layoutAR=findViewById(R.id.enlayout_ar);
-        LinearLayout layoutEN=findViewById(R.id.enlayout_en);
+        LinearLayout layoutAR = findViewById(R.id.enlayout_ar);
+        LinearLayout layoutEN = findViewById(R.id.enlayout_en);
 
 
-
-
-        if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")) {
+        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
             layoutEN.setVisibility(View.GONE);
             layoutAR.setVisibility(View.VISIBLE);
 
         }
 
 
-
-
-
-
-
-
-            toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         tourType = findViewById(R.id.tourType);
         Continue = findViewById(R.id.Continue);
         //
@@ -149,7 +144,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
         }, 5000);
 
 
-        if(haveNetwork()) {
+        if (haveNetwork()) {
 
             // custom the calender
             int year = Calendar.getInstance().get(Calendar.YEAR);
@@ -181,6 +176,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             // get tour type data
             getTourType();
 
+
             // sit tickets
             setTeckits();
 
@@ -196,17 +192,35 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                 @Override
                 public void onClick(View view) {
                     //MySharedPreference.getFolat(context, Constant.Keys.User_PRICE, 0
-                    if (MySharedPreference.getFolat(context,Constant.Keys.User_PRICE,0)!=0) {
+                    if (MySharedPreference.getFolat(context, Constant.Keys.User_PRICE, 0) != 0) {
                         final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd MMMM yyyy");
                         final String text = true ? FORMATTER.format(mcv.getSelectedDate().getDate()) : "No Selection";
                         MySharedPreference.putString(getApplicationContext(), BOOKING_DATE, text);
                         startActivity(new Intent(Booking_Activity.this, Payment.class));
 
                     } else {
-                        Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
+                        if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")){
+                            Toast toast = Toast.makeText(getApplicationContext(), "الرجاء إكمال الحجز", Toast.LENGTH_LONG);
+                            View view2 = toast.getView();
+                            TextView text = (TextView) view2.findViewById(android.R.id.message);
+                            text.setTextSize(23);
+                            text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                            /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                            toast.show();
+                        }
+                        else {
+                            Toast toast = Toast.makeText(getApplicationContext(), "Please complete the form", Toast.LENGTH_LONG);
+                            View view2 = toast.getView();
+                            TextView text = (TextView) view2.findViewById(android.R.id.message);
+                            text.setTextSize(23);
+                            text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                            /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                            toast.show();
+
+                            // Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
+                        }
 
 
-                        // Toast.makeText(Booking_Activity.this, "Please complete the form", Toast.LENGTH_LONG).show();
                     }
                 }//onClick
 
@@ -215,17 +229,13 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
         }//end if statment for netwoek checking
 
-        else if(!haveNetwork())
-        {
+        else if (!haveNetwork()) {
 
             Intent intent = new Intent();
-            intent.setClass(Booking_Activity.this,InternetChecking.class);
-            intent.putExtra("Uniqid","Booking_Activity");
+            intent.setClass(Booking_Activity.this, InternetChecking.class);
+            intent.putExtra("Uniqid", "Booking_Activity");
             startActivity(intent);
         }
-
-
-
 
 
     } //onCreate
@@ -299,12 +309,11 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    String type="";
-                    if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")){
-                       type  = child.child("name_ar").getValue(String.class);
-                    }
-                    else
-                        type  = child.child("name_en").getValue(String.class);
+                    String type = "";
+                    if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+                        type = child.child("name_ar").getValue(String.class);
+                    } else
+                        type = child.child("name_en").getValue(String.class);
 
                     int price = child.child("price").getValue(Integer.class);
                     int discount = child.child("discount").getValue(Integer.class);
@@ -339,40 +348,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     private void getData() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
-        DatabaseReference myRef = database.getReference("open_hours");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    String day = child.getKey();
-
-                    if (day == null)
-                        return;
-                    String open_At = child.child("open").getValue(String.class);
-                    String close_At = child.child("close").getValue(String.class);
-                    Open_Days open_days_obj = new Open_Days(day, open_At, close_At);
-                    open_days.add(open_days_obj);
-                } // for
-                flag1 = true;
-            } //onDataChange
-
-            @Override
-            public void onCancelled(DatabaseError error) {
-                open_Time.setText(R.string.museum_close);
-            } //onCancelled
-        });
-    } // get data
-
-
-    @Override
-    public void onDateSelected(@NonNull MaterialCalendarView materialCalendarView, @NonNull CalendarDay calendarDay, boolean b) {
-        if (calendarDay.equals(current_date)) {
-            open_Time.setText(R.string.you_cant_book_today);
-            return;
-        }
-        final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("EEE, d MMM yyyy");
-        final String text = b ? FORMATTER.format(calendarDay.getDate()) : "No Selection";
-
 
         if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
 
@@ -400,9 +375,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                 } //onCancelled
             });
 
-        }
-
-        else{
+        } else {
             DatabaseReference myRef = database.getReference("open_hours").child("en");
             myRef.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -432,31 +405,28 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
     } // get data
 
 
-
-
     protected void onRestart() {
         super.onRestart();
         progressbar.setVisibility(View.GONE);
     }
 
-    private boolean haveNetwork(){
+    private boolean haveNetwork() {
 
-        boolean have_WIFI=false;
-        boolean have_MobileData=false;
+        boolean have_WIFI = false;
+        boolean have_MobileData = false;
 
-        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
 
-        for(NetworkInfo info:networkInfos)
-        {
-            if(info.getTypeName().equalsIgnoreCase("WIFI"))
-                if(info.isConnected())
-                    have_WIFI=true;
+        for (NetworkInfo info : networkInfos) {
+            if (info.getTypeName().equalsIgnoreCase("WIFI"))
+                if (info.isConnected())
+                    have_WIFI = true;
 
-            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
-                if(info.isConnected())
-                    have_MobileData=true;
+            if (info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (info.isConnected())
+                    have_MobileData = true;
 
         }
 
@@ -470,6 +440,8 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             open_Time.setText(R.string.you_cant_book_today);
             recyclerView.setVisibility(LinearLayout.GONE);
             Continue.setVisibility(LinearLayout.GONE);
+            compleate_booking.setVisibility(View.GONE);
+
             return;
         }
 
@@ -481,35 +453,40 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
         final int Syear = selectedDate.getYear();
 
-        if(current_date.getYear()>Syear){
+        if (current_date.getYear() > Syear) {
             open_Time.setText(R.string.you_cant_book_today);
             recyclerView.setVisibility(LinearLayout.GONE);
             Continue.setVisibility(LinearLayout.GONE);
+            compleate_booking.setVisibility(View.GONE);
+
             return;
-        }
-        else {
+        } else {
             if (current_date.getMonth() > Smonth) {
                 open_Time.setText(R.string.you_cant_book_today);
                 recyclerView.setVisibility(LinearLayout.GONE);
                 Continue.setVisibility(LinearLayout.GONE);
+                compleate_booking.setVisibility(View.GONE);
+
                 return;
-            }else {
+            } else {
                 if (current_date.getDay() > Sday) {
                     open_Time.setText(R.string.you_cant_book_today);
                     recyclerView.setVisibility(LinearLayout.GONE);
                     Continue.setVisibility(LinearLayout.GONE);
+                    compleate_booking.setVisibility(View.GONE);
+
                     return;
                 }
             }
         }
 
 
-        open=new Open_Days();
+        open = new Open_Days();
 
         String dateString = String.format("%d-%d-%d", Syear, Smonth, Sday);
         Date date1 = null;
         try {
-            date1= new SimpleDateFormat("yyyy-M-d").parse(dateString);
+            date1 = new SimpleDateFormat("yyyy-M-d").parse(dateString);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -521,52 +498,51 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
         if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
 
-            final String dayOfWeekAR=ArdayOfWeek(dayOfWeek);
-            boolean done=false;
-            for(int i=0;i<open_days.size();i++){
-                Open_Days o= open_days.get(i);
-                if(o.getDay().equals(dayOfWeekAR)){
+            final String dayOfWeekAR = ArdayOfWeek(dayOfWeek);
+            boolean done = false;
+            for (int i = 0; i < open_days.size(); i++) {
+                Open_Days o = open_days.get(i);
+                if (o.getDay().equals(dayOfWeekAR)) {
                     open_Time.setText(getString(R.string.opens_at) + "  " + o.getOpenAt() + " الى " + o.getCloseAt());
                     recyclerView.setVisibility(View.VISIBLE);
                     Continue.setVisibility(View.VISIBLE);
-                    done=true;
+                    compleate_booking.setVisibility(View.VISIBLE);
+                    compleate_booking.setText("الرجاء النزول للأسفل لإكمال الحجز");
+
+                    done = true;
                     break;
                 }
 
             }
-            if(done==false)
+            if (done == false)
                 open_Time.setText(R.string.you_cant_book_today);
-        }
-        else{
+        } else {
 
-            boolean done=false;
+            boolean done = false;
 
-            for(int i=0;i<open_days.size();i++){
-                Open_Days o= open_days.get(i);
-                if(o.getDay().equals(dayOfWeek)){
+            for (int i = 0; i < open_days.size(); i++) {
+                Open_Days o = open_days.get(i);
+                if (o.getDay().equals(dayOfWeek)) {
                     open_Time.setText(getString(R.string.opens_at) + "   " + o.getOpenAt() + " to " + o.getCloseAt());
                     recyclerView.setVisibility(View.VISIBLE);
                     Continue.setVisibility(View.VISIBLE);
-                    done=true;
+                    compleate_booking.setVisibility(View.VISIBLE);
+                    compleate_booking.setText("Please scroll down to complete booking");
+                    done = true;
                 }
 
             }
-            if(done==false)
+            if (done == false)
                 open_Time.setText(R.string.you_cant_book_today);
             return;
-            }
-
         }
 
-
-
-
-
+    }
 
 
     private String ArdayOfWeek(String dayOfWeek) {
 
-        String dayAR=null;
+        String dayAR = null;
 
         switch (dayOfWeek) {
             case "Sunday":
@@ -592,7 +568,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                 dayAR = "الأربعاء";
                 break;
             case "Thursday":
-                        dayAR = "الخميس";
+                dayAR = "الخميس";
                 break;
 
         }// switch

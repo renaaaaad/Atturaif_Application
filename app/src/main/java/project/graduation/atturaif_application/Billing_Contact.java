@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.InputType;
@@ -171,11 +172,27 @@ public class Billing_Contact extends BasicActivity  {
 
                     if (MySharedPreference.getString(getApplicationContext(),
                             Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
-                        Toast.makeText(Billing_Contact.this, "الرجاء تأكد من ملء النموذج", Toast.LENGTH_LONG).show();
+                     //   Toast.makeText(Billing_Contact.this, "الرجاء تأكد من ملء النموذج", Toast.LENGTH_LONG).show();
+
+
+                        Toast toast = Toast.makeText(getApplicationContext(), "الرجاء تأكد من ملء النموذج", Toast.LENGTH_LONG);
+                        View view2 = toast.getView();
+                        TextView text = (TextView) view2.findViewById(android.R.id.message);
+                        text.setTextSize(23);
+                        text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                        /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                        toast.show();
+
                     }
                     else{
-                        Toast.makeText(Billing_Contact.this, "Please complete the form", Toast.LENGTH_LONG).show();
-
+                       // Toast.makeText(Billing_Contact.this, "Please complete the form", Toast.LENGTH_LONG).show();
+                        Toast toast = Toast.makeText(getApplicationContext(), "Please complete the form", Toast.LENGTH_LONG);
+                        View view2 = toast.getView();
+                        TextView text = (TextView) view2.findViewById(android.R.id.message);
+                        text.setTextSize(23);
+                        text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                        /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                        toast.show();
                     }
                 }
             }

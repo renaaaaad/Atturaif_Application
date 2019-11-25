@@ -1,9 +1,11 @@
 package project.graduation.atturaif_application;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +28,6 @@ import project.graduation.atturaif_application.Adapters.shopdaysitemAdapter;
 import project.graduation.atturaif_application.Objectes.Open_Days;
 
 
-
 public class shopDetails extends BasicActivity {
 
     Toolbar toolbar;
@@ -42,17 +43,17 @@ public class shopDetails extends BasicActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_details);
 
-        recyclerView=findViewById(R.id.ShopDaysrecycleview);
+        recyclerView = findViewById(R.id.ShopDaysrecycleview);
         recyclerView.setHasFixedSize(true);
-        layoutManager=new LinearLayoutManager(this);
-        daylist=new ArrayList<>();
+        layoutManager = new LinearLayoutManager(this);
+        daylist = new ArrayList<>();
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        if(haveNetwork()) {
+        if (haveNetwork()) {
             Intent intent = getIntent();
             String name = intent.getStringExtra(Constant.Keys.SHOP_NAME);
             String id = intent.getStringExtra(Constant.Keys.SHOP_ID);
@@ -96,7 +97,26 @@ public class shopDetails extends BasicActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(shopDetails.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
+
+                    if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "للأسف هناك خطأ , حاول مرة أخرى", Toast.LENGTH_LONG);
+                        View view = toast.getView();
+                        TextView text = (TextView) view.findViewById(android.R.id.message);
+                        text.setTextSize(23);
+                        text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                        /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                        toast.show();
+                    } else {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Opsss....Something is wrong", Toast.LENGTH_LONG);
+                        View view = toast.getView();
+                        TextView text = (TextView) view.findViewById(android.R.id.message);
+                        text.setTextSize(23);
+                        text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                        /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                        toast.show();
+                        // Toast.makeText(shopDetails.this, "Opsss....Something is wrong", Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }
             });
@@ -115,35 +135,33 @@ public class shopDetails extends BasicActivity {
 //        SOpentime.setText(Opentime);
             Sdes.setText(des);
 
-        }
-        else{
+        } else {
             Intent intent = new Intent();
-            intent.setClass(shopDetails.this,InternetChecking.class);
-            intent.putExtra("Uniqid","shopDetails");
+            intent.setClass(shopDetails.this, InternetChecking.class);
+            intent.putExtra("Uniqid", "shopDetails");
             startActivity(intent);
 
         }
 
     }
 
-    private boolean haveNetwork(){
+    private boolean haveNetwork() {
 
-        boolean have_WIFI=false;
-        boolean have_MobileData=false;
+        boolean have_WIFI = false;
+        boolean have_MobileData = false;
 
-        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
 
-        for(NetworkInfo info:networkInfos)
-        {
-            if(info.getTypeName().equalsIgnoreCase("WIFI"))
-                if(info.isConnected())
-                    have_WIFI=true;
+        for (NetworkInfo info : networkInfos) {
+            if (info.getTypeName().equalsIgnoreCase("WIFI"))
+                if (info.isConnected())
+                    have_WIFI = true;
 
-            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
-                if(info.isConnected())
-                    have_MobileData=true;
+            if (info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (info.isConnected())
+                    have_MobileData = true;
 
         }
 

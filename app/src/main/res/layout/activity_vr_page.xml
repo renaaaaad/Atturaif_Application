@@ -60,7 +60,9 @@
                 <com.google.vr.sdk.widgets.pano.VrPanoramaView
                     android:id="@+id/vrPanoramaView2"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp" />
+                    android:layout_height="200dp" >
+
+                </com.google.vr.sdk.widgets.pano.VrPanoramaView>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -69,10 +71,7 @@
                     android:gravity="center_vertical|center_horizontal"
                     android:text="@string/the_palace"
                     android:textColor="@color/white"
-                    android:textAppearance="@style/AppTheme"
->
-
-                </TextView>
+                    android:textAppearance="@style/AppTheme" />
             </RelativeLayout>
 
             <RelativeLayout

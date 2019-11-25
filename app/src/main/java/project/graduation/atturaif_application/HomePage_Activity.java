@@ -1,14 +1,18 @@
 package project.graduation.atturaif_application;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.SpannableStringBuilder;
+import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.view.MenuItem;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -141,7 +145,28 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         }
 
         if(!(have_WIFI||have_MobileData)) {
-            Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
+
+
+            if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")){
+                Toast toast = Toast.makeText(getApplicationContext(), "لا يوجد إتصال في الانترنت !", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextSize(27);
+                text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                toast.show();
+            }
+            else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Network connection is not available!", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextSize(27);
+                text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                toast.show();
+
+                // Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
+            }
 
         }
         else {
@@ -188,8 +213,27 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         }
 
         if(!(have_WIFI||have_MobileData)) {
-            Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
 
+            if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")){
+                Toast toast = Toast.makeText(getApplicationContext(), "لا يوجد إتصال في الانترنت !", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextSize(27);
+                text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                toast.show();
+            }
+            else {
+                Toast toast = Toast.makeText(getApplicationContext(), "Network connection is not available!", Toast.LENGTH_LONG);
+                View view = toast.getView();
+                TextView text = (TextView) view.findViewById(android.R.id.message);
+                text.setTextSize(27);
+                text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                toast.show();
+
+                // Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
+            }
         }
 
         else {
@@ -209,8 +253,29 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), R.string.error_message,
-                            Toast.LENGTH_LONG).show();
+
+                    if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")){
+                        Toast toast = Toast.makeText(getApplicationContext(), "هناك بعض المشاكل ، يرجى المحاولة مرة أخرى لاحقًا", Toast.LENGTH_LONG);
+                        View view = toast.getView();
+                        TextView text = (TextView) view.findViewById(android.R.id.message);
+                        text.setTextSize(23);
+                        text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                        /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                        toast.show();
+                    }
+                    else {
+                        Toast toast = Toast.makeText(getApplicationContext(), "There is some problems, please try again later", Toast.LENGTH_LONG);
+                        View view = toast.getView();
+                        TextView text = (TextView) view.findViewById(android.R.id.message);
+                        text.setTextSize(23);
+                        text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
+                        /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
+                        toast.show();
+
+                        // Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
+                    }
+
+
                     startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
                 } //onCancelled
             });

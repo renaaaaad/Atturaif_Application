@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#F8F9FB"
+    android:orientation="vertical"
     tools:context=".shopDetails">
 
     <androidx.appcompat.widget.Toolbar
@@ -27,16 +27,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:fillViewport="true"
-        >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="20dp"
             android:orientation="vertical"
-            android:paddingBottom="20dp">
+            >
 
             <RelativeLayout
                 android:id="@+id/relativelayout"
@@ -63,9 +62,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:adjustViewBounds="true"
+                            android:background="@color/colorPrimaryDark"
                             android:scaleType="centerCrop"
-                            android:tint="@color/photo_tint"
-                            android:background="@color/colorPrimaryDark"/>
+                            android:tint="@color/photo_tint" />
 
 
                     </com.github.florent37.shapeofview.shapes.ArcView>
@@ -101,33 +100,32 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
                         android:layout_marginTop="60sp"
-                        >
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <androidx.cardview.widget.CardView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="15dp"
-                            android:layout_marginEnd="15dp"
                             android:layout_marginTop="89dp"
+                            android:layout_marginEnd="15dp"
+                            android:layout_marginBottom="5dp"
                             android:elevation="10dp"
-                            app:cardCornerRadius="17dp"
-                            app:cardElevation="0dp"
-                            android:layout_centerHorizontal="true"
                             android:innerRadius="0dp"
                             android:shape="ring"
-                            android:layout_marginBottom="5dp"
                             android:thicknessRatio="1.9"
                             app:cardBackgroundColor="@color/ghost_white"
+                            app:cardCornerRadius="17dp"
+                            app:cardElevation="0dp"
 
                             >
 
-                            <RelativeLayout
-                                android:layout_width="384dp"
+                            <LinearLayout
+                                android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:background="@color/white">
+                                android:background="@color/white"
+                                android:orientation="vertical">
 
                                 <TextView
                                     android:id="@+id/viewdes"
@@ -136,18 +134,17 @@
                                     android:layout_marginStart="10dp"
                                     android:layout_marginTop="20dp"
                                     android:text="@string/Description"
-                                    android:textStyle="bold"
                                     android:textColor="@color/dark_gray"
                                     android:textSize="30sp"
-                                   />
+                                    android:textStyle="bold" />
 
                                 <TextView
                                     android:id="@+id/shopdesc"
-                                    android:layout_width="wrap_content"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_below="@+id/viewdes"
-                                    android:lineSpacingMultiplier="1.5"
-                                    android:padding="12dp"
+                                    android:layout_marginStart="10dp"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginTop="10dp"
                                     android:textColor="@color/dark_gray"
                                     android:textSize="26sp" />
 
@@ -159,10 +156,10 @@
                                     android:layout_below="@+id/shopdesc"
                                     android:layout_marginStart="10dp"
                                     android:text="@string/Open_on"
+                                    android:layout_marginTop="10dp"
                                     android:textColor="@color/dark_gray"
-                                    android:textStyle="bold"
                                     android:textSize="30sp"
-                                    />
+                                    android:textStyle="bold" />
 
 
                                 <androidx.recyclerview.widget.RecyclerView
@@ -170,12 +167,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:layout_below="@+id/viewtime"
-                                    android:padding="10dp"
+                                    android:layout_margin="20dp"
+
 
 
                                     />
 
-                            </RelativeLayout>
+                            </LinearLayout>
 
 
                         </androidx.cardview.widget.CardView>

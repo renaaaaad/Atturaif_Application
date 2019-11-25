@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
+    android:theme="@style/AppTheme"
     tools:context=".Billing_Contact">
 
     <androidx.appcompat.widget.Toolbar
@@ -35,6 +36,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="311dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/atturaif_"/>
 
             <com.kofigyan.stateprogressbar.StateProgressBar
@@ -43,6 +45,7 @@
                 android:layout_height="wrap_content"
                 app:spb_currentStateNumber="three"
                 app:spb_maxStateNumber="four"
+                android:layout_margin="10dp"
                 app:spb_stateBackgroundColor="#BDBDBD"
                 app:spb_stateForegroundColor="#084D14"
                 app:spb_stateNumberBackgroundColor="#808080"
@@ -205,6 +208,9 @@
 
             <com.braintreepayments.cardform.view.CardForm
                 android:id="@+id/card_form"
+                android:layout_margin="10dp"
+                android:theme="@style/AppTheme"
+                style="@style/AppTheme"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 />

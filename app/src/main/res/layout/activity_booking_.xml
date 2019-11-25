@@ -53,12 +53,13 @@
                 android:layout_height="311dp"
                 android:layout_marginTop="0dp"
                 android:scaleType="fitXY"
-                android:src="@drawable/atturaif_"/>
+                android:src="@drawable/atturaif_" />
 
             <com.kofigyan.stateprogressbar.StateProgressBar
                 android:id="@+id/your_state_progress_bar_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_margin="10dp"
                 app:spb_animateToCurrentProgressState="true"
                 app:spb_checkStateCompleted="true"
                 app:spb_currentStateDescriptionColor="#084D14"
@@ -74,23 +75,24 @@
                 android:id="@+id/enlayout_en"
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="0dp"
+                android:layout_marginEnd="15dp"
                 android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="5dp"
                     android:layout_height="58dp"
-                    android:layout_margin="5dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_weight="1"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
-                        android:layout_marginStart="11dp"
                         android:layout_width="48dp"
                         android:layout_height="49dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="0dp"
                         android:src="@drawable/calendar_book" />
                 </LinearLayout>
 
@@ -102,11 +104,11 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
                         android:layout_width="53dp"
                         android:layout_height="32dp"
-                        android:layout_marginStart="12dp"
                         android:layout_margin="5dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="0dp"
                         android:src="@drawable/total_tickets" />
 
                 </LinearLayout>
@@ -119,28 +121,27 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
-                        android:layout_marginStart="17dp"
                         android:layout_width="70dp"
                         android:layout_height="34dp"
                         android:layout_margin="5dp"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="0dp"
                         android:src="@drawable/credit_card" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:gravity="end"
                     android:layout_width="5dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
+                    android:gravity="end"
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
                         android:layout_width="67dp"
                         android:layout_height="32dp"
+                        android:layout_marginTop="0dp"
                         android:src="@drawable/download" />
 
                 </LinearLayout>
@@ -149,14 +150,14 @@
             </LinearLayout>
 
             <LinearLayout
-                android:visibility="gone"
                 android:id="@+id/enlayout_ar"
                 android:layout_width="match_parent"
-                android:layout_marginEnd="15dp"
                 android:layout_height="70dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="0dp"
-                android:orientation="horizontal">
+                android:layout_marginEnd="15dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="5dp"
@@ -166,10 +167,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
                         android:layout_width="53dp"
                         android:layout_height="32dp"
-                        android:src="@drawable/download"/>
+                        android:layout_marginTop="0dp"
+                        android:src="@drawable/download" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -180,10 +181,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
                         android:layout_width="53dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="12dp"
+                        android:layout_marginTop="0dp"
                         android:src="@drawable/credit_card" />
 
                 </LinearLayout>
@@ -196,10 +197,10 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
                         android:layout_width="53dp"
                         android:layout_height="32dp"
                         android:layout_marginStart="15dp"
+                        android:layout_marginTop="0dp"
                         android:src="@drawable/total_tickets" />
 
                 </LinearLayout>
@@ -209,32 +210,30 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:layout_weight="1"
-                    android:orientation="vertical"
-                    >
+                    android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
-                        android:layout_marginStart="26dp"
                         android:layout_width="48dp"
                         android:layout_height="49dp"
-                        android:src="@drawable/calendar_book"  />
+                        android:layout_marginStart="26dp"
+                        android:layout_marginTop="0dp"
+                        android:src="@drawable/calendar_book" />
 
                 </LinearLayout>
 
 
             </LinearLayout>
 
-            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
+            <com.prolificinteractive.materialcalendarview.MaterialCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/teacher_info_calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:mcv_showWeekDays="true"
+                app:mcv_dateTextAppearance="@style/calender"
+                app:mcv_headerTextAppearance="@style/calender"
                 app:mcv_selectionColor="@color/colorPrimary"
                 app:mcv_showOtherDates="decorated_disabled"
-                app:mcv_headerTextAppearance="@style/calender"
+                app:mcv_showWeekDays="true"
                 app:mcv_weekDayTextAppearance="@style/calender"
-                app:mcv_dateTextAppearance="@style/calender"
 
                 />
 
@@ -246,7 +245,16 @@
                 android:textColor="@color/dark_red"
                 android:textSize="26sp" />
 
+            <TextView
+                android:id="@+id/compleate_booking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="10dp"
+                android:textColor="@color/dark_red"
+                android:textSize="26sp">
 
+            </TextView>
 
             <TextView
                 android:id="@+id/noAvailableTickets"
@@ -272,9 +280,6 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
                 android:orientation="horizontal">
-
-
-
 
 
             </LinearLayout>

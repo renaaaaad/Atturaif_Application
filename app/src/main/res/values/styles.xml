@@ -8,8 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="fontFamily">@font/arabtype</item>
         <item name="android:textSize">35dp</item>
+        <item name="android:itemTextAppearance">@style/myCustomMenuTextAppearance</item>
 
     </style>
+
+
+    <style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/arabtype</item>
+        <item name="android:textSize">15sp</item>
+
+    </style>
+
 
     <style name="card">
         <!-- Customize your theme here. -->
@@ -24,7 +37,8 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>        <item name="android:textSize">25dp</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textSize">25dp</item>
 
     </style>
 
@@ -43,8 +57,14 @@
         <item name="android:textColor">@color/colorPrimaryDark</item>
         <item name="android:textStyle">normal</item>
 
-
     </style>
 
+
+    <style name="myCustomMenuTextAppearance" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+        <item name="android:textSize">29sp</item>
+
+
+    </style>
 
 </resources>

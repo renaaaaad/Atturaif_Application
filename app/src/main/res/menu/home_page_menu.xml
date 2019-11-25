@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:itemTextAppearance="@style/AppTheme"
+
+    >
     <item
         android:id="@+id/sitting"
         android:icon="@drawable/help"
-        android:title="@string/sitting" />
+        android:title="@string/sitting"
+        app:itemTextAppearance="@style/AppTheme2"
+        app:titleTextAppearance="@style/AppTheme2"        />
     <item
         android:id="@+id/help"
         android:title="@string/help">

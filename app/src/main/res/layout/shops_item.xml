@@ -1,113 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
 
     <LinearLayout
-
+        android:id="@+id/shopparent"
+        android:layout_width="230dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bgshopcustom"
+        android:gravity="center"
+        android:orientation="vertical"
         android:scaleX="0.7"
         android:scaleY="0.7"
-        android:orientation="vertical"
-        android:layout_width="230dp"
-        android:background="@drawable/bgshopcustom"
-        android:layout_height="wrap_content"
-        android:id="@+id/shopparent"
 
         >
 
 
-
         <com.github.florent37.shapeofview.shapes.RoundRectView
-            app:shape_roundRect_topRightRadius="8dp"
-            app:shape_roundRect_topLeftRadius="8dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:shape_roundRect_topLeftRadius="8dp"
+            app:shape_roundRect_topRightRadius="8dp">
 
 
-        <ImageView
+            <ImageView
 
-            android:scaleType="centerCrop"
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
-            android:id="@+id/shopimage"
-            android:background="@drawable/bgshopcustom"
-            android:src="@drawable/placeholder"
+                android:id="@+id/shopimage"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/bgshopcustom"
+                android:scaleType="centerCrop"
+                android:src="@drawable/placeholder"
 
 
-            />
+                />
 
 
         </com.github.florent37.shapeofview.shapes.RoundRectView>
 
         <RelativeLayout
-            android:layout_width="384dp"
-            android:layout_height="wrap_content"
-            >
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/arabtype"
                 android:lineSpacingExtra="8dp"
                 android:text="Ecotourism With a Master Boo"
+                android:textAppearance="@font/arabtype"
                 android:textColor="@color/colorPrimary"
+                android:textSize="33sp"
                 android:textStyle="bold"
-                android:textSize="29sp"
                 tools:ignore="MissingConstraints" />
 
             <TextView
                 android:id="@+id/des"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/name"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="0dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
+                android:fontFamily="@font/arabtype"
                 android:lineSpacingExtra="8dp"
                 android:text="Ecotourism With a Master Boo"
+                android:textAppearance="@font/arabtype"
                 android:textColor="#989898"
-                android:textSize="20sp"
-                android:layout_below="@+id/name"
-                />
-
+                android:textSize="25sp" />
 
 
             <LinearLayout
                 android:id="@+id/btnshopparent"
-                android:padding="10dp"
-                android:orientation="vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
-                android:layout_marginLeft="16dp"
                 android:layout_below="@+id/des"
+                android:layout_margin="20dp"
+                android:layout_marginTop="12dp"
                 android:gravity="center"
-                >
+                android:orientation="vertical"
+                android:padding="10dp">
 
                 <Button
                     android:id="@+id/btnMore"
-                    android:layout_width="177dp"
-                    android:layout_height="23dp"
-                    android:background="@drawable/btnmoreshop"
-                    android:text="@string/more"
-                    android:textColor="@color/wheat"
-                    android:gravity="center"
-                    android:textSize="18sp"
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
                     android:layout_below="@+id/des"
+                    android:layout_gravity="center_horizontal|center_vertical"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/btnmoreshop"
+                    android:fontFamily="@font/arabtype"
+                    android:gravity="center"
+                    android:text="@string/more"
+                    android:textAppearance="@font/arabtype"
+                    android:textColor="@color/wheat"
+                    android:textSize="30sp"
 
                     />
 
             </LinearLayout>
 
-</RelativeLayout>
-
+        </RelativeLayout>
 
 
     </LinearLayout>

@@ -38,6 +38,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="311dp"
+                android:scaleType="fitXY"
                 android:src="@drawable/atturaif_"/>
 
             <com.kofigyan.stateprogressbar.StateProgressBar
