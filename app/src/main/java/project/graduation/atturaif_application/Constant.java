@@ -21,5 +21,12 @@ public class Constant {
         String EVENT_NAME = "name";
         String EVENT_Des = "description";
         String EVENT_TIME = "time";
+
+        String SHOPS = "shops";
+        String EVENTS = "events";
+        String DATE_EVENT_DAY = "date_event_day";
+        String DATE_EVENT_MONTH = "date_event_month";
+        String DATE_EVENT_YEAR = "date_event_year";
+
     }//end interface
 } // class

@@ -5,7 +5,7 @@
 
 
     <string name="Booking">Booking</string>
-    <string name="Home">Home</string>
+    <string name="Home">Atturaif</string>
     <string name="Events">Events</string>
     <string name="Map">Map</string>
     <string name="Shops">Shops</string>
@@ -91,8 +91,8 @@
     <string name="premission"> You have to enable the permission to save the ticket</string>
     <string name="enable">Enable</string>
     <string name="reject">Reject</string>
+    <string name="take_glance">Take Glance</string>
 
-
-
+    <string name="about_us_dis">Atturaif is a district located in Al-Dir’iya, at Northwest of Riyadh city in Kingdom of Saudi Arabia. It was the first capital of the Saudi Dynasty after Mohammed bin Abdul Wahhabi religious renewal call in 1157. Atturaif district is considered one of the most important monuments of Al-Dir’iya. It has the most important historical buildings, palaces and historical monuments Such as the Salwa Palace, where the first Saudi state affairs were managed and Imam Muhammad bin Saud Mosque. On July 29, 2010, The World Heritage Committee has approved the registration of the Atturaif in the historic Druze Quarter of the UNESCO World Heritage List. Then the restoration work started, followed by adding new places such as the souq where sellers sell their traditional products and food. Also, a museum of social life has been built to show part of everyday old life.</string>
 
 </resources>

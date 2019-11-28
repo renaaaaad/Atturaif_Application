@@ -63,7 +63,6 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     Toolbar toolbar;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,27 +74,32 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
         progressBar.setIndeterminateDrawable(doubleBounce);
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressbar.setVisibility(View.GONE);
-                    }
-                });
-            } //run
-        }, 5000);
 
+        if (MySharedPreference.getBoolean(getApplicationContext(), Constant.Keys.SHOPS, false)) {
+            progressbar.setVisibility(View.GONE);
+            MySharedPreference.putBoolean(getApplicationContext(), Constant.Keys.SHOPS, false);
+
+        } else {
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            progressbar.setVisibility(View.GONE);
+                        }
+                    });
+                } //run
+            }, 5000);
+        }
         //default back button
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-
-        if(haveNetwork()) {
+        if (haveNetwork()) {
 
             shops_name = new ArrayList<>();
             reference = FirebaseDatabase.getInstance().getReference().child("Shops");
@@ -106,16 +110,16 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
                         if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
                             String nameAR = ds.child("shopnameAR").getValue(String.class);
                             String image = ds.child("image").getValue(String.class);
-                            String desAR=ds.child("DescriptionAR").getValue(String.class);
+                            String desAR = ds.child("DescriptionAR").getValue(String.class);
                             String id = ds.getKey();
-                            final shope_splash_name e = new shope_splash_name(id, nameAR, image,desAR);
+                            final shope_splash_name e = new shope_splash_name(id, nameAR, image, desAR);
                             shops_name.add(e);
                         } else {
                             String nameAR = ds.child("shopnameEN").getValue(String.class);
                             String image = ds.child("image").getValue(String.class);
-                            String desEN=ds.child("DescriptionEN").getValue(String.class);
+                            String desEN = ds.child("DescriptionEN").getValue(String.class);
                             String id = ds.getKey();
-                            final shope_splash_name e = new shope_splash_name(id, nameAR, image,desEN);
+                            final shope_splash_name e = new shope_splash_name(id, nameAR, image, desEN);
                             shops_name.add(e);
                         }
                     } //for
@@ -187,18 +191,14 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
 
                 }
             });
-        }
-
-        else if(!haveNetwork())
-        {
+        } else if (!haveNetwork()) {
             Intent intent = new Intent();
-            intent.setClass(ShopsPage.this,InternetChecking.class);
-            intent.putExtra("Uniqid","ShopsPage");
+            intent.setClass(ShopsPage.this, InternetChecking.class);
+            intent.putExtra("Uniqid", "ShopsPage");
             startActivity(intent);
         }
 
     } //onCreate
-
 
 
     private void listShops() {
@@ -206,8 +206,8 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         adapter = new Shops_Adapter(getApplicationContext(), shops, this);
         recyclerView.setHasFixedSize(true);
 
-        final LinearLayoutManager linearLayoutManager= new LinearLayoutManager
-                (this,LinearLayoutManager.HORIZONTAL,false);
+        final LinearLayoutManager linearLayoutManager = new LinearLayoutManager
+                (this, LinearLayoutManager.HORIZONTAL, false);
 //        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setHasFixedSize(true);
@@ -221,61 +221,60 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
         snapHelper.attachToRecyclerView(recyclerView);
 
         //set timer for default item
-        final Handler handler=new Handler();
+        final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 //do something after 1ms
-                RecyclerView.ViewHolder viewHolderDefault= recyclerView.
+                RecyclerView.ViewHolder viewHolderDefault = recyclerView.
                         findViewHolderForAdapterPosition(0);
 
-                LinearLayout shopparentDefault=viewHolderDefault.itemView.
+                LinearLayout shopparentDefault = viewHolderDefault.itemView.
                         findViewById(R.id.shopparent);
 
                 shopparentDefault.animate().scaleY(1).scaleX(1).setDuration(350).
-                     setInterpolator(new AccelerateInterpolator()).start();
+                        setInterpolator(new AccelerateInterpolator()).start();
 
-                LinearLayout shopbtnDefa=viewHolderDefault.itemView.
-        findViewById(R.id.btnshopparent);
+                LinearLayout shopbtnDefa = viewHolderDefault.itemView.
+                        findViewById(R.id.btnshopparent);
                 shopbtnDefa.animate().alpha(1).setDuration(300).start();
             }
-        },100);
+        }, 100);
 
 
-            //set anmite scroll
+        //set anmite scroll
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerview, int newState) {
                 super.onScrollStateChanged(recyclerview, newState);
 
-                if(newState == recyclerview.SCROLL_STATE_IDLE){
+                if (newState == recyclerview.SCROLL_STATE_IDLE) {
 
-                    View view=snapHelper.findSnapView(linearLayoutManager);
-                    int pos= linearLayoutManager.getPosition(view);
+                    View view = snapHelper.findSnapView(linearLayoutManager);
+                    int pos = linearLayoutManager.getPosition(view);
 
-                    RecyclerView.ViewHolder viewHolder=
+                    RecyclerView.ViewHolder viewHolder =
                             recyclerView.findViewHolderForAdapterPosition(pos);
 
-                    LinearLayout shopparent=viewHolder.itemView.findViewById(R.id.shopparent);
+                    LinearLayout shopparent = viewHolder.itemView.findViewById(R.id.shopparent);
 
                     shopparent.animate().scaleY(1).scaleX(1).setDuration(350).setInterpolator(new AccelerateInterpolator()).start();
 
-                    LinearLayout shopbtn=viewHolder.itemView.findViewById(R.id.btnshopparent);
+                    LinearLayout shopbtn = viewHolder.itemView.findViewById(R.id.btnshopparent);
                     shopbtn.animate().alpha(1).setDuration(300).start();
-                }
-                else {
+                } else {
 
-                    View view=snapHelper.findSnapView(linearLayoutManager);
-                    int pos= linearLayoutManager.getPosition(view);
+                    View view = snapHelper.findSnapView(linearLayoutManager);
+                    int pos = linearLayoutManager.getPosition(view);
 
-                    RecyclerView.ViewHolder viewHolder=
+                    RecyclerView.ViewHolder viewHolder =
                             recyclerView.findViewHolderForAdapterPosition(pos);
 
-                    LinearLayout shopparent=viewHolder.itemView.findViewById(R.id.shopparent);
+                    LinearLayout shopparent = viewHolder.itemView.findViewById(R.id.shopparent);
 
                     shopparent.animate().scaleY(0.7f).scaleX(0.7f).setDuration(350).setInterpolator(new AccelerateInterpolator()).start();
 
-                    LinearLayout shopbtn=viewHolder.itemView.findViewById(R.id.btnshopparent);
+                    LinearLayout shopbtn = viewHolder.itemView.findViewById(R.id.btnshopparent);
                     shopbtn.animate().alpha(0).setDuration(300).start();
 
                 }
@@ -319,25 +318,23 @@ public class ShopsPage extends BasicActivity implements Shops_Adapter.shopListne
     }
 
 
+    private boolean haveNetwork() {
 
-    private boolean haveNetwork(){
+        boolean have_WIFI = false;
+        boolean have_MobileData = false;
 
-        boolean have_WIFI=false;
-        boolean have_MobileData=false;
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
 
-        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+        for (NetworkInfo info : networkInfos) {
+            if (info.getTypeName().equalsIgnoreCase("WIFI"))
+                if (info.isConnected())
+                    have_WIFI = true;
 
-        for(NetworkInfo info:networkInfos)
-        {
-            if(info.getTypeName().equalsIgnoreCase("WIFI"))
-                if(info.isConnected())
-                    have_WIFI=true;
-
-            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
-                if(info.isConnected())
-                    have_MobileData=true;
+            if (info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (info.isConnected())
+                    have_MobileData = true;
 
         }
 

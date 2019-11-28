@@ -5,6 +5,8 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.res.AssetManager;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
 
@@ -101,4 +103,6 @@ public class VR_page extends BasicActivity {
             e.printStackTrace();
         }
     }
+
+
 } //class

@@ -167,4 +167,6 @@ public class shopDetails extends BasicActivity {
 
         return have_WIFI || have_MobileData;
     }
+
+
 }

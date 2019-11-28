@@ -61,7 +61,6 @@ public class Aboutus_Page extends BasicActivity {
         Sprite doubleBounce = new CubeGrid();
         progressBar.setIndeterminateDrawable(doubleBounce);
 
-
         toolbar = findViewById(R.id.toolbar1);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -79,39 +78,10 @@ public class Aboutus_Page extends BasicActivity {
             } //run
         }, 3000);
 
+        text.setText(R.string.about_us_dis);
+
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("About_us");
-        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
-            myRef.child("ar").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    text.setText(dataSnapshot.getValue(String.class));
-                } //onDataChange
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), R.string.error_message,
-                            Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
-                } //onCancelled
-            });
-        } else {
-            myRef.child("en").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    text.setText(dataSnapshot.getValue(String.class));
-                } //onDataChange
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(getApplicationContext(), R.string.error_message,
-                            Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), HomePage_Activity.class));
-
-                } //onCancelled
-            });
-        } // else
-
 
         // getting the working days
         DatabaseReference myRef2 = database.getReference("open_hours");

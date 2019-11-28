@@ -95,9 +95,7 @@ public class EventsPage_Activity extends BasicActivity implements
         OnDateSelectedListener, EventsAdapter.onItemClickListner {
 
 
-
     private MaterialCalendarView mCalendarView;
-
 
     DatabaseReference reference;
 
@@ -131,22 +129,6 @@ public class EventsPage_Activity extends BasicActivity implements
         ProgressBar progressBar = findViewById(R.id.spin_kit);
         Sprite doubleBounce = new CubeGrid();
         progressBar.setIndeterminateDrawable(doubleBounce);
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                new Handler(Looper.getMainLooper()).post(new Runnable() {
-                    @Override
-                    public void run() {
-                        progressbar.setVisibility(View.GONE);
-                    }
-                });
-            } //run
-        }, 4000);
-
-
-
-
 
         //check network connection
 
@@ -160,12 +142,10 @@ public class EventsPage_Activity extends BasicActivity implements
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        if(haveNetwork()) {
-
+        if (haveNetwork()) {
 
 
             noeventlayout = findViewById(id.linearlayoutnoevent);
-
 
 
             mCalendarView = (MaterialCalendarView)
@@ -193,6 +173,24 @@ public class EventsPage_Activity extends BasicActivity implements
                     commit();
 
 
+            if (MySharedPreference.getBoolean(getApplicationContext(), Constant.Keys.EVENTS, false)) {
+                progressbar.setVisibility(View.GONE);
+                MySharedPreference.putBoolean(getApplicationContext(), Constant.Keys.EVENTS, false);
+            } else {
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        new Handler(Looper.getMainLooper()).post(new Runnable() {
+                            @Override
+                            public void run() {
+                                progressbar.setVisibility(View.GONE);
+                            }
+                        });
+                    } //run
+                }, 4000);
+
+            }
 
 
             mCalendarView.setOnDateChangedListener(this);
@@ -210,7 +208,6 @@ public class EventsPage_Activity extends BasicActivity implements
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
             eventList = new ArrayList<Events>();
-
 
 
             reference =
@@ -260,7 +257,6 @@ public class EventsPage_Activity extends BasicActivity implements
                     }
 
 
-
                 }
 
 
@@ -294,7 +290,6 @@ public class EventsPage_Activity extends BasicActivity implements
             final int Currentyear = date2.getYear();
 
 
-
             reference1 =
                     FirebaseDatabase.getInstance().getReference().child("Events");
 
@@ -324,7 +319,6 @@ public class EventsPage_Activity extends BasicActivity implements
                         }
 
 
-
                     }
 
                     recyclerView.setVisibility(View.VISIBLE);
@@ -333,7 +327,6 @@ public class EventsPage_Activity extends BasicActivity implements
                             EventsAdapter(EventsPage_Activity.this, eventList);
 
                     recyclerView.setAdapter(adapter);
-
 
 
                 }
@@ -355,15 +348,13 @@ public class EventsPage_Activity extends BasicActivity implements
         }//end network condition
 
 
-        else if(!haveNetwork())
-
-        {
+        else if (!haveNetwork()) {
 
             Intent intent = new Intent();
 
-            intent.setClass(EventsPage_Activity.this,InternetChecking.class);
+            intent.setClass(EventsPage_Activity.this, InternetChecking.class);
 
-            intent.putExtra("Uniqid","EventsPage_Activity");
+            intent.putExtra("Uniqid", "EventsPage_Activity");
 
             startActivity(intent);
 
@@ -386,9 +377,6 @@ public class EventsPage_Activity extends BasicActivity implements
         final int month = date.getMonth();
 
         final int year = date.getYear();
-
-
-
         reference =
                 FirebaseDatabase.getInstance().getReference().child("Events");
 
@@ -428,7 +416,6 @@ public class EventsPage_Activity extends BasicActivity implements
                     }
 
 
-
                 }
 
                 recyclerView.setVisibility(View.VISIBLE);
@@ -439,7 +426,6 @@ public class EventsPage_Activity extends BasicActivity implements
                 recyclerView.setAdapter(adapter);
 
                 adapter.setOnItemClickListener(EventsPage_Activity.this);
-
 
 
             }
@@ -456,8 +442,6 @@ public class EventsPage_Activity extends BasicActivity implements
             }
 
         });
-
-
 
     }
 
@@ -476,7 +460,6 @@ public class EventsPage_Activity extends BasicActivity implements
                 Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
 
 
-
             intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
 
             intent.putExtra(Constant.Keys.EVENT_NAME,
@@ -486,11 +469,11 @@ public class EventsPage_Activity extends BasicActivity implements
                     clickeditem.getDescriptionAR());
 
             intent.putExtra(Constant.Keys.EVENT_TIME,
-                    replaceArabicNumbers(clickeditem.getEventTime()));
+                    clickeditem.getEventTime());
 
             startActivity(intent);
 
-        }else{
+        } else {
 
             intent.putExtra(Constant.Keys.EVENT_URL, clickeditem.getImage());
 
@@ -508,67 +491,38 @@ public class EventsPage_Activity extends BasicActivity implements
         }
 
 
-
     }
 
 
-
-    public String replaceArabicNumbers(String original) {
-
-        return original.toString().replaceAll("1","١")
-
-                .replaceAll("2","٢")
-
-                .replaceAll("3","٣")
-
-                .replaceAll("4","٤")
-
-                .replaceAll("5","٥")
-
-                .replaceAll("6","٦")
-
-                .replaceAll("7","٧")
-
-                .replaceAll("8","٨")
-
-                .replaceAll("9","٩")
-
-                .replaceAll("0","٠");
-
-    }
+    private boolean haveNetwork() {
 
 
-    private boolean haveNetwork(){
+        boolean have_WIFI = false;
+
+        boolean have_MobileData = false;
 
 
-        boolean have_WIFI=false;
-
-        boolean have_MobileData=false;
-
-
-        ConnectivityManager connectivityManager= (ConnectivityManager)
+        ConnectivityManager connectivityManager = (ConnectivityManager)
                 getSystemService(CONNECTIVITY_SERVICE);
 
 
-        NetworkInfo [] networkInfos=connectivityManager.getAllNetworkInfo();
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
 
 
-        for(NetworkInfo info:networkInfos)
+        for (NetworkInfo info : networkInfos) {
 
-        {
+            if (info.getTypeName().equalsIgnoreCase("WIFI"))
 
-            if(info.getTypeName().equalsIgnoreCase("WIFI"))
+                if (info.isConnected())
 
-                if(info.isConnected())
-
-                    have_WIFI=true;
+                    have_WIFI = true;
 
 
-            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
+            if (info.getTypeName().equalsIgnoreCase("MOBILE"))
 
-                if(info.isConnected())
+                if (info.isConnected())
 
-                    have_MobileData=true;
+                    have_MobileData = true;
 
 
         }

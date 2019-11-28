@@ -6,11 +6,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.SpannableStringBuilder;
-import android.text.style.RelativeSizeSpan;
 import android.view.View;
 import android.view.MenuItem;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,16 +17,14 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.smarteist.autoimageslider.IndicatorAnimations;
-import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
-
-import project.graduation.atturaif_application.Adapters.SliderAdapterExample;
+import com.unity3d.player.UnityPlayerActivity;
 
 
 public class HomePage_Activity extends BasicActivity implements View.OnClickListener {
@@ -35,6 +32,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
     LinearLayout bookingtab_button, eventtab_button, shoptab_button, startARtab_button, vrtab_button, maptab_button;
     ImageButton more_button;
     SliderView sliderView;
+    ImageView slider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,11 +43,8 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         eventtab_button = findViewById(R.id.event);
         shoptab_button = findViewById(R.id.shop);
         more_button = findViewById(R.id.more_button);
-        sliderView = findViewById(R.id.imageSlider);
-
-        sliderView.setSliderAdapter(new SliderAdapterExample(HomePage_Activity.this));
-        sliderView.startAutoCycle();
-        sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
+        vrtab_button = findViewById(R.id.VR);
+        slider = findViewById(R.id.slider);
 
         //
         //set the listener
@@ -57,7 +52,24 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         eventtab_button.setOnClickListener(this);
         shoptab_button.setOnClickListener(this);
         more_button.setOnClickListener(this);
+        vrtab_button.setOnClickListener(this);
 
+
+        if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar"))
+            Glide.with(this)
+                    .load(R.drawable.ar_ar)
+                    .into(slider);
+        else
+            Glide.with(this)
+                    .load(R.drawable.ar_en)
+                    .into(slider);
+        slider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), UnityPlayerActivity.class);
+                startActivity(i);
+            }
+        });
 
     } // onCreate
 
@@ -71,6 +83,11 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                 break;
             case R.id.event:
                 startActivity(new Intent(HomePage_Activity.this, EventsPage_Activity.class));
+                break;
+            case R.id.VR:
+                startActivity(new Intent(HomePage_Activity.this, VR_page.class));
+
+
                 break;
             case R.id.more_button:
 
@@ -125,29 +142,28 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
     private void call() {
 
-        boolean have_WIFI=false;
-        boolean have_MobileData=false;
+        boolean have_WIFI = false;
+        boolean have_MobileData = false;
 
-        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
 
-        for(NetworkInfo info:networkInfos)
-        {
-            if(info.getTypeName().equalsIgnoreCase("WIFI"))
-                if(info.isConnected())
-                    have_WIFI=true;
+        for (NetworkInfo info : networkInfos) {
+            if (info.getTypeName().equalsIgnoreCase("WIFI"))
+                if (info.isConnected())
+                    have_WIFI = true;
 
-            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
-                if(info.isConnected())
-                    have_MobileData=true;
+            if (info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (info.isConnected())
+                    have_MobileData = true;
 
         }
 
-        if(!(have_WIFI||have_MobileData)) {
+        if (!(have_WIFI || have_MobileData)) {
 
 
-            if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")){
+            if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
                 Toast toast = Toast.makeText(getApplicationContext(), "لا يوجد إتصال في الانترنت !", Toast.LENGTH_LONG);
                 View view = toast.getView();
                 TextView text = (TextView) view.findViewById(android.R.id.message);
@@ -155,8 +171,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                 text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
                 /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
                 toast.show();
-            }
-            else {
+            } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Network connection is not available!", Toast.LENGTH_LONG);
                 View view = toast.getView();
                 TextView text = (TextView) view.findViewById(android.R.id.message);
@@ -165,11 +180,9 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                 /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
                 toast.show();
 
-                // Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
             }
 
-        }
-        else {
+        } else {
 
 
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -193,28 +206,27 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
     private void sendEmail() {
 
-        boolean have_WIFI=false;
-        boolean have_MobileData=false;
+        boolean have_WIFI = false;
+        boolean have_MobileData = false;
 
-        ConnectivityManager connectivityManager= (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 
-        NetworkInfo[] networkInfos=connectivityManager.getAllNetworkInfo();
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
 
-        for(NetworkInfo info:networkInfos)
-        {
-            if(info.getTypeName().equalsIgnoreCase("WIFI"))
-                if(info.isConnected())
-                    have_WIFI=true;
+        for (NetworkInfo info : networkInfos) {
+            if (info.getTypeName().equalsIgnoreCase("WIFI"))
+                if (info.isConnected())
+                    have_WIFI = true;
 
-            if(info.getTypeName().equalsIgnoreCase("MOBILE"))
-                if(info.isConnected())
-                    have_MobileData=true;
+            if (info.getTypeName().equalsIgnoreCase("MOBILE"))
+                if (info.isConnected())
+                    have_MobileData = true;
 
         }
 
-        if(!(have_WIFI||have_MobileData)) {
+        if (!(have_WIFI || have_MobileData)) {
 
-            if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")){
+            if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
                 Toast toast = Toast.makeText(getApplicationContext(), "لا يوجد إتصال في الانترنت !", Toast.LENGTH_LONG);
                 View view = toast.getView();
                 TextView text = (TextView) view.findViewById(android.R.id.message);
@@ -222,8 +234,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                 text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
                 /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
                 toast.show();
-            }
-            else {
+            } else {
                 Toast toast = Toast.makeText(getApplicationContext(), "Network connection is not available!", Toast.LENGTH_LONG);
                 View view = toast.getView();
                 TextView text = (TextView) view.findViewById(android.R.id.message);
@@ -234,9 +245,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
 
                 // Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
             }
-        }
-
-        else {
+        } else {
 
 
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -254,7 +263,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                    if(MySharedPreference.getString(getApplicationContext(),Constant.Keys.APP_LANGUAGE,"en").equals("ar")){
+                    if (MySharedPreference.getString(getApplicationContext(), Constant.Keys.APP_LANGUAGE, "en").equals("ar")) {
                         Toast toast = Toast.makeText(getApplicationContext(), "هناك بعض المشاكل ، يرجى المحاولة مرة أخرى لاحقًا", Toast.LENGTH_LONG);
                         View view = toast.getView();
                         TextView text = (TextView) view.findViewById(android.R.id.message);
@@ -262,8 +271,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
                         text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
                         /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
                         toast.show();
-                    }
-                    else {
+                    } else {
                         Toast toast = Toast.makeText(getApplicationContext(), "There is some problems, please try again later", Toast.LENGTH_LONG);
                         View view = toast.getView();
                         TextView text = (TextView) view.findViewById(android.R.id.message);

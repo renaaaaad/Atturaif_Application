@@ -17,8 +17,10 @@
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:text="Sunday"
+            android:textColor="@color/dark_gray"
+            android:fontFamily="@font/arabtype"
             android:layout_weight="1"
-            android:textSize="25sp"/>
+            android:textSize="29sp" />
 
         <TextView
 
@@ -26,9 +28,11 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:fontFamily="@font/arabtype"
             android:gravity="center_horizontal"
+            android:textColor="@color/dark_gray"
             android:text="16:20 to 20:20"
-            android:textSize="25sp" />
+            android:textSize="29sp" />
 
     </LinearLayout>
 </LinearLayout>
