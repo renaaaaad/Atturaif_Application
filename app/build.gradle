@@ -23,7 +23,6 @@ android {
 
         pickFirst 'lib/armeabi-v7a/libmain.so'
         pickFirst 'lib/armeabi-v7a/libmono.so'
-        pickFirst 'lib/armeabi-v7a/libunity.so'
         pickFirst 'lib/x86/libmain.so'
         pickFirst 'lib/x86/libmain.so'
         pickFirst 'lib/x86/libmain.so'
@@ -38,9 +37,6 @@ android {
 }
 
 dependencies {
-
-    implementation project(':unityLibrary')
-    implementation fileTree(dir: project(':unityLibrary').getProjectDir().toString() + ('\\libs'), include: ['*.jar'])
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])

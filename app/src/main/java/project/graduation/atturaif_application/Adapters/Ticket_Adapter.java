@@ -67,6 +67,8 @@ public class Ticket_Adapter extends RecyclerView.Adapter<Ticket_Adapter.MyViewHo
         } //else
 
         final double finalPrice = price;
+
+
         holder.add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -106,7 +108,7 @@ public class Ticket_Adapter extends RecyclerView.Adapter<Ticket_Adapter.MyViewHo
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView visitor_type, price;
         ImageButton add, remove;
-        EditText numberOfTickets;
+        TextView numberOfTickets;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

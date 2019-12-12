@@ -23,9 +23,7 @@ allprojects {
         jcenter()
 
 
-        flatDir {
-            dirs "${project(':unityLibrary').projectDir}/libs"
-        }
+
         
     }
 }

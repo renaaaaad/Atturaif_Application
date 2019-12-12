@@ -14,6 +14,9 @@ public class Tour {
         this.duration = duration;
     }
 
+    public Tour(String tourName) {
+    }
+
     public String getDayEN() {
         return dayEN;
     }

@@ -39,13 +39,13 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/atturaif_"/>
 
+
             <com.kofigyan.stateprogressbar.StateProgressBar
                 android:id="@+id/your_state_progress_bar_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:spb_currentStateNumber="three"
                 app:spb_maxStateNumber="four"
-                android:layout_margin="10dp"
                 app:spb_stateBackgroundColor="#BDBDBD"
                 app:spb_stateForegroundColor="#084D14"
                 app:spb_stateNumberBackgroundColor="#808080"
@@ -103,11 +103,11 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
-                        android:layout_marginStart="33dp"
-                        android:layout_width="48dp"
+                        android:layout_width="62dp"
                         android:layout_height="49dp"
-                        android:src="@drawable/credit_card" />
+                        android:layout_marginStart="33dp"
+                        android:layout_marginTop="0dp"
+                        android:src="@drawable/credit" />
 
                 </LinearLayout>
 
@@ -167,7 +167,7 @@
                         android:layout_marginStart="19dp"
                         android:layout_width="48dp"
                         android:layout_height="49dp"
-                        android:src="@drawable/credit_card"/>
+                        android:src="@drawable/credit"/>
 
                 </LinearLayout>
 
@@ -198,7 +198,7 @@
                         android:layout_marginTop="0dp"
                         android:layout_width="53dp"
                         android:layout_height="32dp"
-                        android:layout_gravity="end"
+                        android:layout_marginStart="25dp"
                         android:src="@drawable/calendar_book" />
 
                 </LinearLayout>
@@ -215,20 +215,33 @@
                 android:layout_height="wrap_content"
                 />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="193dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="5dp"
+                android:text="@string/cash"
+                android:textAlignment="center"
+                android:textAppearance="@style/AppTheme"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/btnBuy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_background"
                 android:text="@string/buy"
                 android:textColor="@color/white"
                 android:textSize="26sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:textAppearance="@style/AppTheme"/>
 
 
             <ProgressBar

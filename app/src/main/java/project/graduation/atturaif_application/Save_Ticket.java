@@ -95,6 +95,7 @@ public class Save_Ticket extends AppCompatActivity {
                     fileOutputStream.write(Message.getBytes());
                     fileOutputStream.close();
                     Toast.makeText(getApplicationContext(), "Ticket saved in Storage/Downloads", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(Save_Ticket.this, HomePage_Activity.class));
 
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();

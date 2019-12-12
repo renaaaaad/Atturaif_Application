@@ -229,6 +229,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
         }//end if statment for netwoek checking
 
+
         else if (!haveNetwork()) {
 
             Intent intent = new Intent();
@@ -268,26 +269,15 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     try {
-                        String dayEN = child.child("dayEN").getValue(String.class);
-                        String dayAR = child.child("dayAR").getValue(String.class);
-                        String time = child.child("time").getValue(String.class);
-                        Long guide = child.child("guide").getValue(Long.class);
-                        int duration = child.child("duration").getValue(Integer.class);
-                        String typeEN = child.child("typeEN").getValue(String.class);
-                        String typeAR = child.child("typeAR").getValue(String.class);
 
-                        Tour tour = new Tour(dayEN, dayAR, time, Long.toString(guide), typeAR, typeEN, duration);
+                        String tourName = child.child("tourName").getValue(String.class);
+
+                        Tour tour = new Tour(tourName);
                         tours.add(tour);
                     } catch (Exception e) {
-                        String dayEN = child.child("dayEN").getValue(String.class);
-                        String dayAR = child.child("dayAR").getValue(String.class);
-                        String time = child.child("time").getValue(String.class);
-                        String guide = child.child("guide").getValue(String.class);
-                        int duration = child.child("duration").getValue(Integer.class);
-                        String typeEN = child.child("typeEN").getValue(String.class);
-                        String typeAR = child.child("typeAR").getValue(String.class);
+                        String tourName = child.child("tourName").getValue(String.class);
 
-                        Tour tour = new Tour(dayEN, dayAR, time, guide, typeAR, typeEN, duration);
+                        Tour tour = new Tour(tourName);
                         tours.add(tour);
                     } // catch
 

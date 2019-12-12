@@ -24,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.smarteist.autoimageslider.SliderView;
-import com.unity3d.player.UnityPlayerActivity;
 
 
 public class HomePage_Activity extends BasicActivity implements View.OnClickListener {
@@ -66,8 +65,7 @@ public class HomePage_Activity extends BasicActivity implements View.OnClickList
         slider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), UnityPlayerActivity.class);
-                startActivity(i);
+
             }
         });
 

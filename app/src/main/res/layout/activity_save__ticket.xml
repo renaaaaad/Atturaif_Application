@@ -105,11 +105,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
-                        android:layout_width="53dp"
-                        android:layout_height="32dp"
-                        android:layout_marginStart="22dp"
-                        android:src="@drawable/credit_card" />
+                        android:layout_width="86dp"
+                        android:layout_height="34dp"
+                        android:layout_margin="5dp"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="1dp"
+                        android:src="@drawable/credit" />
 
                 </LinearLayout>
 
@@ -168,11 +169,12 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_marginTop="0dp"
-                        android:layout_width="53dp"
-                        android:layout_height="32dp"
-                        android:layout_marginStart="15dp"
-                        android:src="@drawable/credit_card"/>
+                        android:layout_width="70dp"
+                        android:layout_height="34dp"
+                        android:layout_margin="5dp"
+                        android:layout_marginStart="17dp"
+                        android:layout_marginTop="1dp"
+                        android:src="@drawable/credit"/>
 
 
                 </LinearLayout>
@@ -217,10 +219,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:textAlignment="center"
                 android:text="@string/ticketCopy"
-                android:textColor="@color/black"
                 android:textAppearance="@style/AppTheme"
-                android:textSize="20dp"
+                android:textColor="@color/black"
+                android:textSize="24dp"
                 android:textStyle="bold" />
 
             <LinearLayout

@@ -72,6 +72,7 @@
     <string name="Atturaif_shops">اسواق الطريف</string>
     <string name="more">المزيد</string>
     <string name="ticketCopy"> يجب عليك الان الاحتفاظ بنسخة من التذكرة لتتمكن من عرضها عند زيارة الطريف </string>
+    <string name="cash"> لإكمال شراء التذاكر ، يجب عليك الدفع نقدًا عند زيارة موقع الطريف في التاريخ المحدد </string>
     <string name="ticketInfo">معلومات التذكرة</string>
     <string name="ticketSave">حفظ التذكرة</string>
     <string name="total">المجموع</string>
