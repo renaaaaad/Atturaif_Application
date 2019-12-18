@@ -1,5 +1,6 @@
 package project.graduation.atturaif_application;
 
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -174,7 +175,7 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
             Continue.setVisibility(LinearLayout.GONE);
 
             // get tour type data
-            getTourType();
+//            getTourType();
 
 
             // sit tickets
@@ -205,7 +206,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                             TextView text = (TextView) view2.findViewById(android.R.id.message);
                             text.setTextSize(23);
                             text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
-                            /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
                             toast.show();
                         }
                         else {
@@ -214,7 +214,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
                             TextView text = (TextView) view2.findViewById(android.R.id.message);
                             text.setTextSize(23);
                             text.setTypeface(Typeface.createFromAsset(getAssets(), "arabtype.ttf"));
-                            /*Here you can do anything with above textview like text.setTextColor(Color.parseColor("#000000"));*/
                             toast.show();
 
                             // Toast.makeText(HomePage_Activity.this, R.string.connection,Toast.LENGTH_SHORT).show();
@@ -228,7 +227,6 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
 
         }//end if statment for netwoek checking
-
 
         else if (!haveNetwork()) {
 
@@ -261,35 +259,46 @@ public class Booking_Activity extends BasicActivity implements OnDateSelectedLis
 
     } // createPopUpWindow
 
-    private void getTourType() {
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("tours").child("Available_tours");
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot child : dataSnapshot.getChildren()) {
-                    try {
-
-                        String tourName = child.child("tourName").getValue(String.class);
-
-                        Tour tour = new Tour(tourName);
-                        tours.add(tour);
-                    } catch (Exception e) {
-                        String tourName = child.child("tourName").getValue(String.class);
-
-                        Tour tour = new Tour(tourName);
-                        tours.add(tour);
-                    } // catch
-
-                }// for
-                flag2 = true;
-            } //onDataChange
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-            } //onCancelled
-        });
-    } //getTourType
+//    private void getTourType() {
+//        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("tours").child("Available_tours");
+//        myRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                for (DataSnapshot child : dataSnapshot.getChildren()) {
+//                    try {
+//                        String dayEN = child.child("dayEN").getValue(String.class);
+//                        String dayAR = child.child("dayAR").getValue(String.class);
+//                        String time = child.child("time").getValue(String.class);
+//                        Long guide = child.child("guide").getValue(Long.class);
+//                        int duration = child.child("duration").getValue(Integer.class);
+//                        String typeEN = child.child("typeEN").getValue(String.class);
+//                        String typeAR = child.child("typeAR").getValue(String.class);
+//
+//                        Tour tour = new Tour(dayEN, dayAR, time, Long.toString(guide), typeAR, typeEN, duration);
+//                        tours.add(tour);
+//                    } catch (Exception e) {
+//                        String dayEN = child.child("dayEN").getValue(String.class);
+//                        String dayAR = child.child("dayAR").getValue(String.class);
+//                        String time = child.child("time").getValue(String.class);
+//                        String guide = child.child("guide").getValue(String.class);
+//                        int duration = child.child("duration").getValue(Integer.class);
+//                        String typeEN = child.child("typeEN").getValue(String.class);
+//                        String typeAR = child.child("typeAR").getValue(String.class);
+//
+//                        Tour tour = new Tour(dayEN, dayAR, time, guide, typeAR, typeEN, duration);
+//                        tours.add(tour);
+//                    } // catch
+//
+//                }// for
+//                flag2 = true;
+//            } //onDataChange
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//            } //onCancelled
+//        });
+//    } //getTourType
 
     private void setTeckits() {
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
